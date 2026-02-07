@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-native-bluetooth-escpos-printer/android/build.gradle b/node_modules/react-native-bluetooth-escpos-printer/android/build.gradle
-index d86e4f5..e3bfbe6 100644
+index d86e4f5..f8cd7c5 100644
 --- a/node_modules/react-native-bluetooth-escpos-printer/android/build.gradle
 +++ b/node_modules/react-native-bluetooth-escpos-printer/android/build.gradle
 @@ -1,31 +1,19 @@
@@ -39,7 +39,7 @@ index d86e4f5..e3bfbe6 100644
          versionCode 1
          versionName "1.0"
      }
-@@ -40,21 +28,12 @@ android {
+@@ -40,21 +28,13 @@ android {
  }
  
  repositories {
@@ -62,6 +62,22 @@ index d86e4f5..e3bfbe6 100644
      implementation 'com.facebook.react:react-native:+'  // From node_modules
 -    implementation group: 'com.android.support', name: 'support-v4', version: '27.0.0'
 -    implementation "com.google.zxing:core:3.3.0"
++    implementation 'androidx.core:core:1.15.0'
 +    implementation "com.google.zxing:core:3.5.3"
  }
 \ No newline at end of file
+diff --git a/node_modules/react-native-bluetooth-escpos-printer/android/src/main/java/cn/jystudio/bluetooth/RNBluetoothManagerModule.java b/node_modules/react-native-bluetooth-escpos-printer/android/src/main/java/cn/jystudio/bluetooth/RNBluetoothManagerModule.java
+index dd5d33e..bcdf209 100644
+--- a/node_modules/react-native-bluetooth-escpos-printer/android/src/main/java/cn/jystudio/bluetooth/RNBluetoothManagerModule.java
++++ b/node_modules/react-native-bluetooth-escpos-printer/android/src/main/java/cn/jystudio/bluetooth/RNBluetoothManagerModule.java
+@@ -10,8 +10,8 @@ import android.content.Intent;
+ import android.content.IntentFilter;
+ import android.content.pm.PackageManager;
+ import android.os.Bundle;
+-import android.support.v4.app.ActivityCompat;
+-import android.support.v4.content.ContextCompat;
++import androidx.core.app.ActivityCompat;
++import androidx.core.content.ContextCompat;
+ import android.util.Log;
+ import android.widget.Toast;
+ import com.facebook.react.bridge.*;

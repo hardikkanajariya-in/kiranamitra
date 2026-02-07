@@ -113,3 +113,4 @@ mmkv/
 *.haste_map.*
 *.metro.*
 /android/app/.cxx
+/android/.kotlin
