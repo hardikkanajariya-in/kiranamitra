@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 15: Wordmark only - pure typography, ultra professional -->
+  
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  
+  <!-- Thin horizontal rule top -->
+  <line x1="100" y1="175" x2="412" y2="175" stroke="#2C3E50" stroke-width="1.5"/>
+  
+  <!-- Main brand name - stacked -->
+  <text x="256" y="250" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+        font-size="72" font-weight="bold" fill="#2C3E50" letter-spacing="8">KIRANA</text>
+  
+  <!-- Accent dot between words -->
+  <circle cx="256" cy="275" r="5" fill="#C0392B"/>
+  
+  <text x="256" y="320" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="36" font-weight="300" fill="#C0392B" letter-spacing="18">MITRA</text>
+  
+  <!-- Thin horizontal rule bottom -->
+  <line x1="100" y1="345" x2="412" y2="345" stroke="#2C3E50" stroke-width="1.5"/>
+  
+  <!-- Tagline -->
+  <text x="256" y="385" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="11" fill="#95A5A6" letter-spacing="6">SMART STORE MANAGEMENT</text>
+</svg>

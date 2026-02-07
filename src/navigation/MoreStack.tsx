@@ -11,16 +11,14 @@ import { SettingsScreen } from '@features/settings/screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<MoreStackParamList>();
 
-export const MoreStack: React.FC = () => {
-  return (
+export const MoreStack: React.FC = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="MoreMenu" component={MoreMenuScreen} />
-      <Stack.Screen name="Reports" component={ReportsScreen} />
-      <Stack.Screen name="SalesReport" component={SalesReportScreen} />
-      <Stack.Screen name="CreditReport" component={CreditReportScreen} />
-      <Stack.Screen name="InventoryReport" component={InventoryReportScreen} />
-      <Stack.Screen name="ProductPerformance" component={ProductPerformanceScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="MoreMenu" component={MoreMenuScreen} />
+        <Stack.Screen name="Reports" component={ReportsScreen} />
+        <Stack.Screen name="SalesReport" component={SalesReportScreen} />
+        <Stack.Screen name="CreditReport" component={CreditReportScreen} />
+        <Stack.Screen name="InventoryReport" component={InventoryReportScreen} />
+        <Stack.Screen name="ProductPerformance" component={ProductPerformanceScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
-  );
-};
+);

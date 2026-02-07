@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { FlashList } from '@shopify/flash-list';
@@ -13,74 +13,79 @@ import { CategoryFilter } from '../components/CategoryFilter';
 import { useProducts, useCategories } from '../hooks/useProducts';
 import Product from '@core/database/models/Product';
 
-export const ProductListScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const theme = useTheme();
-  const { t } = useTranslation('products');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>();
-  const { products, isLoading } = useProducts(searchQuery, selectedCategoryId);
-  const { categories } = useCategories();
+interface NavigationProp {
+    navigate: (screen: string, params?: Record<string, unknown>) => void;
+    goBack: () => void;
+}
 
-  if (isLoading) {
-    return <LoadingOverlay visible />;
-  }
+export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ navigation }) => {
+    const theme = useTheme();
+    const { t } = useTranslation('products');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>();
+    const { products, isLoading } = useProducts(searchQuery, selectedCategoryId);
+    const { categories } = useCategories();
 
-  return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <AppHeader
-        title={t('title')}
-        actions={[
-          { icon: 'plus', onPress: () => navigation.navigate('ProductForm') },
-        ]}
-      />
+    if (isLoading) {
+        return <LoadingOverlay visible />;
+    }
 
-      <SearchInput
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        placeholder={t('searchPlaceholder')}
-      />
-
-      <CategoryFilter
-        categories={categories}
-        selectedCategoryId={selectedCategoryId}
-        onSelect={setSelectedCategoryId}
-      />
-
-      {products.length === 0 ? (
-        <EmptyState
-          icon="package-variant"
-          title={t('noProducts')}
-          subtitle={t('noProductsSubtitle')}
-          actionLabel={t('addProduct')}
-          onAction={() => navigation.navigate('ProductForm')}
-        />
-      ) : (
-        <FlashList
-          data={products}
-          renderItem={({ item }: { item: Product }) => (
-            <ProductCard
-              name={item.name}
-              sellingPrice={item.sellingPrice}
-              currentStock={item.currentStock}
-              unit={item.unit}
-              isLowStock={item.isLowStock}
-              isOutOfStock={item.isOutOfStock}
-              onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+    return (
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+            <AppHeader
+                title={t('title')}
+                actions={[
+                    { icon: 'plus', onPress: () => navigation.navigate('ProductForm') },
+                ]}
             />
-          )}
-          keyExtractor={(item: Product) => item.id}
-          contentContainerStyle={styles.listContent}
-        />
-      )}
-    </SafeAreaView>
-  );
+
+            <SearchInput
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                placeholder={t('searchPlaceholder')}
+            />
+
+            <CategoryFilter
+                categories={categories}
+                selectedCategoryId={selectedCategoryId}
+                onSelect={setSelectedCategoryId}
+            />
+
+            {products.length === 0 ? (
+                <EmptyState
+                    icon="package-variant"
+                    title={t('noProducts')}
+                    subtitle={t('noProductsSubtitle')}
+                    actionLabel={t('addProduct')}
+                    onAction={() => navigation.navigate('ProductForm')}
+                />
+            ) : (
+                <FlashList
+                    data={products}
+                    renderItem={({ item }: { item: Product }) => (
+                        <ProductCard
+                            name={item.name}
+                            sellingPrice={item.sellingPrice}
+                            currentStock={item.currentStock}
+                            unit={item.unit}
+                            isLowStock={item.isLowStock}
+                            isOutOfStock={item.isOutOfStock}
+                            onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+                        />
+                    )}
+                    keyExtractor={(item: Product) => item.id}
+                    contentContainerStyle={styles.listContent}
+                />
+            )}
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  listContent: {
-    paddingBottom: 16,
-  },
+    container: {
+        flex: 1,
+    },
+    listContent: {
+        paddingBottom: 16,
+    },
 });

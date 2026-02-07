@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="neonBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A2E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#16213E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0F3460;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neonGlow1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur1"/>
+      <feFlood flood-color="#00E5FF" result="color1"/>
+      <feComposite in="color1" in2="blur1" operator="in" result="glow1"/>
+      <feMerge>
+        <feMergeNode in="glow1"/>
+        <feMergeNode in="glow1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="neonGlow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur2"/>
+      <feFlood flood-color="#FF4081" result="color2"/>
+      <feComposite in="color2" in2="blur2" operator="in" result="glow2"/>
+      <feMerge>
+        <feMergeNode in="glow2"/>
+        <feMergeNode in="glow2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="neonGlow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur3"/>
+      <feFlood flood-color="#76FF03" result="color3"/>
+      <feComposite in="color3" in2="blur3" operator="in" result="glow3"/>
+      <feMerge>
+        <feMergeNode in="glow3"/>
+        <feMergeNode in="glow3"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Dark background -->
+  <rect x="36" y="36" width="440" height="440" rx="40" fill="url(#neonBg)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#FFFFFF" stroke-width="0.3" opacity="0.05">
+    <line x1="36" y1="136" x2="476" y2="136"/>
+    <line x1="36" y1="236" x2="476" y2="236"/>
+    <line x1="36" y1="336" x2="476" y2="336"/>
+    <line x1="136" y1="36" x2="136" y2="476"/>
+    <line x1="256" y1="36" x2="256" y2="476"/>
+    <line x1="376" y1="36" x2="376" y2="476"/>
+  </g>
+  
+  <!-- Neon store outline -->
+  <g transform="translate(256, 200)" filter="url(#neonGlow1)">
+    <!-- Store outline -->
+    <path d="M-80 20 L-80 80 L80 80 L80 20" 
+          stroke="#00E5FF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Roof -->
+    <path d="M-90 20 L0 -40 L90 20" 
+          stroke="#00E5FF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Door -->
+    <rect x="-15" y="40" width="30" height="40" rx="3" 
+          stroke="#00E5FF" stroke-width="2" fill="none"/>
+    <!-- Windows -->
+    <rect x="-65" y="30" width="30" height="25" rx="3" 
+          stroke="#00E5FF" stroke-width="2" fill="none"/>
+    <rect x="35" y="30" width="30" height="25" rx="3" 
+          stroke="#00E5FF" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Neon "OPEN" sign -->
+  <g transform="translate(256, 163)" filter="url(#neonGlow3)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="14" font-weight="bold" fill="#76FF03" letter-spacing="4">OPEN 24/7</text>
+  </g>
+  
+  <!-- Neon rupee sign -->
+  <g transform="translate(256, 210)" filter="url(#neonGlow2)">
+    <text x="0" y="0" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="30" font-weight="bold" fill="#FF4081">₹</text>
+  </g>
+  
+  <!-- Stars / sparkle effects -->
+  <g filter="url(#neonGlow1)">
+    <circle cx="140" cy="100" r="2" fill="#00E5FF"/>
+    <circle cx="380" cy="120" r="2" fill="#00E5FF"/>
+    <circle cx="120" cy="400" r="2" fill="#00E5FF"/>
+    <circle cx="400" cy="380" r="2" fill="#00E5FF"/>
+  </g>
+  <g filter="url(#neonGlow2)">
+    <circle cx="180" cy="130" r="1.5" fill="#FF4081"/>
+    <circle cx="350" cy="90" r="1.5" fill="#FF4081"/>
+  </g>
+  
+  <!-- Brand text with neon effect -->
+  <text x="256" y="345" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="52" font-weight="900" fill="#00E5FF" filter="url(#neonGlow1)" letter-spacing="3">KIRANA</text>
+  <text x="256" y="395" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="40" font-weight="300" fill="#FF4081" filter="url(#neonGlow2)" letter-spacing="10">MITRA</text>
+  
+  <!-- Underline -->
+  <line x1="150" y1="410" x2="362" y2="410" stroke="#76FF03" stroke-width="2" 
+        filter="url(#neonGlow3)" opacity="0.8"/>
+  
+  <!-- Tagline -->
+  <text x="256" y="440" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="11" fill="#76FF03" letter-spacing="6" opacity="0.7" filter="url(#neonGlow3)">DIGITAL DUKAAN</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bagGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2E7D32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1B5E20;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D32;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF9800;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-5%" width="115%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#00000030"/>
+    </filter>
+  </defs>
+  
+  <!-- Shopping bag body -->
+  <path d="M140 180 L130 420 C130 438 145 450 160 450 L352 450 C367 450 382 438 382 420 L372 180 Z" 
+        fill="url(#bagGrad)" filter="url(#shadow2)"/>
+  
+  <!-- Bag handle -->
+  <path d="M200 180 L200 130 C200 90 220 70 256 70 C292 70 312 90 312 130 L312 180" 
+        stroke="url(#handleGrad)" stroke-width="16" fill="none" stroke-linecap="round"/>
+  
+  <!-- Decorative stripe -->
+  <rect x="130" y="195" width="252" height="8" fill="url(#accentGrad)" rx="4"/>
+  
+  <!-- KM Monogram on bag -->
+  <text x="256" y="310" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="80" font-weight="bold" fill="#FFFFFF" opacity="0.95">KM</text>
+  
+  <!-- Small leaf/fresh indicator -->
+  <ellipse cx="310" cy="340" rx="20" ry="12" fill="#4CAF50" transform="rotate(-30, 310, 340)"/>
+  <ellipse cx="330" cy="330" rx="18" ry="10" fill="#66BB6A" transform="rotate(-50, 330, 330)"/>
+  <line x1="305" y1="345" x2="340" y2="320" stroke="#2E7D32" stroke-width="2"/>
+
+  <!-- Text below -->
+  <text x="256" y="385" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="22" font-weight="400" fill="#E8F5E9" letter-spacing="8">KIRANA MITRA</text>
+</svg>

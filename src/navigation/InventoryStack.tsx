@@ -9,14 +9,12 @@ import { InventoryScreen } from '@features/inventory/screens/InventoryScreen';
 
 const Stack = createNativeStackNavigator<InventoryStackParamList>();
 
-export const InventoryStack: React.FC = () => {
-  return (
+export const InventoryStack: React.FC = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ProductList" component={ProductListScreen} />
-      <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
-      <Stack.Screen name="ProductForm" component={ProductFormScreen} />
-      <Stack.Screen name="StockAdjustment" component={StockAdjustmentScreen} />
-      <Stack.Screen name="InventoryOverview" component={InventoryScreen} />
+        <Stack.Screen name="ProductList" component={ProductListScreen} />
+        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+        <Stack.Screen name="ProductForm" component={ProductFormScreen} />
+        <Stack.Screen name="StockAdjustment" component={StockAdjustmentScreen} />
+        <Stack.Screen name="InventoryOverview" component={InventoryScreen} />
     </Stack.Navigator>
-  );
-};
+);

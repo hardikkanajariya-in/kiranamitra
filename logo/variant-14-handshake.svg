@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 14: Handshake + Rupee - partnership and commerce -->
+  
+  <rect width="512" height="512" fill="#FAFAF5"/>
+  
+  <!-- Handshake icon -->
+  <g transform="translate(256, 185)">
+    <!-- Left hand -->
+    <path d="M-70 15 C-60 -5 -40 -20 -20 -15 L0 -5" 
+          stroke="#2C3E50" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Fingers left -->
+    <path d="M-20 -15 L-10 -22 L2 -12" 
+          stroke="#2C3E50" stroke-width="5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Right hand -->
+    <path d="M70 15 C60 -5 40 -20 20 -15 L0 -5" 
+          stroke="#D4522A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Fingers right -->
+    <path d="M20 -15 L10 -22 L-2 -12" 
+          stroke="#D4522A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Sleeve left -->
+    <path d="M-70 15 L-82 25 L-70 35 L-58 25 Z" fill="#2C3E50"/>
+    
+    <!-- Sleeve right -->
+    <path d="M70 15 L82 25 L70 35 L58 25 Z" fill="#D4522A"/>
+    
+    <!-- Rupee symbol above -->
+    <text x="0" y="-40" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="28" font-weight="bold" fill="#D4522A">₹</text>
+  </g>
+  
+  <!-- Circular frame -->
+  <circle cx="256" cy="178" r="95" fill="none" stroke="#2C3E50" stroke-width="3"/>
+  
+  <!-- Brand name -->
+  <text x="256" y="330" text-anchor="middle" font-family="'Palatino Linotype', Georgia, serif" 
+        font-size="54" font-weight="bold" fill="#2C3E50">Kirana</text>
+  <text x="256" y="378" text-anchor="middle" font-family="'Palatino Linotype', Georgia, serif" 
+        font-size="40" fill="#D4522A" font-weight="normal">Mitra</text>
+  
+  <!-- Tagline -->
+  <text x="256" y="420" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="12" fill="#95A5A6" letter-spacing="5">PARTNER IN PROGRESS</text>
+</svg>

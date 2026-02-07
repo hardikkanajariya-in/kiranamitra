@@ -5,57 +5,61 @@ import { useTranslation } from 'react-i18next';
 import { Colors } from '@core/theme/colors';
 
 interface StockLevelIndicatorProps {
-  currentStock: number;
-  lowStockThreshold: number;
-  unit: string;
+    currentStock: number;
+    lowStockThreshold: number;
+    unit: string;
 }
 
 export const StockLevelIndicator: React.FC<StockLevelIndicatorProps> = ({
-  currentStock,
-  lowStockThreshold,
-  unit,
+    currentStock,
+    lowStockThreshold,
+    unit,
 }) => {
-  const theme = useTheme();
-  const { t } = useTranslation('inventory');
+    const theme = useTheme();
+    const { t } = useTranslation('inventory');
 
-  const maxDisplay = Math.max(lowStockThreshold * 3, currentStock);
-  const progress = maxDisplay > 0 ? Math.min(currentStock / maxDisplay, 1) : 0;
+    const maxDisplay = Math.max(lowStockThreshold * 3, currentStock);
+    const progress = maxDisplay > 0 ? Math.min(currentStock / maxDisplay, 1) : 0;
 
-  const getColor = () => {
-    if (currentStock <= 0) return theme.colors.error;
-    if (currentStock <= lowStockThreshold) return Colors.warning;
-    return Colors.success;
-  };
+    const getColor = () => {
+        if (currentStock <= 0) {
+            return theme.colors.error;
+        }
+        if (currentStock <= lowStockThreshold) {
+            return Colors.warning;
+        }
+        return Colors.success;
+    };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
-          {currentStock} {unit}
-        </Text>
-        <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-          {t('minStock', { threshold: lowStockThreshold, unit })}
-        </Text>
-      </View>
-      <ProgressBar
-        progress={progress}
-        color={getColor()}
-        style={[styles.bar, { backgroundColor: theme.colors.surfaceVariant }]}
-      />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
+                    {currentStock} {unit}
+                </Text>
+                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                    {t('minStock', { threshold: lowStockThreshold, unit })}
+                </Text>
+            </View>
+            <ProgressBar
+                progress={progress}
+                color={getColor()}
+                style={[styles.bar, { backgroundColor: theme.colors.surfaceVariant }]}
+            />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    gap: 4,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  bar: {
-    height: 8,
-    borderRadius: 4,
-  },
+    container: {
+        gap: 4,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    bar: {
+        height: 8,
+        borderRadius: 4,
+    },
 });

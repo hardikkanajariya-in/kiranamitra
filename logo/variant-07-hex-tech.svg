@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="hexGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B1FA2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4A148C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hexGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E040FB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#AA00FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hexGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD54F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFC107;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glowHex">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main hexagon -->
+  <polygon points="256,36 436,140 436,348 256,452 76,348 76,140" 
+           fill="url(#hexGrad1)"/>
+  
+  <!-- Inner hexagon border -->
+  <polygon points="256,60 416,152 416,336 256,428 96,336 96,152" 
+           fill="none" stroke="#E040FB" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Tech circuit lines -->
+  <g stroke="#E040FB" stroke-width="1.5" opacity="0.25" fill="none">
+    <path d="M256 60 L256 150"/>
+    <path d="M416 152 L330 200"/>
+    <path d="M96 152 L182 200"/>
+    <path d="M416 336 L330 290"/>
+    <path d="M96 336 L182 290"/>
+    <circle cx="256" cy="150" r="4"/>
+    <circle cx="330" cy="200" r="4"/>
+    <circle cx="182" cy="200" r="4"/>
+  </g>
+  
+  <!-- Central icon: Digital shopping cart / basket -->
+  <g transform="translate(256, 215)">
+    <!-- Cart body -->
+    <path d="M-55 -30 L-45 -30 L-25 30 L50 30 L60 -10 L-20 -10" 
+          stroke="#FFFFFF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Cart wheels -->
+    <circle cx="-15" cy="45" r="10" fill="none" stroke="url(#hexGrad3)" stroke-width="5"/>
+    <circle cx="40" cy="45" r="10" fill="none" stroke="url(#hexGrad3)" stroke-width="5"/>
+    <!-- Items in cart -->
+    <rect x="-15" y="0" width="18" height="22" rx="3" fill="url(#hexGrad2)" opacity="0.7"/>
+    <rect x="10" y="5" width="14" height="17" rx="3" fill="url(#hexGrad3)" opacity="0.7"/>
+    <rect x="30" y="8" width="12" height="14" rx="3" fill="#E040FB" opacity="0.6"/>
+    <!-- Digital pulse -->
+    <path d="M-60 -50 L-40 -50 L-30 -65 L-20 -40 L-10 -55 L5 -50 L20 -50" 
+          stroke="url(#hexGrad3)" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glowHex)"/>
+  </g>
+  
+  <!-- Brand text -->
+  <text x="256" y="350" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="38" font-weight="800" fill="#FFFFFF" letter-spacing="2">KIRANA</text>
+  <text x="256" y="390" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="30" font-weight="300" fill="url(#hexGrad3)" letter-spacing="8">MITRA</text>
+  
+  <!-- Corner accents -->
+  <circle cx="256" cy="36" r="6" fill="url(#hexGrad3)" filter="url(#glowHex)"/>
+  <circle cx="256" cy="452" r="6" fill="url(#hexGrad3)" filter="url(#glowHex)"/>
+</svg>

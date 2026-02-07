@@ -1,7 +1,6 @@
-import { Model } from '@nozbe/watermelondb';
+import { Model, Q } from '@nozbe/watermelondb';
 import { text, field, date, readonly, children, writer, lazy } from '@nozbe/watermelondb/decorators';
 import { Associations } from '@nozbe/watermelondb/Model';
-import { Q } from '@nozbe/watermelondb';
 
 export default class Customer extends Model {
   static table = 'customers';
@@ -20,8 +19,11 @@ export default class Customer extends Model {
   @date('created_at') createdAt!: Date;
   @readonly @date('updated_at') updatedAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('bills') bills: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('credit_entries') creditEntries: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('payments') payments: any;
 
   @lazy
@@ -39,10 +41,10 @@ export default class Customer extends Model {
     notes?: string;
   }) {
     await this.update((customer) => {
-      if (data.name !== undefined) customer.name = data.name;
-      if (data.phone !== undefined) customer.phone = data.phone;
-      if (data.address !== undefined) customer.address = data.address;
-      if (data.notes !== undefined) customer.notes = data.notes;
+      if (data.name !== undefined) { customer.name = data.name; }
+      if (data.phone !== undefined) { customer.phone = data.phone; }
+      if (data.address !== undefined) { customer.address = data.address; }
+      if (data.notes !== undefined) { customer.notes = data.notes; }
     });
   }
 

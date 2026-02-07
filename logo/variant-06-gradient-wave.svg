@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00BCD4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0097A7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00695C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF9800;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waveGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E0F7FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B2EBF2;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="roundedClip">
+      <rect x="36" y="36" width="440" height="440" rx="60"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="36" y="36" width="440" height="440" rx="60" fill="#FFFFFF"/>
+  <rect x="36" y="36" width="440" height="440" rx="60" fill="url(#waveGrad3)"/>
+  
+  <!-- Wave decorations -->
+  <g clip-path="url(#roundedClip)">
+    <path d="M36 360 Q130 320 220 360 T400 340 L476 360 L476 476 L36 476 Z" 
+          fill="url(#waveGrad1)" opacity="0.15"/>
+    <path d="M36 390 Q150 350 256 380 T476 370 L476 476 L36 476 Z" 
+          fill="url(#waveGrad1)" opacity="0.1"/>
+  </g>
+  
+  <!-- Central icon group -->
+  <g transform="translate(256, 190)">
+    <!-- Store roof / awning -->
+    <path d="M-90 10 L0 -60 L90 10 Z" fill="url(#waveGrad1)"/>
+    <path d="M-90 10 Q-70 30 -50 10 Q-30 30 -10 10 Q10 30 30 10 Q50 30 70 10 Q90 30 90 10" 
+          fill="url(#waveGrad2)" stroke="url(#waveGrad2)" stroke-width="2"/>
+    
+    <!-- Store body -->
+    <rect x="-75" y="10" width="150" height="90" rx="4" fill="url(#waveGrad1)"/>
+    
+    <!-- Window grid -->
+    <rect x="-60" y="25" width="35" height="28" rx="4" fill="#E0F7FA"/>
+    <line x1="-42" y1="25" x2="-42" y2="53" stroke="#0097A7" stroke-width="1.5"/>
+    <line x1="-60" y1="39" x2="-25" y2="39" stroke="#0097A7" stroke-width="1.5"/>
+    
+    <rect x="25" y="25" width="35" height="28" rx="4" fill="#E0F7FA"/>
+    <line x1="42" y1="25" x2="42" y2="53" stroke="#0097A7" stroke-width="1.5"/>
+    <line x1="25" y1="39" x2="60" y2="39" stroke="#0097A7" stroke-width="1.5"/>
+    
+    <!-- Door -->
+    <rect x="-14" y="55" width="28" height="45" rx="4" fill="#E0F7FA"/>
+    <circle cx="8" cy="80" r="3" fill="#0097A7"/>
+    
+    <!-- Rupee symbol above door -->
+    <text x="0" y="48" text-anchor="middle" font-family="Arial, sans-serif" 
+          font-size="18" font-weight="bold" fill="#FFC107">₹</text>
+  </g>
+  
+  <!-- Connecting handshake below store -->
+  <g transform="translate(256, 315)">
+    <path d="M-30 0 C-20 -15 -5 -15 5 -5 C15 5 20 0 30 0" 
+          stroke="url(#waveGrad2)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M-30 0 C-20 15 -5 15 5 5 C15 -5 20 0 30 0" 
+          stroke="url(#waveGrad1)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Brand name text -->
+  <text x="256" y="380" text-anchor="middle" font-family="'Segoe UI', Arial, Helvetica, sans-serif" 
+        font-size="52" font-weight="800" fill="url(#waveGrad1)">KiranaMitra</text>
+  
+  <!-- Tagline -->
+  <text x="256" y="415" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" 
+        font-size="16" font-weight="400" fill="#0097A7" letter-spacing="4" opacity="0.7">SMART STORE PARTNER</text>
+</svg>

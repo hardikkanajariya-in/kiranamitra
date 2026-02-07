@@ -26,7 +26,9 @@ export const PinPad: React.FC<PinPadProps> = ({
   const theme = useTheme();
   const { t } = useTranslation();
   const [pin, setPin] = useState('');
-  const shakeAnim = useRef(new Animated.Value(0)).current;
+  const shakeAnimRef = useRef(new Animated.Value(0));
+  // eslint-disable-next-line react-hooks/refs
+  const shakeAnim = shakeAnimRef.current;
 
   useEffect(() => {
     if (error) {
@@ -41,11 +43,11 @@ export const PinPad: React.FC<PinPadProps> = ({
         onErrorAnimationEnd?.();
       });
     }
-  }, [error]);
+  }, [error, onErrorAnimationEnd, shakeAnim]);
 
   const handlePress = useCallback(
     (digit: string) => {
-      if (pin.length >= length) return;
+      if (pin.length >= length) { return; }
       const newPin = pin + digit;
       setPin(newPin);
       if (newPin.length === length) {
@@ -63,6 +65,12 @@ export const PinPad: React.FC<PinPadProps> = ({
     setPin('');
   }, []);
 
+  const getDotColor = (filled: boolean) => {
+    if (!filled) { return theme.colors.surfaceVariant; }
+    if (error) { return theme.colors.error; }
+    return theme.colors.primary;
+  };
+
   const renderDots = () => (
     <Animated.View
       style={[styles.dotsContainer, { transform: [{ translateX: shakeAnim }] }]}
@@ -73,12 +81,7 @@ export const PinPad: React.FC<PinPadProps> = ({
           style={[
             styles.dot,
             {
-              backgroundColor:
-                i < pin.length
-                  ? error
-                    ? theme.colors.error
-                    : theme.colors.primary
-                  : theme.colors.surfaceVariant,
+              backgroundColor: getDotColor(i < pin.length),
               borderColor: error ? theme.colors.error : theme.colors.outline,
             },
           ]}
@@ -137,6 +140,7 @@ export const PinPad: React.FC<PinPadProps> = ({
 
   return (
     <View style={styles.container}>
+      {/* eslint-disable-next-line react-hooks/refs */}
       {renderDots()}
       {renderKeypad()}
     </View>

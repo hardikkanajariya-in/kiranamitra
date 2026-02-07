@@ -9,27 +9,27 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator: React.FC = () => {
-  const { isAuthenticated, isPinEnabled, initializeAuth } = useAuthStore();
-  const [isReady, setIsReady] = useState(false);
+    const { isAuthenticated, initializeAuth } = useAuthStore();
+    const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {
-    initializeAuth();
-    // Small delay to allow stores to rehydrate
-    const timer = setTimeout(() => setIsReady(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+        initializeAuth();
+        // Small delay to allow stores to rehydrate
+        const timer = setTimeout(() => setIsReady(true), 100);
+        return () => clearTimeout(timer);
+    }, [initializeAuth]);
 
-  if (!isReady) {
-    return <LoadingOverlay visible />;
-  }
+    if (!isReady) {
+        return <LoadingOverlay visible />;
+    }
 
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {isAuthenticated ? (
-        <Stack.Screen name="Main" component={MainTabNavigator} />
-      ) : (
-        <Stack.Screen name="Auth" component={AuthStack} />
-      )}
-    </Stack.Navigator>
-  );
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {isAuthenticated ? (
+                <Stack.Screen name="Main" component={MainTabNavigator} />
+            ) : (
+                <Stack.Screen name="Auth" component={AuthStack} />
+            )}
+        </Stack.Navigator>
+    );
 };

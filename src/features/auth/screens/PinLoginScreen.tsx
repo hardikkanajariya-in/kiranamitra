@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PinPad } from '../components/PinPad';
 import { useAuthStore } from '../store/useAuthStore';
+import { Logo } from '@shared/components/Logo';
 
 export const PinLoginScreen: React.FC = () => {
   const theme = useTheme();
@@ -29,9 +30,8 @@ export const PinLoginScreen: React.FC = () => {
       edges={['top', 'bottom']}
     >
       <View style={styles.content}>
-        <View style={[styles.iconContainer, { backgroundColor: theme.colors.primaryContainer }]}>
-          <Text style={styles.icon}>🏪</Text>
-        </View>
+        <Logo size={100} iconOnly />
+        <View style={styles.logoSpacer} />
 
         <Text variant="headlineMedium" style={[styles.title, { color: theme.colors.onBackground }]}>
           {t('welcomeBack')}
@@ -66,16 +66,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 24,
   },
-  iconContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  icon: {
-    fontSize: 40,
+  logoSpacer: {
+    height: 16,
   },
   title: {
     fontWeight: 'bold',

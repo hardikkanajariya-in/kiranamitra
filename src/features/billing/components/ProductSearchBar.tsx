@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TextInput, useTheme } from 'react-native-paper';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput, useTheme, Text, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { FlashList } from '@shopify/flash-list';
 import { useDebounce } from '@shared/hooks/useDebounce';
 import Product from '@core/database/models/Product';
 import { productRepository } from '@features/products/repositories/productRepository';
-import { useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Text, Divider } from 'react-native-paper';
 import { formatCurrency } from '@shared/utils/currency';
 
 interface ProductSearchBarProps {
@@ -24,19 +20,26 @@ export const ProductSearchBar: React.FC<ProductSearchBarProps> = ({ onSelectProd
   const debouncedQuery = useDebounce(query, 300);
 
   useEffect(() => {
-    if (debouncedQuery.length >= 2) {
-      const subscription = productRepository
-        .search(debouncedQuery)
-        .subscribe((products) => {
-          setResults(products);
-          setShowResults(true);
-        });
-      return () => subscription.unsubscribe();
-    } else {
+    if (debouncedQuery.length < 2) {
+      return;
+    }
+
+    const subscription = productRepository
+      .search(debouncedQuery)
+      .subscribe((products) => {
+        setResults(products);
+        setShowResults(true);
+      });
+    return () => subscription.unsubscribe();
+  }, [debouncedQuery]);
+
+  const handleQueryChange = (text: string) => {
+    setQuery(text);
+    if (text.length < 2) {
       setResults([]);
       setShowResults(false);
     }
-  }, [debouncedQuery]);
+  };
 
   const handleSelect = (product: Product) => {
     onSelectProduct(product);
@@ -50,10 +53,10 @@ export const ProductSearchBar: React.FC<ProductSearchBarProps> = ({ onSelectProd
       <TextInput
         mode="outlined"
         value={query}
-        onChangeText={setQuery}
+        onChangeText={handleQueryChange}
         placeholder={t('searchProduct')}
         left={<TextInput.Icon icon="magnify" />}
-        right={query ? <TextInput.Icon icon="close" onPress={() => { setQuery(''); setShowResults(false); }} /> : undefined}
+        right={query ? <TextInput.Icon icon="close" onPress={() => handleQueryChange('')} /> : undefined}
         style={styles.input}
       />
 

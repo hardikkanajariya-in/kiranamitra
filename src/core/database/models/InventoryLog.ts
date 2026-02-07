@@ -15,6 +15,7 @@ export default class InventoryLog extends Model {
   @text('notes') notes!: string;
   @date('created_at') createdAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @immutableRelation('products', 'product_id') product: any;
 
   get isAddition(): boolean {

@@ -35,7 +35,7 @@ const DEFAULT_STORE: StoreProfile = {
 
 export const getStoreProfile = (): StoreProfile => {
   const raw = storage.getString('store_profile');
-  if (!raw) return DEFAULT_STORE;
+  if (!raw) { return DEFAULT_STORE; }
   try {
     return JSON.parse(raw) as StoreProfile;
   } catch {
@@ -56,7 +56,7 @@ export interface PrinterConfig {
 
 export const getPrinterConfig = (): PrinterConfig | null => {
   const raw = storage.getString('printer_config');
-  if (!raw) return null;
+  if (!raw) { return null; }
   try {
     return JSON.parse(raw) as PrinterConfig;
   } catch {

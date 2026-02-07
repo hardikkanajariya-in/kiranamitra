@@ -7,12 +7,10 @@ import { BillHistoryScreen } from '@features/billing/screens/BillHistoryScreen';
 
 const Stack = createNativeStackNavigator<BillingStackParamList>();
 
-export const BillingStack: React.FC = () => {
-  return (
+export const BillingStack: React.FC = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="BillingHome" component={BillingScreen} />
-      <Stack.Screen name="BillPreview" component={BillPreviewScreen} />
-      <Stack.Screen name="BillHistory" component={BillHistoryScreen} />
+        <Stack.Screen name="BillingHome" component={BillingScreen} />
+        <Stack.Screen name="BillPreview" component={BillPreviewScreen} />
+        <Stack.Screen name="BillHistory" component={BillHistoryScreen} />
     </Stack.Navigator>
-  );
-};
+);

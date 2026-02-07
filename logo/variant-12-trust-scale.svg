@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 12: Weighing scale (Tarazu) - trust, fairness, simplicity -->
+  
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  
+  <!-- Tarazu / Balance scale -->
+  <g transform="translate(256, 180)">
+    <!-- Center pillar -->
+    <rect x="-5" y="-10" width="10" height="80" rx="5" fill="#2C3E50"/>
+    <!-- Base -->
+    <rect x="-35" y="68" width="70" height="10" rx="5" fill="#2C3E50"/>
+    
+    <!-- Beam -->
+    <rect x="-75" y="-16" width="150" height="6" rx="3" fill="#2C3E50"/>
+    
+    <!-- Pivot triangle -->
+    <polygon points="0,-24 -8,-14 8,-14" fill="#D4522A"/>
+    
+    <!-- Left chain + pan -->
+    <line x1="-68" y1="-10" x2="-68" y2="30" stroke="#2C3E50" stroke-width="2.5"/>
+    <line x1="-52" y1="-10" x2="-52" y2="30" stroke="#2C3E50" stroke-width="2.5"/>
+    <path d="M-76 30 Q-60 48 -44 30" stroke="#2C3E50" stroke-width="3" fill="#E8E4DE"/>
+    
+    <!-- Right chain + pan -->
+    <line x1="52" y1="-10" x2="52" y2="30" stroke="#2C3E50" stroke-width="2.5"/>
+    <line x1="68" y1="-10" x2="68" y2="30" stroke="#2C3E50" stroke-width="2.5"/>
+    <path d="M44 30 Q60 48 76 30" stroke="#2C3E50" stroke-width="3" fill="#E8E4DE"/>
+  </g>
+  
+  <!-- Brand text -->
+  <text x="256" y="320" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="58" font-weight="bold" fill="#2C3E50">KiranaMitra</text>
+  
+  <!-- Accent bar -->
+  <rect x="165" y="335" width="182" height="3" fill="#D4522A"/>
+  
+  <!-- Tagline -->
+  <text x="256" y="370" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="14" fill="#7F8C8D" letter-spacing="3">TRUST IN EVERY TRANSACTION</text>
+</svg>

@@ -54,11 +54,22 @@ jest.mock('@nozbe/watermelondb/adapters/sqlite', () => jest.fn());
 
 // Mock react-native-safe-area-context
 jest.mock('react-native-safe-area-context', () => {
+    const React = require('react');
     const inset = { top: 0, right: 0, bottom: 0, left: 0 };
+    const frame = { x: 0, y: 0, width: 390, height: 844 };
+    const InsetsContext = React.createContext(inset);
+    const FrameContext = React.createContext(frame);
     return {
-        SafeAreaProvider: ({ children }: any) => children,
+        SafeAreaProvider: ({ children }: any) =>
+            React.createElement(FrameContext.Provider, { value: frame },
+                React.createElement(InsetsContext.Provider, { value: inset }, children)),
         SafeAreaView: ({ children }: any) => children,
+        SafeAreaConsumer: ({ children }: any) => children(inset),
         useSafeAreaInsets: () => inset,
+        useSafeAreaFrame: () => frame,
+        SafeAreaInsetsContext: InsetsContext,
+        SafeAreaFrameContext: FrameContext,
+        initialWindowMetrics: { insets: inset, frame },
     };
 });
 
@@ -113,6 +124,17 @@ jest.mock('react-native-share', () => ({
     },
 }));
 
+// Mock react-native-bootsplash
+jest.mock('react-native-bootsplash', () => ({
+    hide: jest.fn().mockResolvedValue(undefined),
+    isVisible: jest.fn().mockResolvedValue(false),
+    useHideAnimation: jest.fn().mockReturnValue({
+        container: {},
+        logo: { source: 0 },
+        brand: { source: 0 },
+    }),
+}));
+
 // Mock react-native-document-picker
 jest.mock('@react-native-documents/picker', () => ({
     pick: jest.fn(),
@@ -124,7 +146,9 @@ const originalWarn = console.warn;
 console.warn = (...args: any[]) => {
     if (
         typeof args[0] === 'string' &&
-        args[0].includes('Require cycle')
+        (args[0].includes('Require cycle') ||
+         args[0].includes('Tried to use the icon') ||
+         args[0].includes('react-native-paper'))
     ) {
         return;
     }
@@ -150,19 +174,6 @@ jest.mock('react-native-screens', () => ({
     enableFreeze: jest.fn(),
 }));
 
-// Mock i18next
-jest.mock('react-i18next', () => ({
-    useTranslation: () => ({
-        t: (key: string) => key,
-        i18n: {
-            changeLanguage: jest.fn(),
-            language: 'en',
-        },
-    }),
-    initReactI18next: { type: '3rdParty', init: jest.fn() },
-    Trans: ({ children }: any) => children,
-}));
-
 // Mock @react-navigation/native-stack
 jest.mock('@react-navigation/native-stack', () => ({
     createNativeStackNavigator: jest.fn().mockReturnValue({
@@ -184,6 +195,37 @@ jest.mock('dayjs', () => {
     const actual = jest.requireActual('dayjs');
     return actual;
 });
+
+// Mock react-native-gesture-handler
+jest.mock('react-native-gesture-handler', () => ({
+    GestureHandlerRootView: ({ children }: any) => children,
+    Swipeable: jest.fn(),
+    DrawerLayout: jest.fn(),
+    State: {},
+    Directions: {},
+}));
+
+// Mock I18nextProvider
+jest.mock('react-i18next', () => ({
+    useTranslation: () => ({
+        t: (key: string, opts?: any) => {
+            if (opts?.count !== undefined) return `${key}_${opts.count}`;
+            return key;
+        },
+        i18n: {
+            changeLanguage: jest.fn(),
+            language: 'en',
+        },
+    }),
+    initReactI18next: { type: '3rdParty', init: jest.fn() },
+    Trans: ({ children }: any) => children,
+    I18nextProvider: ({ children }: any) => children,
+}));
+
+// Mock @nozbe/watermelondb/DatabaseProvider
+jest.mock('@nozbe/watermelondb/DatabaseProvider', () => ({
+    DatabaseProvider: ({ children }: any) => children,
+}));
 
 // Provide clearMmkvStore helper
 export const clearMmkvStore = () => {

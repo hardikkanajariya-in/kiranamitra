@@ -13,7 +13,12 @@ import { billRepository } from '../repositories/billRepository';
 import { formatDateTime } from '@shared/utils/date';
 import { BILL_STATUSES } from '@core/constants';
 
-export const BillPreviewScreen: React.FC<{ navigation: any; route: any }> = ({
+interface BillPreviewScreenProps {
+  navigation: { navigate: (screen: string, params?: Record<string, unknown>) => void; goBack: () => void };
+  route: { params: { billId: string } };
+}
+
+export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
   navigation,
   route,
 }) => {

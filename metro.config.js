@@ -4,6 +4,7 @@ const defaultConfig = getDefaultConfig(__dirname);
 
 const config = {
   transformer: {
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
@@ -12,7 +13,8 @@ const config = {
     }),
   },
   resolver: {
-    sourceExts: [...defaultConfig.resolver.sourceExts, 'cjs'],
+    assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== 'svg'),
+    sourceExts: [...defaultConfig.resolver.sourceExts, 'cjs', 'svg'],
   },
 };
 

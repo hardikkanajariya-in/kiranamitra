@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFE082;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8F00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE082;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD54F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFB300;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#212121;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0D0D0D;stop-opacity:1" />
+    </linearGradient>
+    <filter id="goldShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FFD70066"/>
+    </filter>
+    <filter id="emboss">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.75" specularExponent="20" result="specOut">
+        <fePointLight x="256" y="100" z="200"/>
+      </feSpecularLighting>
+      <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+      <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
+  </defs>
+  
+  <!-- Dark luxurious background -->
+  <rect x="36" y="36" width="440" height="440" rx="30" fill="url(#darkGrad)"/>
+  
+  <!-- Gold border -->
+  <rect x="46" y="46" width="420" height="420" rx="24" fill="none" 
+        stroke="url(#goldGrad1)" stroke-width="2"/>
+  <rect x="54" y="54" width="404" height="404" rx="20" fill="none" 
+        stroke="url(#goldGrad1)" stroke-width="0.5" opacity="0.5"/>
+  
+  <!-- Corner ornaments -->
+  <g fill="url(#goldGrad1)" opacity="0.6">
+    <!-- Top-left -->
+    <path d="M70 70 L120 70 L120 76 L76 76 L76 120 L70 120 Z"/>
+    <path d="M80 80 L100 80 L100 84 L84 84 L84 100 L80 100 Z"/>
+    <!-- Top-right -->
+    <path d="M442 70 L392 70 L392 76 L436 76 L436 120 L442 120 Z"/>
+    <path d="M432 80 L412 80 L412 84 L428 84 L428 100 L432 100 Z"/>
+    <!-- Bottom-left -->
+    <path d="M70 442 L120 442 L120 436 L76 436 L76 392 L70 392 Z"/>
+    <path d="M80 432 L100 432 L100 428 L84 428 L84 412 L80 412 Z"/>
+    <!-- Bottom-right -->
+    <path d="M442 442 L392 442 L392 436 L436 436 L436 392 L442 392 Z"/>
+    <path d="M432 432 L412 432 L412 428 L428 428 L428 412 L432 412 Z"/>
+  </g>
+  
+  <!-- Crown / premium icon -->
+  <g transform="translate(256, 130)" filter="url(#goldShadow)">
+    <path d="M-40 20 L-50 -15 L-25 5 L0 -25 L25 5 L50 -15 L40 20 Z" 
+          fill="url(#goldGrad2)"/>
+    <rect x="-42" y="20" width="84" height="10" rx="3" fill="url(#goldGrad1)"/>
+    <!-- Crown gems -->
+    <circle cx="-25" cy="5" r="4" fill="#E53935"/>
+    <circle cx="0" cy="-10" r="5" fill="#1E88E5"/>
+    <circle cx="25" cy="5" r="4" fill="#43A047"/>
+  </g>
+  
+  <!-- KM Monogram - elegant -->
+  <g transform="translate(256, 245)" filter="url(#goldShadow)">
+    <!-- Decorative circle behind monogram -->
+    <circle cx="0" cy="0" r="70" fill="none" stroke="url(#goldGrad1)" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="60" fill="none" stroke="url(#goldGrad1)" stroke-width="0.5" opacity="0.4"/>
+    
+    <!-- K -->
+    <text x="-18" y="20" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+          font-size="72" font-weight="bold" fill="url(#goldGrad2)">K</text>
+    <!-- M -->
+    <text x="28" y="20" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+          font-size="72" font-weight="bold" fill="url(#goldGrad2)">M</text>
+  </g>
+  
+  <!-- Decorative divider -->
+  <g transform="translate(256, 330)">
+    <line x1="-120" y1="0" x2="-20" y2="0" stroke="url(#goldGrad1)" stroke-width="1"/>
+    <diamond/>
+    <polygon points="0,-6 6,0 0,6 -6,0" fill="url(#goldGrad2)"/>
+    <line x1="20" y1="0" x2="120" y2="0" stroke="url(#goldGrad1)" stroke-width="1"/>
+  </g>
+  
+  <!-- Brand name -->
+  <text x="256" y="375" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+        font-size="44" font-weight="bold" fill="url(#goldGrad2)" letter-spacing="6" 
+        filter="url(#goldShadow)">KIRANA</text>
+  <text x="256" y="415" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+        font-size="32" font-weight="normal" fill="url(#goldGrad1)" letter-spacing="12">MITRA</text>
+  
+  <!-- Premium tagline -->
+  <text x="256" y="448" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="10" fill="url(#goldGrad1)" letter-spacing="5" opacity="0.7">PREMIUM STORE MANAGEMENT</text>
+</svg>

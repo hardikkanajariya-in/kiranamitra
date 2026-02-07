@@ -5,7 +5,7 @@ import { ConfirmDialog } from '@shared/components/ConfirmDialog';
 describe('ConfirmDialog', () => {
     const defaultProps = {
         visible: true,
-        title: 'Confirm',
+        title: 'Delete Item',
         message: 'Are you sure?',
         onConfirm: jest.fn(),
         onDismiss: jest.fn(),
@@ -13,7 +13,7 @@ describe('ConfirmDialog', () => {
 
     it('should render with title and message', () => {
         const { getByText } = render(<ConfirmDialog {...defaultProps} />);
-        expect(getByText('Confirm')).toBeTruthy();
+        expect(getByText('Delete Item')).toBeTruthy();
         expect(getByText('Are you sure?')).toBeTruthy();
     });
 

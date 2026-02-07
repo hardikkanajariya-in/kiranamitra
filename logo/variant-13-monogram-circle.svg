@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 13: Monogram in circle - minimal, professional, app-icon friendly -->
+  
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  
+  <!-- Outer circle -->
+  <circle cx="256" cy="220" r="120" fill="#2C3E50"/>
+  
+  <!-- Inner letter K with a subtle store roof -->
+  <g transform="translate(256, 220)">
+    <!-- Roof hint above K -->
+    <path d="M-30 -65 L0 -85 L30 -65" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Letter K -->
+    <text x="-22" y="25" font-family="Georgia, serif" font-size="90" font-weight="bold" fill="#FFFFFF">K</text>
+    
+    <!-- Small m -->
+    <text x="30" y="25" font-family="Georgia, serif" font-size="42" font-weight="normal" fill="#D4522A">m</text>
+  </g>
+  
+  <!-- Brand text below -->
+  <text x="256" y="385" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="46" font-weight="bold" fill="#2C3E50" letter-spacing="2">Kirana</text>
+  <text x="256" y="425" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="30" fill="#D4522A" letter-spacing="5">Mitra</text>
+</svg>

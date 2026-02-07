@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { zustandMMKVStorage } from '@core/storage/zustandStorage';
 import { hashPin, verifyPin } from '@shared/utils/hash';
-import { getPin, setPin as storePinHash, removePin as removePinHash, isPinSet } from '@core/storage/mmkv';
+import { getPin, setPin as storePinHash, removePin as removePinHash } from '@core/storage/mmkv';
 
 interface AuthState {
   pinHash: string | null;
@@ -46,7 +46,7 @@ export const useAuthStore = create<AuthState>()(
 
       verifyAndLogin: (pin: string): boolean => {
         const { pinHash } = get();
-        if (!pinHash) return true;
+        if (!pinHash) { return true; }
 
         const isValid = verifyPin(pin, pinHash);
         if (isValid) {
@@ -57,9 +57,9 @@ export const useAuthStore = create<AuthState>()(
 
       changePin: (currentPin: string, newPin: string): boolean => {
         const { pinHash } = get();
-        if (!pinHash) return false;
+        if (!pinHash) { return false; }
 
-        if (!verifyPin(currentPin, pinHash)) return false;
+        if (!verifyPin(currentPin, pinHash)) { return false; }
 
         const newHash = hashPin(newPin);
         storePinHash(newHash);

@@ -11,6 +11,8 @@ module.exports = {
         '^@shared/(.*)$': '<rootDir>/src/shared/$1',
         '^@features/(.*)$': '<rootDir>/src/features/$1',
         '^@services/(.*)$': '<rootDir>/src/services/$1',
+        '^@assets/(.*)$': '<rootDir>/src/assets/$1',
+        '\\.svg$': '<rootDir>/__mocks__/svgMock.js',
     },
     testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/android/', '<rootDir>/ios/'],
     testMatch: ['**/__tests__/**/*.test.{ts,tsx}'],
@@ -19,5 +21,6 @@ module.exports = {
         '!src/**/*.d.ts',
         '!src/__tests__/**',
         '!src/navigation/types.ts',
+        '!src/core/types/**',
     ],
 };

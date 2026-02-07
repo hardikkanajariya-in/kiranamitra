@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { SegmentedButtons, useTheme } from 'react-native-paper';
+import { SegmentedButtons } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { PAYMENT_MODES } from '@core/constants';
 
@@ -15,7 +15,6 @@ export const PaymentModeSelector: React.FC<PaymentModeSelectorProps> = ({
   onChange,
   showCredit = true,
 }) => {
-  const theme = useTheme();
   const { t } = useTranslation('billing');
 
   const buttons = [

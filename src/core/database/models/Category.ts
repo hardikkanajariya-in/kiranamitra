@@ -13,5 +13,6 @@ export default class Category extends Model {
   @text('icon') icon!: string;
   @date('created_at') createdAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('products') products: any;
 }

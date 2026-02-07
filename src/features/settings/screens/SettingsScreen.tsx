@@ -11,80 +11,85 @@ import { BackupRestore } from '../components/BackupRestore';
 import { PinManagement } from '../components/PinManagement';
 import { PrinterSetupModal } from '@features/printing/components/PrinterSetupModal';
 
-export const SettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const theme = useTheme();
-  const { t } = useTranslation('settings');
-  const [printerModalVisible, setPrinterModalVisible] = useState(false);
+interface NavigationProp {
+    navigate: (screen: string, params?: Record<string, unknown>) => void;
+    goBack: () => void;
+}
 
-  return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <AppHeader
-        title={t('settings')}
-        showBack
-        onBack={() => navigation.goBack()}
-      />
+export const SettingsScreen: React.FC<{ navigation: NavigationProp }> = ({ navigation }) => {
+    const theme = useTheme();
+    const { t } = useTranslation('settings');
+    const [printerModalVisible, setPrinterModalVisible] = useState(false);
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      >
-      <ScrollView contentContainerStyle={styles.content}>
-        {/* Store Profile */}
-        <StoreProfileForm />
+    return (
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+            <AppHeader
+                title={t('settings')}
+                showBack
+                onBack={() => navigation.goBack()}
+            />
 
-        <Divider style={styles.divider} />
+            <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            >
+                <ScrollView contentContainerStyle={styles.content}>
+                    {/* Store Profile */}
+                    <StoreProfileForm />
 
-        {/* Language */}
-        <LanguagePicker />
+                    <Divider style={styles.divider} />
 
-        <Divider style={styles.divider} />
+                    {/* Language */}
+                    <LanguagePicker />
 
-        {/* Theme */}
-        <ThemeToggle />
+                    <Divider style={styles.divider} />
 
-        <Divider style={styles.divider} />
+                    {/* Theme */}
+                    <ThemeToggle />
 
-        {/* Printer */}
-        <List.Item
-          title={t('printerSetup')}
-          description={t('printerSetupDesc')}
-          left={(props) => <List.Icon {...props} icon="printer" />}
-          right={(props) => <List.Icon {...props} icon="chevron-right" />}
-          onPress={() => setPrinterModalVisible(true)}
-          style={styles.listItem}
-        />
+                    <Divider style={styles.divider} />
 
-        <Divider style={styles.divider} />
+                    {/* Printer */}
+                    <List.Item
+                        title={t('printerSetup')}
+                        description={t('printerSetupDesc')}
+                        left={(props) => <List.Icon {...props} icon="printer" />}
+                        right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                        onPress={() => setPrinterModalVisible(true)}
+                        style={styles.listItem}
+                    />
 
-        {/* PIN Management */}
-        <PinManagement />
+                    <Divider style={styles.divider} />
 
-        <Divider style={styles.divider} />
+                    {/* PIN Management */}
+                    <PinManagement />
 
-        {/* Backup & Restore */}
-        <BackupRestore />
-      </ScrollView>
-      </KeyboardAvoidingView>
+                    <Divider style={styles.divider} />
 
-      <PrinterSetupModal
-        visible={printerModalVisible}
-        onDismiss={() => setPrinterModalVisible(false)}
-      />
-    </SafeAreaView>
-  );
+                    {/* Backup & Restore */}
+                    <BackupRestore />
+                </ScrollView>
+            </KeyboardAvoidingView>
+
+            <PrinterSetupModal
+                visible={printerModalVisible}
+                onDismiss={() => setPrinterModalVisible(false)}
+            />
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  content: {
-    paddingVertical: 16,
-  },
-  divider: {
-    marginVertical: 8,
-  },
-  listItem: {
-    paddingHorizontal: 16,
-  },
+    container: {
+        flex: 1,
+    },
+    content: {
+        paddingVertical: 16,
+    },
+    divider: {
+        marginVertical: 8,
+    },
+    listItem: {
+        paddingHorizontal: 16,
+    },
 });

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 16b: Icon only - Shopping basket with heart, no text -->
+  
+  <rect width="512" height="512" fill="none"/>
+  
+  <g transform="translate(256, 256)">
+    <!-- Basket body -->
+    <path d="M-80 0 L-66 74 C-64 86 -50 96 -38 96 L38 96 C50 96 64 86 66 74 L80 0 Z" 
+          fill="none" stroke="#2C3E50" stroke-width="6" stroke-linejoin="round"/>
+    
+    <!-- Basket handle -->
+    <path d="M-46 0 C-46 -66 46 -66 46 0" 
+          fill="none" stroke="#2C3E50" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- Basket rim -->
+    <rect x="-86" y="-6" width="172" height="14" rx="7" fill="#2C3E50"/>
+    
+    <!-- Heart inside basket -->
+    <path d="M0 66 C-10 56 -30 44 -30 28 C-30 18 -22 10 -12 10 C-5 10 0 16 0 16 C0 16 5 10 12 10 C22 10 30 18 30 28 C30 44 10 56 0 66 Z" 
+          fill="#C0392B"/>
+    
+    <!-- Small items peeking out -->
+    <circle cx="-40" cy="-4" r="11" fill="#E67E22" opacity="0.8"/>
+    <circle cx="34" cy="-8" r="10" fill="#27AE60" opacity="0.8"/>
+    <rect x="-10" y="-18" width="16" height="14" rx="3" fill="#3498DB" opacity="0.7"/>
+  </g>
+</svg>

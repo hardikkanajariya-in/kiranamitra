@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 20: Horizontal badge/stamp - classic, trustworthy, clean -->
+  
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  
+  <!-- Outer rounded rectangle border -->
+  <rect x="56" y="110" width="400" height="290" rx="20" fill="none" stroke="#2C3E50" stroke-width="4"/>
+  
+  <!-- Inner border -->
+  <rect x="68" y="122" width="376" height="266" rx="14" fill="none" stroke="#2C3E50" stroke-width="1.5"/>
+  
+  <!-- Top ribbon banner -->
+  <rect x="160" y="102" width="192" height="28" rx="4" fill="#FFFFFF"/>
+  <text x="256" y="122" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="12" fill="#95A5A6" letter-spacing="6">ESTABLISHED 2026</text>
+  
+  <!-- Central store icon - simple line art -->
+  <g transform="translate(256, 210)">
+    <!-- Store outline -->
+    <path d="M-45 -30 L0 -58 L45 -30 L45 20 L-45 20 Z" 
+          fill="none" stroke="#2C3E50" stroke-width="4" stroke-linejoin="round"/>
+    
+    <!-- Door -->
+    <rect x="-10" y="-2" width="20" height="22" rx="10" fill="none" stroke="#2C3E50" stroke-width="3"/>
+    
+    <!-- Windows -->
+    <rect x="-36" y="-16" width="16" height="14" rx="2" fill="#2C3E50" opacity="0.15" stroke="#2C3E50" stroke-width="2"/>
+    <rect x="20" y="-16" width="16" height="14" rx="2" fill="#2C3E50" opacity="0.15" stroke="#2C3E50" stroke-width="2"/>
+    
+    <!-- Flag on top -->
+    <line x1="0" y1="-58" x2="0" y2="-72" stroke="#2C3E50" stroke-width="2.5"/>
+    <path d="M0 -72 L16 -66 L0 -60" fill="#C0392B"/>
+  </g>
+  
+  <!-- Decorative stars on sides -->
+  <g fill="#C0392B">
+    <polygon points="110,210 114,220 124,220 116,226 118,236 110,230 102,236 104,226 96,220 106,220" />
+    <polygon points="402,210 406,220 416,220 408,226 410,236 402,230 394,236 396,226 388,220 398,220" />
+  </g>
+  
+  <!-- Brand name - large -->
+  <text x="256" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" 
+        font-size="56" font-weight="bold" fill="#2C3E50" letter-spacing="4">KIRANA</text>
+  
+  <!-- Decorative line with diamond -->
+  <line x1="110" y1="315" x2="230" y2="315" stroke="#2C3E50" stroke-width="1.5"/>
+  <polygon points="256,308 264,315 256,322 248,315" fill="#C0392B"/>
+  <line x1="282" y1="315" x2="402" y2="315" stroke="#2C3E50" stroke-width="1.5"/>
+  
+  <text x="256" y="350" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="28" fill="#C0392B" letter-spacing="14" font-weight="400">MITRA</text>
+  
+  <!-- Bottom ribbon -->
+  <rect x="175" y="372" width="162" height="22" rx="3" fill="#FFFFFF"/>
+  <text x="256" y="389" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="11" fill="#7F8C8D" letter-spacing="3">TRUSTED BY THOUSANDS</text>
+</svg>

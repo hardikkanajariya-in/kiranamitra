@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { FlashList } from '@shopify/flash-list';
@@ -13,7 +13,11 @@ import { billRepository } from '../repositories/billRepository';
 import Bill from '@core/database/models/Bill';
 import { useDebounce } from '@shared/hooks/useDebounce';
 
-export const BillHistoryScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+interface BillHistoryScreenProps {
+  navigation: { navigate: (screen: string, params?: Record<string, unknown>) => void; goBack: () => void };
+}
+
+export const BillHistoryScreen: React.FC<BillHistoryScreenProps> = ({ navigation }) => {
   const theme = useTheme();
   const { t } = useTranslation('billing');
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,7 +26,6 @@ export const BillHistoryScreen: React.FC<{ navigation: any }> = ({ navigation })
   const debouncedSearch = useDebounce(searchQuery, 300);
 
   useEffect(() => {
-    setIsLoading(true);
     const observable = debouncedSearch
       ? billRepository.searchByBillNumber(debouncedSearch)
       : billRepository.observeAll();

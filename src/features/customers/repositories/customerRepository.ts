@@ -11,123 +11,122 @@ const creditEntriesCollection = database.get<CreditEntry>('credit_entries');
 const paymentsCollection = database.get<Payment>('payments');
 
 export const customerRepository = {
-  observeAll: () =>
-    customersCollection
-      .query(Q.where('is_active', true), Q.sortBy('name', Q.asc))
-      .observe(),
+    observeAll: () =>
+        customersCollection
+            .query(Q.where('is_active', true), Q.sortBy('name', Q.asc))
+            .observe(),
 
-  observeById: (id: string) => customersCollection.findAndObserve(id),
+    observeById: (id: string) => customersCollection.findAndObserve(id),
 
-  search: (searchTerm: string) =>
-    customersCollection
-      .query(
-        Q.where('is_active', true),
-        Q.or(
-          Q.where('name', Q.like(`%${Q.sanitizeLikeString(searchTerm)}%`)),
-          Q.where('phone', Q.like(`%${Q.sanitizeLikeString(searchTerm)}%`)),
+    search: (searchTerm: string) =>
+        customersCollection
+            .query(
+                Q.where('is_active', true),
+                Q.or(
+                    Q.where('name', Q.like(`%${Q.sanitizeLikeString(searchTerm)}%`)),
+                    Q.where('phone', Q.like(`%${Q.sanitizeLikeString(searchTerm)}%`)),
+                ),
+                Q.sortBy('name', Q.asc),
+            )
+            .observe(),
+
+    getById: (id: string) => customersCollection.find(id),
+
+    create: (data: CustomerFormData) =>
+        database.write(() =>
+            customersCollection.create((customer) => {
+                customer.name = data.name;
+                customer.phone = data.phone || '';
+                customer.address = data.address || '';
+                customer.notes = data.notes || '';
+                customer.isActive = true;
+            }),
         ),
-        Q.sortBy('name', Q.asc),
-      )
-      .observe(),
 
-  getById: (id: string) => customersCollection.find(id),
+    update: async (id: string, data: CustomerFormData) => {
+        const customer = await customersCollection.find(id);
+        return database.write(() =>
+            customer.update((c) => {
+                c.name = data.name;
+                c.phone = data.phone || '';
+                c.address = data.address || '';
+                c.notes = data.notes || '';
+            }),
+        );
+    },
 
-  create: async (data: CustomerFormData) => {
-    return database.write(async () => {
-      return customersCollection.create((customer) => {
-        customer.name = data.name;
-        customer.phone = data.phone || '';
-        customer.address = data.address || '';
-        customer.notes = data.notes || '';
-        customer.isActive = true;
-      });
-    });
-  },
+    deactivate: async (id: string) => {
+        const customer = await customersCollection.find(id);
+        return database.write(() =>
+            customer.update((c) => {
+                c.isActive = false;
+            }),
+        );
+    },
 
-  update: async (id: string, data: CustomerFormData) => {
-    const customer = await customersCollection.find(id);
-    return database.write(async () => {
-      return customer.update((c) => {
-        c.name = data.name;
-        c.phone = data.phone || '';
-        c.address = data.address || '';
-        c.notes = data.notes || '';
-      });
-    });
-  },
+    getCustomersWithCredit: () =>
+        customersCollection
+            .query(Q.where('is_active', true))
+            .observe(),
 
-  deactivate: async (id: string) => {
-    const customer = await customersCollection.find(id);
-    return database.write(async () => {
-      return customer.update((c) => {
-        c.isActive = false;
-      });
-    });
-  },
+    getCreditEntries: (customerId: string) =>
+        creditEntriesCollection
+            .query(
+                Q.where('customer_id', customerId),
+                Q.sortBy('created_at', Q.desc),
+            )
+            .observe(),
 
-  getCustomersWithCredit: () =>
-    customersCollection
-      .query(Q.where('is_active', true))
-      .observe(),
+    addCreditPayment: async (
+        customerId: string,
+        amount: number,
+        notes: string = '',
+    ) => {
+        const customer = await customersCollection.find(customerId);
 
-  getCreditEntries: (customerId: string) =>
-    creditEntriesCollection
-      .query(
-        Q.where('customer_id', customerId),
-        Q.sortBy('created_at', Q.desc),
-      )
-      .observe(),
+        return database.write(async () => {
+            // Get current credit balance
+            const entries = await creditEntriesCollection
+                .query(
+                    Q.where('customer_id', customerId),
+                    Q.sortBy('created_at', Q.desc),
+                    Q.take(1),
+                )
+                .fetch();
 
-  addCreditPayment: async (
-    customerId: string,
-    amount: number,
-    notes: string = '',
-  ) => {
-    const customer = await customersCollection.find(customerId);
+            const currentBalance = entries.length > 0 ? entries[0].balanceAfter : 0;
+            const newBalance = currentBalance - amount;
 
-    return database.write(async () => {
-      // Get current credit balance
-      const entries = await creditEntriesCollection
-        .query(
-          Q.where('customer_id', customerId),
-          Q.sortBy('created_at', Q.desc),
-          Q.take(1),
-        )
-        .fetch();
+            // Create credit entry for payment
+            const creditEntry = await creditEntriesCollection.create((entry: CreditEntry) => {
+                entry.customer.set(customer);
+                entry.entryType = CREDIT_ENTRY_TYPES.PAYMENT;
+                entry.amount = amount;
+                entry.balanceAfter = Math.max(0, newBalance);
+                entry.notes = notes;
+            });
 
-      const currentBalance = entries.length > 0 ? entries[0].balanceAfter : 0;
-      const newBalance = currentBalance - amount;
+            // Also create a payment record
+            await paymentsCollection.create((payment: Payment) => {
+                payment.customer.set(customer);
+                payment.amount = amount;
+                payment.paymentMode = 'cash';
+                payment.notes = notes;
+            });
 
-      // Create credit entry for payment
-      const creditEntry = await creditEntriesCollection.create((entry: CreditEntry) => {
-        entry.customer.set(customer);
-        entry.entryType = CREDIT_ENTRY_TYPES.PAYMENT;
-        entry.amount = amount;
-        entry.balanceAfter = Math.max(0, newBalance);
-        entry.notes = notes;
-      });
+            return creditEntry;
+        });
+    },
 
-      // Also create a payment record
-      await paymentsCollection.create((payment: Payment) => {
-        payment.customer.set(customer);
-        payment.amount = amount;
-        payment.paymentMode = 'cash';
-        payment.notes = notes;
-      });
+    getOutstandingCredit: async (customerId: string): Promise<number> => {
+        const entries = await creditEntriesCollection
+            .query(
+                Q.where('customer_id', customerId),
+                Q.sortBy('created_at', Q.desc),
+                Q.take(1),
+            )
+            .fetch();
 
-      return creditEntry;
-    });
-  },
-
-  getOutstandingCredit: async (customerId: string): Promise<number> => {
-    const entries = await creditEntriesCollection
-      .query(
-        Q.where('customer_id', customerId),
-        Q.sortBy('created_at', Q.desc),
-        Q.take(1),
-      )
-      .fetch();
-
-    return entries.length > 0 ? entries[0].balanceAfter : 0;
-  },
+        return entries.length > 0 ? entries[0].balanceAfter : 0;
+    },
 };

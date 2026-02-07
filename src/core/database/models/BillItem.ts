@@ -18,6 +18,8 @@ export default class BillItem extends Model {
   @field('discount') discount!: number;
   @field('total') total!: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @immutableRelation('bills', 'bill_id') bill: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @immutableRelation('products', 'product_id') product: any;
 }

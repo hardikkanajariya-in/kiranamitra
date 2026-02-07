@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- KiranaMitra Logo - Full (with text) -->
+  
+  <g transform="translate(256, 195)">
+    <!-- Basket body -->
+    <path d="M-60 0 L-50 55 C-48 65 -38 72 -28 72 L28 72 C38 72 48 65 50 55 L60 0 Z" 
+          fill="none" stroke="#2C3E50" stroke-width="5" stroke-linejoin="round"/>
+    
+    <!-- Basket handle -->
+    <path d="M-35 0 C-35 -50 35 -50 35 0" 
+          fill="none" stroke="#2C3E50" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Basket rim -->
+    <rect x="-65" y="-4" width="130" height="10" rx="5" fill="#2C3E50"/>
+    
+    <!-- Heart inside basket -->
+    <path d="M0 50 C-8 42 -22 34 -22 22 C-22 14 -16 8 -8 8 C-3 8 0 12 0 12 C0 12 3 8 8 8 C16 8 22 14 22 22 C22 34 8 42 0 50 Z" 
+          fill="#C0392B"/>
+    
+    <!-- Small items peeking out -->
+    <circle cx="-30" cy="-2" r="8" fill="#E67E22" opacity="0.8"/>
+    <circle cx="25" cy="-5" r="7" fill="#27AE60" opacity="0.8"/>
+    <rect x="-8" y="-12" width="12" height="10" rx="2" fill="#3498DB" opacity="0.7"/>
+  </g>
+  
+  <!-- Brand text -->
+  <text x="256" y="330" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="52" font-weight="bold" fill="#2C3E50">KiranaMitra</text>
+  
+  <!-- Small divider -->
+  <rect x="215" y="345" width="82" height="2.5" rx="1" fill="#C0392B"/>
+  
+  <!-- Tagline -->
+  <text x="256" y="378" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="13" fill="#7F8C8D" letter-spacing="3">CARE IN EVERY BILL</text>
+</svg>

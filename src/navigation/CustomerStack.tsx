@@ -7,12 +7,10 @@ import { CustomerFormScreen } from '@features/customers/screens/CustomerFormScre
 
 const Stack = createNativeStackNavigator<CustomerStackParamList>();
 
-export const CustomerStack: React.FC = () => {
-  return (
+export const CustomerStack: React.FC = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="CustomerList" component={CustomerListScreen} />
-      <Stack.Screen name="CustomerDetail" component={CustomerDetailScreen} />
-      <Stack.Screen name="CustomerForm" component={CustomerFormScreen} />
+        <Stack.Screen name="CustomerList" component={CustomerListScreen} />
+        <Stack.Screen name="CustomerDetail" component={CustomerDetailScreen} />
+        <Stack.Screen name="CustomerForm" component={CustomerFormScreen} />
     </Stack.Navigator>
-  );
-};
+);

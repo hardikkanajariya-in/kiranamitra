@@ -130,8 +130,8 @@ export const billRepository = {
     });
   },
 
-  cancelBill: async (billId: string) => {
-    return database.write(async () => {
+  cancelBill: (billId: string) =>
+    database.write(async () => {
       const bill = await billsCollection.find(billId);
 
       // Restore stock for each item
@@ -152,8 +152,7 @@ export const billRepository = {
       });
 
       return bill;
-    });
-  },
+    }),
 
   getRecentBills: (limit: number = 10) =>
     billsCollection

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,87 +12,92 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { getGreeting } from '@shared/utils/date';
 import { AppHeader } from '@shared/components/AppHeader';
 
-export const DashboardScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const theme = useTheme();
-  const { t } = useTranslation('dashboard');
-  const dashboardData = useDashboardData();
-  const greeting = getGreeting();
+interface NavigationProp {
+    navigate: (screen: string, params?: Record<string, unknown>) => void;
+    goBack: () => void;
+}
 
-  const handleNewBill = () => navigation.navigate('BillingTab', { screen: 'BillingHome' });
-  const handleAddCustomer = () =>
-    navigation.navigate('CustomersTab', { screen: 'CustomerForm' });
-  const handleAddProduct = () =>
-    navigation.navigate('InventoryTab', { screen: 'ProductForm' });
-  const handleCollectPayment = () =>
-    navigation.navigate('CustomersTab', { screen: 'CustomerList' });
-  const handleViewLowStock = () =>
-    navigation.navigate('InventoryTab', { screen: 'InventoryOverview' });
-  const handleViewUdhar = () =>
-    navigation.navigate('CustomersTab', { screen: 'CustomerList' });
+export const DashboardScreen: React.FC<{ navigation: NavigationProp }> = ({ navigation }) => {
+    const theme = useTheme();
+    const { t } = useTranslation('dashboard');
+    const dashboardData = useDashboardData();
+    const greeting = getGreeting();
 
-  if (dashboardData.isLoading) {
-    return <LoadingOverlay visible />;
-  }
+    const handleNewBill = () => navigation.navigate('BillingTab', { screen: 'BillingHome' });
+    const handleAddCustomer = () =>
+        navigation.navigate('CustomersTab', { screen: 'CustomerForm' });
+    const handleAddProduct = () =>
+        navigation.navigate('InventoryTab', { screen: 'ProductForm' });
+    const handleCollectPayment = () =>
+        navigation.navigate('CustomersTab', { screen: 'CustomerList' });
+    const handleViewLowStock = () =>
+        navigation.navigate('InventoryTab', { screen: 'InventoryOverview' });
+    const handleViewUdhar = () =>
+        navigation.navigate('CustomersTab', { screen: 'CustomerList' });
 
-  return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <AppHeader title={t('title')} />
+    if (dashboardData.isLoading) {
+        return <LoadingOverlay visible />;
+    }
 
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.contentContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.greetingContainer}>
-          <Text variant="headlineSmall" style={{ color: theme.colors.onBackground }}>
-            {t(greeting)} 👋
-          </Text>
-          <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
-            {t('dashboardSubtitle')}
-          </Text>
-        </View>
+    return (
+        <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+            <AppHeader title={t('title')} />
 
-        <SalesSummaryCard
-          todaySales={dashboardData.todaySales}
-          todayBillCount={dashboardData.todayBillCount}
-          monthSales={dashboardData.monthSales}
-        />
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.contentContainer}
+                showsVerticalScrollIndicator={false}
+            >
+                <View style={styles.greetingContainer}>
+                    <Text variant="headlineSmall" style={{ color: theme.colors.onBackground }}>
+                        {t(greeting)} 👋
+                    </Text>
+                    <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
+                        {t('dashboardSubtitle')}
+                    </Text>
+                </View>
 
-        <UdharSummaryCard
-          totalUdhar={dashboardData.totalUdhar}
-          totalCustomers={dashboardData.totalCustomers}
-          onPress={handleViewUdhar}
-        />
+                <SalesSummaryCard
+                    todaySales={dashboardData.todaySales}
+                    todayBillCount={dashboardData.todayBillCount}
+                    monthSales={dashboardData.monthSales}
+                />
 
-        <LowStockAlert
-          lowStockCount={dashboardData.lowStockProducts}
-          outOfStockCount={dashboardData.outOfStockProducts}
-          onPress={handleViewLowStock}
-        />
-      </ScrollView>
+                <UdharSummaryCard
+                    totalUdhar={dashboardData.totalUdhar}
+                    totalCustomers={dashboardData.totalCustomers}
+                    onPress={handleViewUdhar}
+                />
 
-      <QuickActions
-        onNewBill={handleNewBill}
-        onAddCustomer={handleAddCustomer}
-        onAddProduct={handleAddProduct}
-        onCollectPayment={handleCollectPayment}
-      />
-    </SafeAreaView>
-  );
+                <LowStockAlert
+                    lowStockCount={dashboardData.lowStockProducts}
+                    outOfStockCount={dashboardData.outOfStockProducts}
+                    onPress={handleViewLowStock}
+                />
+            </ScrollView>
+
+            <QuickActions
+                onNewBill={handleNewBill}
+                onAddCustomer={handleAddCustomer}
+                onAddProduct={handleAddProduct}
+                onCollectPayment={handleCollectPayment}
+            />
+        </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  contentContainer: {
-    paddingBottom: 80,
-  },
-  greetingContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
+    container: {
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
+    },
+    contentContainer: {
+        paddingBottom: 80,
+    },
+    greetingContainer: {
+        paddingHorizontal: 16,
+        paddingVertical: 16,
+    },
 });

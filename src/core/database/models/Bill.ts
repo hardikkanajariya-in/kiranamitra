@@ -23,9 +23,13 @@ export default class Bill extends Model {
   @text('notes') notes!: string;
   @date('created_at') createdAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @relation('customers', 'customer_id') customer: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('bill_items') items: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('payments') payments: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('credit_entries') creditEntries: any;
 
   get isCompleted(): boolean {

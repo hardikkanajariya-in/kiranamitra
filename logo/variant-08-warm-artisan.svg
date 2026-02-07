@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="warmGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8D6E63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5D4037;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="warmGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFAB40;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6D00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="warmGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE0B2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="paperTexture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="textured"/>
+    </filter>
+  </defs>
+  
+  <!-- Warm background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#warmGrad3)"/>
+  <circle cx="256" cy="256" r="235" fill="none" stroke="#8D6E63" stroke-width="2" stroke-dasharray="8,4"/>
+  <circle cx="256" cy="256" r="225" fill="none" stroke="#8D6E63" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Spice/grain bowl icon -->
+  <g transform="translate(256, 195)">
+    <!-- Bowl -->
+    <path d="M-70 0 C-70 50 -40 80 0 80 C40 80 70 50 70 0 Z" fill="url(#warmGrad1)"/>
+    <ellipse cx="0" cy="0" rx="70" ry="20" fill="#8D6E63"/>
+    
+    <!-- Grains/spices in bowl -->
+    <ellipse cx="0" cy="-5" rx="55" ry="14" fill="#FFAB40"/>
+    <circle cx="-20" cy="-8" r="5" fill="#FF8F00" opacity="0.7"/>
+    <circle cx="10" cy="-10" r="4" fill="#FFE082" opacity="0.8"/>
+    <circle cx="25" cy="-6" r="5" fill="#FF6D00" opacity="0.6"/>
+    <circle cx="-5" cy="-12" r="3" fill="#FFC107" opacity="0.9"/>
+    <circle cx="-35" cy="-4" r="4" fill="#FFE082" opacity="0.7"/>
+    <circle cx="40" cy="-3" r="3" fill="#FF8F00" opacity="0.6"/>
+  </g>
+  
+  <!-- Spice leaves -->
+  <g transform="translate(180, 150)" opacity="0.7">
+    <ellipse cx="0" cy="0" rx="8" ry="20" fill="#66BB6A" transform="rotate(-30)"/>
+    <ellipse cx="15" cy="-10" rx="7" ry="18" fill="#4CAF50" transform="rotate(-10)"/>
+    <line x1="5" y1="18" x2="10" y2="-25" stroke="#388E3C" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(332, 150)" opacity="0.7">
+    <ellipse cx="0" cy="0" rx="8" ry="20" fill="#66BB6A" transform="rotate(30)"/>
+    <ellipse cx="-15" cy="-10" rx="7" ry="18" fill="#4CAF50" transform="rotate(10)"/>
+    <line x1="-5" y1="18" x2="-10" y2="-25" stroke="#388E3C" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Handshake below bowl -->
+  <g transform="translate(256, 310)">
+    <!-- Left hand -->
+    <path d="M-45 5 C-35 -10 -20 -12 -8 -5 L8 5" 
+          stroke="url(#warmGrad2)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Right hand -->
+    <path d="M8 5 C20 -12 35 -10 45 5" 
+          stroke="url(#warmGrad1)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Connection point -->
+    <circle cx="0" cy="0" r="5" fill="#FFAB40"/>
+  </g>
+  
+  <!-- Brand text -->
+  <text x="256" y="375" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+        font-size="50" font-weight="bold" fill="url(#warmGrad1)">Kirana</text>
+  <text x="256" y="420" text-anchor="middle" font-family="Georgia, 'Palatino Linotype', serif" 
+        font-size="38" font-weight="normal" fill="url(#warmGrad2)" font-style="italic">Mitra</text>
+  
+  <!-- Decorative elements -->
+  <text x="256" y="458" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="12" fill="#8D6E63" letter-spacing="5" opacity="0.6">EST. 2026</text>
+</svg>

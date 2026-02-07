@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 11: Clean storefront with awning - flat, professional -->
+  
+  <!-- Soft cream background -->
+  <rect width="512" height="512" fill="#FAFAF5"/>
+  
+  <!-- Simple storefront -->
+  <g transform="translate(256, 185)">
+    <!-- Roof/Awning -->
+    <path d="M-72 -8 L0 -48 L72 -8 Z" fill="#D4522A"/>
+    <path d="M-78 -8 C-65 12 -52 -8 -39 12 C-26 -8 -13 12 0 -8 C13 12 26 -8 39 12 C52 -8 65 12 78 -8" 
+          stroke="#D4522A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Store body -->
+    <rect x="-68" y="-4" width="136" height="88" fill="#2C3E50"/>
+    
+    <!-- Door -->
+    <rect x="-14" y="30" width="28" height="54" rx="14" fill="#FAFAF5"/>
+    
+    <!-- Left window -->
+    <rect x="-56" y="12" width="30" height="26" rx="3" fill="#FAFAF5"/>
+    <line x1="-41" y1="12" x2="-41" y2="38" stroke="#2C3E50" stroke-width="2"/>
+    <line x1="-56" y1="25" x2="-26" y2="25" stroke="#2C3E50" stroke-width="2"/>
+    
+    <!-- Right window -->
+    <rect x="26" y="12" width="30" height="26" rx="3" fill="#FAFAF5"/>
+    <line x1="41" y1="12" x2="41" y2="38" stroke="#2C3E50" stroke-width="2"/>
+    <line x1="26" y1="25" x2="56" y2="25" stroke="#2C3E50" stroke-width="2"/>
+  </g>
+  
+  <!-- Ground line -->
+  <line x1="140" y1="269" x2="372" y2="269" stroke="#2C3E50" stroke-width="2"/>
+  
+  <!-- Brand name -->
+  <text x="256" y="330" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" 
+        font-size="56" font-weight="bold" fill="#2C3E50" letter-spacing="3">Kirana</text>
+  <text x="256" y="375" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" 
+        font-size="38" fill="#D4522A" letter-spacing="6">Mitra</text>
+  
+  <!-- Simple divider -->
+  <line x1="200" y1="395" x2="312" y2="395" stroke="#D4522A" stroke-width="2"/>
+  
+  <!-- Tagline -->
+  <text x="256" y="425" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="13" fill="#7F8C8D" letter-spacing="4">YOUR STORE PARTNER</text>
+</svg>

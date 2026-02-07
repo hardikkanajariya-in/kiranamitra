@@ -18,7 +18,9 @@ export default class CreditEntry extends Model {
   @text('notes') notes!: string;
   @date('created_at') createdAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @immutableRelation('customers', 'customer_id') customer: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @relation('bills', 'bill_id') bill: any;
 
   get isCredit(): boolean {

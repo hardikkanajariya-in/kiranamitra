@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Variant 19: Store + People silhouette - community, togetherness -->
+  
+  <rect width="512" height="512" fill="#FAFAF5"/>
+  
+  <!-- Store roof outline -->
+  <g transform="translate(256, 160)">
+    <path d="M-90 35 L0 -25 L90 35" fill="none" stroke="#2C3E50" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Chimney tiny detail -->
+    <rect x="45" y="-10" width="12" height="20" rx="2" fill="none" stroke="#2C3E50" stroke-width="3"/>
+  </g>
+  
+  <!-- Two people under the roof (shopkeeper & customer) -->
+  <g transform="translate(256, 215)">
+    <!-- Person 1 (left - shopkeeper) -->
+    <circle cx="-28" cy="-5" r="14" fill="#2C3E50"/>
+    <path d="M-28 12 L-28 48" stroke="#2C3E50" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-28 22 L-45 38" stroke="#2C3E50" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-28 22 L-12 32" stroke="#2C3E50" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-28 48 L-40 70" stroke="#2C3E50" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-28 48 L-18 70" stroke="#2C3E50" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Person 2 (right - customer) -->
+    <circle cx="28" cy="-5" r="14" fill="#C0392B"/>
+    <path d="M28 12 L28 48" stroke="#C0392B" stroke-width="5" stroke-linecap="round"/>
+    <path d="M28 22 L12 32" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M28 22 L45 38" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M28 48 L18 70" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M28 48 L40 70" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Handshake connection -->
+    <path d="M-12 32 L12 32" stroke="#E67E22" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="32" r="4" fill="#E67E22"/>
+  </g>
+  
+  <!-- Ground line -->
+  <line x1="155" y1="288" x2="357" y2="288" stroke="#2C3E50" stroke-width="2"/>
+  
+  <!-- Brand text -->
+  <text x="256" y="345" text-anchor="middle" font-family="Georgia, serif" 
+        font-size="52" font-weight="bold" fill="#2C3E50">KiranaMitra</text>
+  
+  <rect x="190" y="358" width="132" height="2.5" rx="1" fill="#C0392B"/>
+  
+  <text x="256" y="390" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" 
+        font-size="14" fill="#7F8C8D" letter-spacing="2">Together We Grow</text>
+</svg>

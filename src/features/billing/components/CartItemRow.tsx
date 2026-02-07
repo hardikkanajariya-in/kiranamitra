@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, useTheme, IconButton, TextInput } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { Text, useTheme, IconButton } from 'react-native-paper';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { CartItem } from '@core/types';
 

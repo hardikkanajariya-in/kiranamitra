@@ -28,7 +28,7 @@ export const BillCard: React.FC<BillCardProps> = ({
   const theme = useTheme();
 
   const getStatusVariant = (): 'success' | 'error' | 'info' => {
-    if (status === BILL_STATUSES.CANCELLED) return 'error';
+    if (status === BILL_STATUSES.CANCELLED) { return 'error'; }
     return 'success';
   };
 

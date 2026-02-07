@@ -31,8 +31,11 @@ export default class Product extends Model {
   @date('created_at') createdAt!: Date;
   @readonly @date('updated_at') updatedAt!: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @immutableRelation('categories', 'category_id') category: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('bill_items') billItems: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @children('inventory_logs') inventoryLogs: any;
 
   get isLowStock(): boolean {
@@ -44,7 +47,7 @@ export default class Product extends Model {
   }
 
   get profitMargin(): number {
-    if (this.sellingPrice === 0) return 0;
+    if (this.sellingPrice === 0) { return 0; }
     return ((this.sellingPrice - this.purchasePrice) / this.sellingPrice) * 100;
   }
 
@@ -58,13 +61,13 @@ export default class Product extends Model {
     lowStockThreshold?: number;
   }) {
     await this.update((product: Product) => {
-      if (data.name !== undefined) product.name = data.name;
-      if (data.categoryId !== undefined) product.categoryId = data.categoryId;
-      if (data.purchasePrice !== undefined) product.purchasePrice = data.purchasePrice;
-      if (data.sellingPrice !== undefined) product.sellingPrice = data.sellingPrice;
-      if (data.unit !== undefined) product.unit = data.unit;
-      if (data.barcode !== undefined) product.barcode = data.barcode;
-      if (data.lowStockThreshold !== undefined) product.lowStockThreshold = data.lowStockThreshold;
+      if (data.name !== undefined) { product.name = data.name; }
+      if (data.categoryId !== undefined) { product.categoryId = data.categoryId; }
+      if (data.purchasePrice !== undefined) { product.purchasePrice = data.purchasePrice; }
+      if (data.sellingPrice !== undefined) { product.sellingPrice = data.sellingPrice; }
+      if (data.unit !== undefined) { product.unit = data.unit; }
+      if (data.barcode !== undefined) { product.barcode = data.barcode; }
+      if (data.lowStockThreshold !== undefined) { product.lowStockThreshold = data.lowStockThreshold; }
     });
   }
 
