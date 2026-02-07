@@ -69,7 +69,7 @@ export const ProductFormScreen: React.FC<{ navigation: NavigationProp; route: { 
             }
             navigation.goBack();
         } catch (_error) {
-            Alert.alert(t('error'), t('saveError'));
+            Alert.alert(t('common:error'), t('saveError'));
         }
     };
 
@@ -148,7 +148,7 @@ export const ProductFormScreen: React.FC<{ navigation: NavigationProp; route: { 
                         disabled={isSubmitting}
                         style={styles.submitButton}
                     >
-                        {isEditing ? t('update') : t('save')}
+                        {isEditing ? t('common:update') : t('common:save')}
                     </Button>
                 </ScrollView>
             </KeyboardAvoidingView>

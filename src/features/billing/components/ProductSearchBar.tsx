@@ -55,7 +55,7 @@ export const ProductSearchBar: React.FC<ProductSearchBarProps> = ({ onSelectProd
         mode="outlined"
         value={query}
         onChangeText={handleQueryChange}
-        placeholder={t('searchProduct')}
+        placeholder={t('searchProducts')}
         left={<TextInput.Icon icon={paperIcon('magnify')} />}
         right={query ? <TextInput.Icon icon={paperIcon('close')} onPress={() => handleQueryChange('')} /> : undefined}
         style={styles.input}
@@ -74,7 +74,7 @@ export const ProductSearchBar: React.FC<ProductSearchBarProps> = ({ onSelectProd
                     {product.name}
                   </Text>
                   <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                    {t('stock')}: {product.currentStock} {product.unit}
+                    {t('inventory:currentStockLabel', { count: product.currentStock, unit: product.unit })}
                   </Text>
                 </View>
                 <Text variant="titleSmall" style={{ color: theme.colors.primary }}>

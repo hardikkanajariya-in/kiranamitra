@@ -123,7 +123,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                     <Card.Content>
                         <View style={styles.creditHeader}>
                             <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
-                                {t('udharBalance')}
+                                {t('outstandingCredit')}
                             </Text>
                             <CurrencyText
                                 amount={outstandingCredit}
@@ -147,7 +147,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                 {/* Credit Ledger */}
                 <View style={styles.ledgerSection}>
                     <Text variant="titleMedium" style={[styles.sectionTitle, { color: theme.colors.onSurface }]}>
-                        {t('transactionHistory')}
+                        {t('creditHistory')}
                     </Text>
                     <CreditLedger customerId={customerId} />
                 </View>
@@ -157,8 +157,8 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
             <ConfirmDialog
                 visible={showDeleteDialog}
                 title={t('deleteCustomer')}
-                message={t('deleteCustomerConfirm')}
-                confirmLabel={t('delete')}
+                message={t('deleteConfirm')}
+                confirmLabel={t('common:delete')}
                 onConfirm={handleDelete}
                 onDismiss={() => setShowDeleteDialog(false)}
                 destructive
@@ -170,7 +170,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                     <Dialog.Title>{t('collectPayment')}</Dialog.Title>
                     <Dialog.Content>
                         <TextInput
-                            label={t('amount')}
+                            label={t('common:amount')}
                             value={paymentAmount}
                             onChangeText={setPaymentAmount}
                             keyboardType="numeric"
@@ -179,7 +179,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                             style={styles.dialogInput}
                         />
                         <TextInput
-                            label={t('notes')}
+                            label={t('common:notes')}
                             value={paymentNotes}
                             onChangeText={setPaymentNotes}
                             mode="outlined"
@@ -187,13 +187,13 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                         />
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button onPress={() => setShowPaymentDialog(false)}>{t('cancel')}</Button>
+                        <Button onPress={() => setShowPaymentDialog(false)}>{t('common:cancel')}</Button>
                         <Button
                             mode="contained"
                             onPress={handleCollectPayment}
                             disabled={!paymentAmount || parseFloat(paymentAmount) <= 0}
                         >
-                            {t('collect')}
+                            {t('collectPayment')}
                         </Button>
                     </Dialog.Actions>
                 </Dialog>

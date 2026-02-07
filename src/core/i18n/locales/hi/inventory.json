@@ -30,5 +30,8 @@
   "filterAll": "सभी",
   "filterLowStock": "कम स्टॉक",
   "filterOutOfStock": "स्टॉक खत्म",
-  "minStock": "न्यूनतम: {{threshold}} {{unit}}"
+  "minStock": "न्यूनतम: {{threshold}} {{unit}}",
+  "noInventoryItems": "कोई आइटम नहीं मिला",
+  "noInventoryItemsSubtitle": "इन्वेंटरी ट्रैक करने के लिए पहले प्रोडक्ट जोड़ें",
+  "searchProduct": "प्रोडक्ट खोजें..."
 }

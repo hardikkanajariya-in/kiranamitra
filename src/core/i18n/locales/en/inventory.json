@@ -30,5 +30,8 @@
   "filterAll": "All",
   "filterLowStock": "Low Stock",
   "filterOutOfStock": "Out of Stock",
-  "minStock": "Min: {{threshold}} {{unit}}"
+  "minStock": "Min: {{threshold}} {{unit}}",
+  "noInventoryItems": "No items found",
+  "noInventoryItemsSubtitle": "Add products first to track inventory",
+  "searchProduct": "Search products..."
 }

@@ -48,7 +48,7 @@ export const StockAdjustmentScreen: React.FC<{ navigation: NavigationProp; route
             await productRepository.adjustStock(productId, quantityChange, data.reason, data.notes || '');
             navigation.goBack();
         } catch (_error) {
-            Alert.alert(t('error'), t('adjustError'));
+            Alert.alert(t('common:error'), t('adjustError'));
         }
     };
 
@@ -74,7 +74,7 @@ export const StockAdjustmentScreen: React.FC<{ navigation: NavigationProp; route
             >
                 <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
                     <Text variant="titleMedium" style={{ color: theme.colors.onSurface, marginBottom: 8 }}>
-                        {product.name} — {t('currentStock')}: {product.currentStock} {product.unit}
+                        {product.name} — {t('products:currentStock')}: {product.currentStock} {product.unit}
                     </Text>
 
                     <SegmentedButtons
@@ -118,7 +118,7 @@ export const StockAdjustmentScreen: React.FC<{ navigation: NavigationProp; route
                         disabled={isSubmitting}
                         style={styles.submitButton}
                     >
-                        {t('confirmAdjustment')}
+                        {t('adjustStock')}
                     </Button>
                 </ScrollView>
             </KeyboardAvoidingView>

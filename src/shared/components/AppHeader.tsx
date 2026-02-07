@@ -24,7 +24,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   const showBackButton = showBack || !!onBack;
   return (
-    <Appbar.Header elevated>
+    <Appbar.Header elevated statusBarHeight={0} mode="small">
       {showBackButton && <Appbar.BackAction onPress={onBack} />}
       <Appbar.Content title={title} subtitle={subtitle} />
       {actions.map((action, index) => (

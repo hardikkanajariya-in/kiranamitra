@@ -55,13 +55,13 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
       <AppHeader
-        title={`${t('bill')} #${bill.billNumber}`}
+        title={`${t('billNumber')} #${bill.billNumber}`}
         showBack
         onBack={() => navigation.goBack()}
         actions={[
           { icon: 'share-variant', onPress: () => {
             // Share bill details
-            const billText = `${t('bill')} #${bill.billNumber}\n${t('common:total')}: ₹${bill.grandTotal.toFixed(2)}\n${t('common:date')}: ${formatDateTime(bill.createdAt)}`;
+            const billText = `${t('billNumber')} #${bill.billNumber}\n${t('common:total')}: ₹${bill.grandTotal.toFixed(2)}\n${t('common:date')}: ${formatDateTime(bill.createdAt)}`;
             import('react-native-share').then(Share => {
               Share.default.open({ message: billText }).catch(() => {});
             }).catch(() => {});
@@ -136,7 +136,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
             <Divider style={styles.summaryDivider} />
             <View style={styles.summaryRow}>
               <Text variant="titleLarge" style={{ fontWeight: 'bold' }}>
-                {t('total')}
+                {t('grandTotal')}
               </Text>
               <CurrencyText amount={bill.grandTotal} variant="titleLarge" />
             </View>

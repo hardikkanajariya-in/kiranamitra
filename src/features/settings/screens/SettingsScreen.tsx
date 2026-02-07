@@ -11,6 +11,7 @@ import { StoreProfileForm } from '../components/StoreProfileForm';
 import { BackupRestore } from '../components/BackupRestore';
 import { PinManagement } from '../components/PinManagement';
 import { PrinterSetupModal } from '@features/printing/components/PrinterSetupModal';
+import { ProductSeeder } from '../components/ProductSeeder';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
@@ -26,8 +27,6 @@ export const SettingsScreen: React.FC<{ navigation: NavigationProp }> = ({ navig
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
             <AppHeader
                 title={t('settings')}
-                showBack
-                onBack={() => navigation.goBack()}
             />
 
             <KeyboardAvoidingView
@@ -69,6 +68,11 @@ export const SettingsScreen: React.FC<{ navigation: NavigationProp }> = ({ navig
 
                     {/* Backup & Restore */}
                     <BackupRestore />
+
+                    <Divider style={styles.divider} />
+
+                    {/* Sample Data Seeder */}
+                    <ProductSeeder />
                 </ScrollView>
             </KeyboardAvoidingView>
 

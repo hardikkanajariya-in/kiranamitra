@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { FlashList } from '@shopify/flash-list';
@@ -42,7 +42,7 @@ export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ na
             <SearchInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                placeholder={t('searchPlaceholder')}
+                placeholder={t('searchProduct')}
             />
 
             <CategoryFilter
@@ -60,22 +60,25 @@ export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ na
                     onAction={() => navigation.navigate('ProductForm')}
                 />
             ) : (
-                <FlashList
-                    data={products}
-                    renderItem={({ item }: { item: Product }) => (
-                        <ProductCard
-                            name={item.name}
-                            sellingPrice={item.sellingPrice}
-                            currentStock={item.currentStock}
-                            unit={item.unit}
-                            isLowStock={item.isLowStock}
-                            isOutOfStock={item.isOutOfStock}
-                            onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
-                        />
-                    )}
-                    keyExtractor={(item: Product) => item.id}
-                    contentContainerStyle={styles.listContent}
-                />
+                <View style={styles.listContainer}>
+                    <FlashList
+                        data={products}
+                        renderItem={({ item }: { item: Product }) => (
+                            <ProductCard
+                                name={item.name}
+                                sellingPrice={item.sellingPrice}
+                                currentStock={item.currentStock}
+                                unit={item.unit}
+                                isLowStock={item.isLowStock}
+                                isOutOfStock={item.isOutOfStock}
+                                onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+                            />
+                        )}
+                        keyExtractor={(item: Product) => item.id}
+                        estimatedItemSize={72}
+                        contentContainerStyle={styles.listContent}
+                    />
+                </View>
             )}
         </SafeAreaView>
     );
@@ -83,6 +86,9 @@ export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ na
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+    },
+    listContainer: {
         flex: 1,
     },
     listContent: {

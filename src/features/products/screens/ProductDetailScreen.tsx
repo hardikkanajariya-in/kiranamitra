@@ -51,12 +51,12 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
 
     const getStockLabel = () => {
         if (product.isOutOfStock) {
-            return t('outOfStock');
+            return t('inventory:outOfStock');
         }
         if (product.isLowStock) {
-            return t('lowStock');
+            return t('inventory:lowStock');
         }
-        return t('inStock');
+        return t('inventory:inStock');
     };
 
     const getStockVariant = (): 'error' | 'warning' | 'success' => {
@@ -103,7 +103,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                             </View>
                             <View style={styles.priceItem}>
                                 <Text variant="labelMedium" style={{ color: theme.colors.onSurfaceVariant }}>
-                                    {t('margin')}
+                                    {t('profitMargin')}
                                 </Text>
                                 <Text variant="titleLarge" style={{ color: theme.colors.primary }}>
                                     {profitMargin}%
@@ -117,7 +117,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                 <Card style={styles.card} mode="elevated">
                     <Card.Content>
                         <View style={styles.stockHeader}>
-                            <Text variant="titleMedium">{t('stock')}</Text>
+                            <Text variant="titleMedium">{t('currentStock')}</Text>
                             <StatusBadge
                                 label={getStockLabel()}
                                 variant={getStockVariant()}
@@ -135,7 +135,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                             </View>
                             <View style={styles.stockItem}>
                                 <Text variant="labelMedium" style={{ color: theme.colors.onSurfaceVariant }}>
-                                    {t('threshold')}
+                                    {t('lowStockThreshold')}
                                 </Text>
                                 <Text variant="headlineMedium">
                                     {product.lowStockThreshold} {product.unit}
@@ -149,7 +149,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                             onPress={() => navigation.navigate('StockAdjustment', { productId })}
                             style={styles.adjustButton}
                         >
-                            {t('adjustStock')}
+                            {t('inventory:adjustStock')}
                         </Button>
                     </Card.Content>
                 </Card>
@@ -158,7 +158,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                 <Card style={styles.card} mode="elevated">
                     <Card.Content>
                         <Text variant="titleMedium" style={styles.sectionTitle}>
-                            {t('details')}
+                            {t('productDetail')}
                         </Text>
                         <View style={styles.detailRow}>
                             <AppIcon name="tag" size={20} color={theme.colors.onSurfaceVariant} />
@@ -177,8 +177,8 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
             <ConfirmDialog
                 visible={showDeleteDialog}
                 title={t('deleteProduct')}
-                message={t('deleteProductConfirm')}
-                confirmLabel={t('delete')}
+                message={t('deleteConfirm')}
+                confirmLabel={t('common:delete')}
                 onConfirm={handleDelete}
                 onDismiss={() => setShowDeleteDialog(false)}
                 destructive

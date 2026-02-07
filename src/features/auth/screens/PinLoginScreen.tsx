@@ -34,7 +34,7 @@ export const PinLoginScreen: React.FC = () => {
         <View style={styles.logoSpacer} />
 
         <Text variant="headlineMedium" style={[styles.title, { color: theme.colors.onBackground }]}>
-          {t('welcomeBack')}
+          {t('common:welcome')}
         </Text>
         <Text variant="bodyLarge" style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}>
           {t('enterPin')}

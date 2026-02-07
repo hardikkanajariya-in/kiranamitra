@@ -17,5 +17,22 @@
   "noBillsToday": "આજે કોઈ બિલ નથી. પહેલું બનાવો!",
   "billsToday": "આજે {{count}} બિલ",
   "billsToday_plural": "આજે {{count}} બિલ",
-  "totalOutstanding": "કુલ બાકી ઉધાર"
+  "totalOutstanding": "કુલ બાકી ઉધાર",
+  "dashboardSubtitle": "તમારી દુકાનનો સારાંશ",
+  "monthSales": "આ મહિને",
+  "billCount": "{{count}} બિલ",
+  "udharSummary": "ઉધાર (ક્રેડિટ)",
+  "stockAlerts": "સ્ટોક ચેતવણી",
+  "outOfStock": "{{count}} સ્ટોક ખતમ",
+  "lowStock": "{{count}} ઓછો સ્ટોક",
+  "collectPayment": "ચુકવણી લો",
+  "noBills": "કોઈ તાજેતરનું બિલ નથી",
+  "customersWithCredit": "ઉધાર ગ્રાહકો",
+  "viewDetails": "વિગતો જુઓ",
+  "todayOverview": "આજનો સારાંશ",
+  "bills": "બિલ",
+  "avgBillValue": "સરે. બિલ",
+  "monthlyTrend": "માસિક ટ્રેન્ડ",
+  "inventory": "ઇન્વેન્ટરી",
+  "products": "પ્રોડક્ટ"
 }

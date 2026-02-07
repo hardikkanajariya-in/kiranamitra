@@ -17,5 +17,22 @@
   "noBillsToday": "No bills today. Start by creating one!",
   "billsToday": "{{count}} bill today",
   "billsToday_plural": "{{count}} bills today",
-  "totalOutstanding": "Total Outstanding"
+  "totalOutstanding": "Total Outstanding",
+  "dashboardSubtitle": "Here's your store overview",
+  "monthSales": "This Month",
+  "billCount": "{{count}} bills",
+  "udharSummary": "Udhar (Credit)",
+  "stockAlerts": "Stock Alerts",
+  "outOfStock": "{{count}} out of stock",
+  "lowStock": "{{count}} low stock",
+  "collectPayment": "Collect Payment",
+  "noBills": "No recent bills",
+  "customersWithCredit": "customers with credit",
+  "viewDetails": "View Details",
+  "todayOverview": "Today's Overview",
+  "bills": "Bills",
+  "avgBillValue": "Avg. Bill",
+  "monthlyTrend": "Monthly Trend",
+  "inventory": "Inventory",
+  "products": "Products"
 }

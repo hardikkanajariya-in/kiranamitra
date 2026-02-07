@@ -17,5 +17,22 @@
   "noBillsToday": "आज कोई बिल नहीं। पहला बनाएं!",
   "billsToday": "आज {{count}} बिल",
   "billsToday_plural": "आज {{count}} बिल",
-  "totalOutstanding": "कुल बाकी उधार"
+  "totalOutstanding": "कुल बाकी उधार",
+  "dashboardSubtitle": "आपकी दुकान की झलक",
+  "monthSales": "इस महीने",
+  "billCount": "{{count}} बिल",
+  "udharSummary": "उधार (क्रेडिट)",
+  "stockAlerts": "स्टॉक अलर्ट",
+  "outOfStock": "{{count}} स्टॉक खत्म",
+  "lowStock": "{{count}} कम स्टॉक",
+  "collectPayment": "भुगतान लें",
+  "noBills": "कोई हाल का बिल नहीं",
+  "customersWithCredit": "उधारदार ग्राहक",
+  "viewDetails": "विवरण देखें",
+  "todayOverview": "आज का सारांश",
+  "bills": "बिल",
+  "avgBillValue": "औसत बिल",
+  "monthlyTrend": "मासिक ट्रेंड",
+  "inventory": "इन्वेंटरी",
+  "products": "प्रोडक्ट"
 }

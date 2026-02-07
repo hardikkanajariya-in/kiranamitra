@@ -30,5 +30,8 @@
   "filterAll": "બધા",
   "filterLowStock": "ઓછો સ્ટોક",
   "filterOutOfStock": "સ્ટોક ખતમ",
-  "minStock": "લઘુતમ: {{threshold}} {{unit}}"
+  "minStock": "લઘુતમ: {{threshold}} {{unit}}",
+  "noInventoryItems": "કોઈ વસ્તુ મળી નથી",
+  "noInventoryItemsSubtitle": "ઇન્વેન્ટરી ટ્રૅક કરવા પહેલા પ્રોડક્ટ ઉમેરો",
+  "searchProduct": "પ્રોડક્ટ શોધો..."
 }

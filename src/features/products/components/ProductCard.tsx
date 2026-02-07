@@ -39,10 +39,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
     const getStockLabel = (): string => {
         if (isOutOfStock) {
-            return t('outOfStock');
+            return t('inventory:outOfStock');
         }
         if (isLowStock) {
-            return t('lowStock');
+            return t('inventory:lowStock');
         }
         return `${currentStock} ${unit}`;
     };

@@ -13,6 +13,13 @@ import { database } from '@core/database';
 import { CombinedLightTheme, CombinedDarkTheme } from '@core/theme';
 import { useSettingsStore } from '@features/settings/store/useSettingsStore';
 import { RootNavigator } from './navigation/RootNavigator';
+import { AppIcon } from '@shared/components/Icon';
+
+const paperSettings = {
+  icon: ({ name, size, color }: { name: string; size: number; color: string }) => (
+    <AppIcon name={name} size={size} color={color} />
+  ),
+};
 
 const App: React.FC = () => {
   const { isDarkMode } = useSettingsStore();
@@ -28,7 +35,7 @@ const App: React.FC = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <I18nextProvider i18n={i18n}>
         <DatabaseProvider database={database}>
-          <PaperProvider theme={paperTheme}>
+          <PaperProvider theme={paperTheme} settings={paperSettings}>
             <SafeAreaProvider>
               <NavigationContainer
                 theme={navTheme}

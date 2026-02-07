@@ -44,7 +44,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 
       <View style={styles.row}>
         <Text variant="titleLarge" style={{ color: theme.colors.onSurface, fontWeight: 'bold' }}>
-          {t('total')}
+          {t('grandTotal')}
         </Text>
         <CurrencyText amount={grandTotal} variant="titleLarge" />
       </View>

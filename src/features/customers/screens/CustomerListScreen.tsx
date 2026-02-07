@@ -64,7 +64,7 @@ export const CustomerListScreen: React.FC<{ navigation: NavigationProp }> = ({
             <SearchInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                placeholder={t('searchPlaceholder')}
+                placeholder={t('searchCustomer')}
             />
 
             {customers.length === 0 ? (

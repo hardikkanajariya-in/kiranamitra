@@ -61,7 +61,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
             }
             navigation.goBack();
         } catch {
-            Alert.alert(t('error'), t('saveError'));
+            Alert.alert(t('common:error'), t('saveError'));
         }
     };
 
@@ -82,7 +82,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
                     <FormField
                         control={control}
                         name="name"
-                        label={t('name')}
+                        label={t('common:name')}
                         error={errors.name?.message}
                         autoFocus={!isEditing}
                     />
@@ -90,7 +90,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
                     <FormField
                         control={control}
                         name="phone"
-                        label={t('phone')}
+                        label={t('common:phone')}
                         error={errors.phone?.message}
                         keyboardType="phone-pad"
                         maxLength={10}
@@ -99,7 +99,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
                     <FormField
                         control={control}
                         name="address"
-                        label={t('address')}
+                        label={t('common:address')}
                         error={errors.address?.message}
                         multiline
                         numberOfLines={3}
@@ -108,7 +108,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
                     <FormField
                         control={control}
                         name="notes"
-                        label={t('notes')}
+                        label={t('common:notes')}
                         error={errors.notes?.message}
                         multiline
                         numberOfLines={3}
@@ -121,7 +121,7 @@ export const CustomerFormScreen: React.FC<{ navigation: NavigationProp; route: {
                         disabled={isSubmitting}
                         style={styles.submitButton}
                     >
-                        {isEditing ? t('update') : t('save')}
+                        {isEditing ? t('common:update') : t('common:save')}
                     </Button>
                 </ScrollView>
             </KeyboardAvoidingView>

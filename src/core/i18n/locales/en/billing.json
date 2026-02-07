@@ -40,7 +40,22 @@
   "taxRate": "Tax Rate (%)",
   "noCustomerForCredit": "Please select a customer for credit payment",
   "noBills": "No bills yet. Create your first bill!",
+  "noBillsSubtitle": "Bills you create will appear here",
   "searchBills": "Search by bill number...",
   "filterCompleted": "Completed",
-  "filterCancelled": "Cancelled"
+  "filterCancelled": "Cancelled",
+  "emptyCart": "Cart is empty",
+  "emptyCartSubtitle": "Search and add products above to start billing",
+  "emptyCartMessage": "Add products to the cart first",
+  "outOfStock": "Out of Stock",
+  "outOfStockMessage": "This product is currently out of stock",
+  "selectCustomerForCredit": "Please select a customer for credit payment",
+  "changeCustomer": "Change Customer",
+  "error": "Error",
+  "billCreationError": "Failed to create bill. Please try again.",
+  "bill": "Bill",
+  "total": "Total",
+  "searchProduct": "Search products...",
+  "stock": "Stock",
+  "card": "Card"
 }

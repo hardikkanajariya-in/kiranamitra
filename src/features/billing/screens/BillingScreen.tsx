@@ -39,7 +39,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
 
     const handleAddProduct = (product: Product) => {
         if (product.currentStock <= 0) {
-            Alert.alert(t('outOfStock'), t('outOfStockMessage'));
+            Alert.alert(t('inventory:outOfStock'), t('outOfStockMessage'));
             return;
         }
 
@@ -56,12 +56,12 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
 
     const handleCreateBill = async () => {
         if (cartItems.length === 0) {
-            Alert.alert(t('emptyCart'), t('emptyCartMessage'));
+            Alert.alert(t('cartEmpty'), t('cartEmptyMessage'));
             return;
         }
 
         if (paymentMode === PAYMENT_MODES.CREDIT && !selectedCustomerId) {
-            Alert.alert(t('selectCustomer'), t('selectCustomerForCredit'));
+            Alert.alert(t('selectCustomer'), t('noCustomerForCredit'));
             return;
         }
 
@@ -77,7 +77,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
             clearCart();
             navigation.navigate('BillPreview', { billId: bill.id });
         } catch {
-            Alert.alert(t('error'), t('billCreationError'));
+            Alert.alert(t('common:error'), t('billCreationError'));
         }
     };
 
@@ -99,8 +99,8 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                 {cartItems.length === 0 ? (
                     <EmptyState
                         icon="cart-outline"
-                        title={t('emptyCart')}
-                        subtitle={t('emptyCartSubtitle')}
+                        title={t('cartEmpty')}
+                        subtitle={t('cartEmptySubtitle')}
                     />
                 ) : (
                     <>

@@ -40,7 +40,22 @@
   "taxRate": "ટેક્સ દર (%)",
   "noCustomerForCredit": "ઉધાર માટે ગ્રાહક પસંદ કરો",
   "noBills": "હજુ કોઈ બિલ નથી. પહેલું બિલ બનાવો!",
+  "noBillsSubtitle": "તમે બનાવેલા બિલ અહીં દેખાશે",
   "searchBills": "બિલ નંબરથી શોધો...",
   "filterCompleted": "પૂર્ણ થયેલા",
-  "filterCancelled": "રદ કરેલા"
+  "filterCancelled": "રદ કરેલા",
+  "emptyCart": "કાર્ટ ખાલી છે",
+  "emptyCartSubtitle": "બિલિંગ શરૂ કરવા પ્રોડક્ટ શોધો અને ઉમેરો",
+  "emptyCartMessage": "પહેલા કાર્ટમાં પ્રોડક્ટ ઉમેરો",
+  "outOfStock": "સ્ટોક ખતમ",
+  "outOfStockMessage": "આ પ્રોડક્ટ હાલ સ્ટોકમાં નથી",
+  "selectCustomerForCredit": "ઉધાર માટે ગ્રાહક પસંદ કરો",
+  "changeCustomer": "ગ્રાહક બદલો",
+  "error": "ખામી",
+  "billCreationError": "બિલ બનાવવામાં વિફળ. ફરી પ્રયાસ કરો.",
+  "bill": "બિલ",
+  "total": "કુલ",
+  "searchProduct": "પ્રોડક્ટ શોધો...",
+  "stock": "સ્ટોક",
+  "card": "કાર્ડ"
 }

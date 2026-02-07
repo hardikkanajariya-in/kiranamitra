@@ -66,8 +66,8 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
     return (
       <EmptyState
         icon="history"
-        title={t('noTransactions')}
-        subtitle={t('noTransactionsSubtitle')}
+        title={t('noCreditHistory')}
+        subtitle={t('noCreditHistorySubtitle')}
       />
     );
   }

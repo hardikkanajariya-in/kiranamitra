@@ -43,7 +43,7 @@ export const PinManagement: React.FC = () => {
         setError('');
         Alert.alert(t('pinChanged'), t('pinChangedDesc'));
       } else {
-        setError(t('pinChangeError'));
+        setError(t('common:operationFailed'));
       }
     } else {
       setError(t('pinMismatch'));

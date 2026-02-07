@@ -66,7 +66,7 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                     mode="outlined"
                     style={styles.chip}
                 >
-                    {t('all')} ({products.length})
+                    {t('filterAll')} ({products.length})
                 </Chip>
                 <Chip
                     selected={filter === 'lowStock'}
@@ -89,8 +89,8 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
             {filteredProducts.length === 0 ? (
                 <EmptyState
                     icon="package-variant"
-                    title={t('noItems')}
-                    subtitle={t('noItemsSubtitle')}
+                    title={t('noInventoryItems')}
+                    subtitle={t('noInventoryItemsSubtitle')}
                 />
             ) : (
                 <FlashList
@@ -107,6 +107,7 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                         />
                     )}
                     keyExtractor={(item: Product) => item.id}
+                    estimatedItemSize={72}
                     contentContainerStyle={styles.listContent}
                 />
             )}

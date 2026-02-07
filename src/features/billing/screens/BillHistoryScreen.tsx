@@ -49,7 +49,7 @@ export const BillHistoryScreen: React.FC<BillHistoryScreenProps> = ({ navigation
       <SearchInput
         value={searchQuery}
         onChangeText={setSearchQuery}
-        placeholder={t('searchBillPlaceholder')}
+        placeholder={t('searchBills')}
       />
 
       {bills.length === 0 ? (

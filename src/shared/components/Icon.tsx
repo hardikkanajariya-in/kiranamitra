@@ -10,6 +10,9 @@ import {
   HandCoins,
   BarChart3,
   ChevronRight,
+  ChevronDown,
+  ChevronLeft,
+  ArrowLeft,
   Tag,
   Barcode,
   AlertCircle,
@@ -42,6 +45,8 @@ import {
   Share2,
   Bluetooth,
   CheckCircle2,
+  Eye,
+  EyeOff,
   type LucideProps,
 } from 'lucide-react-native';
 
@@ -60,6 +65,10 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
   'account-cash': HandCoins,
   'chart-bar': BarChart3,
   'chevron-right': ChevronRight,
+  'chevron-down': ChevronDown,
+  'chevron-left': ChevronLeft,
+  'arrow-left': ArrowLeft,
+  'menu-down': ChevronDown,
 
   // Products
   'tag': Tag,
@@ -113,6 +122,12 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
 
   // Misc
   'check-circle-outline': CheckCircle2,
+
+  // Password visibility
+  'eye': Eye,
+  'eye-off': EyeOff,
+  'eye-outline': Eye,
+  'eye-off-outline': EyeOff,
 };
 
 export interface AppIconProps {
