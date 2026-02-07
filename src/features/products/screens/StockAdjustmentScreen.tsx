@@ -28,7 +28,7 @@ export const StockAdjustmentScreen: React.FC<{ navigation: any; route: any }> = 
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<StockAdjustmentFormData>({
-    resolver: zodResolver(stockAdjustmentSchema),
+    resolver: zodResolver(stockAdjustmentSchema) as any,
     defaultValues: {
       quantity: 1,
       reason: STOCK_REASONS.PURCHASE,

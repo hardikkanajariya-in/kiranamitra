@@ -98,7 +98,6 @@ export const InventoryScreen: React.FC<{ navigation: any; route: any }> = ({
               onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
             />
           )}
-          estimatedItemSize={72}
           keyExtractor={(item: Product) => item.id}
           contentContainerStyle={styles.listContent}
         />

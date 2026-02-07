@@ -125,7 +125,6 @@ export const InventoryReportScreen: React.FC<{ navigation: any }> = ({ navigatio
         <FlashList
           data={filteredProducts}
           renderItem={renderProduct}
-          estimatedItemSize={80}
           keyExtractor={(item: ProductStockInfo) => item.id}
           contentContainerStyle={styles.listContent}
         />

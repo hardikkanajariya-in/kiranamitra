@@ -90,7 +90,6 @@ export const CreditReportScreen: React.FC<{ navigation: any }> = ({ navigation }
           <FlashList
             data={report.customers}
             renderItem={renderCustomer}
-            estimatedItemSize={80}
             keyExtractor={(item: CustomerCreditInfo) => item.id}
             contentContainerStyle={styles.listContent}
           />

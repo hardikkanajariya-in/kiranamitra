@@ -76,7 +76,6 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
     <FlashList
       data={entries}
       renderItem={renderEntry}
-      estimatedItemSize={72}
       ItemSeparatorComponent={() => <Divider />}
       keyExtractor={(item: CreditEntry) => item.id}
     />

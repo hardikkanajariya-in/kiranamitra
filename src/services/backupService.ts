@@ -83,11 +83,11 @@ export const backupService = {
 
   importData: async (): Promise<void> => {
     try {
-      const DocumentPicker = require('react-native-document-picker').default;
+      const { pick, types } = require('@react-native-documents/picker');
       const ReactNativeBlobUtil = require('react-native-blob-util').default;
 
-      const result = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.allFiles],
+      const [result] = await pick({
+        type: [types.allFiles],
       });
 
       if (!result.uri) {

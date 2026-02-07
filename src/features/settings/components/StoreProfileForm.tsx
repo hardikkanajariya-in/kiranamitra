@@ -23,7 +23,7 @@ export const StoreProfileForm: React.FC = () => {
   const { storeProfile, setStoreProfile } = useSettingsStore();
 
   const { control, handleSubmit, formState: { errors, isDirty } } = useForm<StoreProfileFormData>({
-    resolver: zodResolver(storeProfileSchema),
+    resolver: zodResolver(storeProfileSchema) as any,
     defaultValues: {
       name: storeProfile.name,
       address: storeProfile.address,

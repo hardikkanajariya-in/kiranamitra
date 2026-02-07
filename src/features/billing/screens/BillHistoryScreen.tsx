@@ -68,7 +68,6 @@ export const BillHistoryScreen: React.FC<{ navigation: any }> = ({ navigation })
               onPress={() => navigation.navigate('BillPreview', { billId: item.id })}
             />
           )}
-          estimatedItemSize={88}
           keyExtractor={(item: Bill) => item.id}
           contentContainerStyle={styles.listContent}
         />

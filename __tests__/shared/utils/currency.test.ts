@@ -1,4 +1,4 @@
-import { formatCurrency, parseCurrency } from '@shared/utils/currency';
+import { formatCurrency, parseCurrencyInput } from '@shared/utils/currency';
 
 describe('currency utils', () => {
   it('should format number to Indian currency', () => {
@@ -19,15 +19,15 @@ describe('currency utils', () => {
   });
 
   it('should parse currency string to number', () => {
-    expect(parseCurrency('₹1,000')).toBe(1000);
+    expect(parseCurrencyInput('₹1,000')).toBe(1000);
   });
 
   it('should parse plain number string', () => {
-    expect(parseCurrency('500')).toBe(500);
+    expect(parseCurrencyInput('500')).toBe(500);
   });
 
   it('should return 0 for invalid input', () => {
-    expect(parseCurrency('')).toBe(0);
-    expect(parseCurrency('abc')).toBe(0);
+    expect(parseCurrencyInput('')).toBe(0);
+    expect(parseCurrencyInput('abc')).toBe(0);
   });
 });

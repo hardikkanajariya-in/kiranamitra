@@ -68,7 +68,6 @@ export const ProductListScreen: React.FC<{ navigation: any }> = ({ navigation })
               onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
             />
           )}
-          estimatedItemSize={72}
           keyExtractor={(item: Product) => item.id}
           contentContainerStyle={styles.listContent}
         />

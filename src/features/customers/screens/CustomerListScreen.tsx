@@ -84,7 +84,6 @@ export const CustomerListScreen: React.FC<{ navigation: any; route: any }> = ({
               onCall={item.phone ? () => handleCall(item.phone) : undefined}
             />
           )}
-          estimatedItemSize={80}
           keyExtractor={(item: Customer) => item.id}
           contentContainerStyle={styles.listContent}
         />

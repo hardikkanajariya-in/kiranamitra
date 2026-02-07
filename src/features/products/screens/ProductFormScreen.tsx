@@ -26,7 +26,7 @@ export const ProductFormScreen: React.FC<{ navigation: any; route: any }> = ({
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ProductFormData>({
-    resolver: zodResolver(productSchema),
+    resolver: zodResolver(productSchema) as any,
     defaultValues: {
       name: '',
       categoryId: '',

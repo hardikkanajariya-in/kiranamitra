@@ -116,7 +116,6 @@ export const ProductPerformanceScreen: React.FC<{ navigation: any }> = ({ naviga
           <FlashList
             data={data}
             renderItem={renderProduct}
-            estimatedItemSize={80}
             keyExtractor={(item: ProductPerformanceData) => item.id}
             contentContainerStyle={styles.listContent}
           />

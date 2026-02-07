@@ -26,7 +26,7 @@ export const CustomerFormScreen: React.FC<{ navigation: any; route: any }> = ({
     reset,
     formState: { errors, isSubmitting },
   } = useForm<CustomerFormData>({
-    resolver: zodResolver(customerSchema),
+    resolver: zodResolver(customerSchema) as any,
     defaultValues: {
       name: '',
       phone: '',

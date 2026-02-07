@@ -9,6 +9,6 @@ export const zustandMMKVStorage: StateStorage = {
     storage.set(name, value);
   },
   removeItem: (name: string): void => {
-    storage.delete(name);
+    storage.remove(name);
   },
 };

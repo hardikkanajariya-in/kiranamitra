@@ -1,13 +1,13 @@
-import { MMKV } from 'react-native-mmkv';
+import { createMMKV } from 'react-native-mmkv';
 
-export const storage = new MMKV({
+export const storage = createMMKV({
   id: 'kiranamitra-storage',
 });
 
 // ── PIN ──
 export const getPin = (): string | null => storage.getString('pin_hash') ?? null;
 export const setPin = (hash: string): void => storage.set('pin_hash', hash);
-export const removePin = (): void => storage.delete('pin_hash');
+export const removePin = (): void => { storage.remove('pin_hash'); };
 export const isPinSet = (): boolean => storage.contains('pin_hash');
 
 // ── Language ──
@@ -68,7 +68,7 @@ export const setPrinterConfig = (config: PrinterConfig): void => {
   storage.set('printer_config', JSON.stringify(config));
 };
 
-export const removePrinterConfig = (): void => storage.delete('printer_config');
+export const removePrinterConfig = (): void => { storage.remove('printer_config'); };
 
 // ── Onboarding ──
 export const isOnboardingDone = (): boolean => storage.getBoolean('onboarding_done') ?? false;

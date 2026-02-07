@@ -24,9 +24,9 @@ const App: React.FC = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <I18nextProvider i18n={i18n}>
         <DatabaseProvider database={database}>
-          <PaperProvider theme={theme}>
+          <PaperProvider theme={theme as any}>
             <SafeAreaProvider>
-              <NavigationContainer theme={theme}>
+              <NavigationContainer theme={theme as any}>
                 <StatusBar
                   barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                   backgroundColor={theme.colors.surface}

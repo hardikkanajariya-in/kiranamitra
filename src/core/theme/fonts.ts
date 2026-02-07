@@ -1,5 +1,4 @@
 import { configureFonts } from 'react-native-paper';
-import type { MD3Type } from 'react-native-paper/lib/typescript/types';
 
 // Using system default fonts — they handle Devanagari & Gujarati natively
 const fontConfig = {
@@ -18,6 +17,6 @@ const fontConfig = {
   labelLarge: { fontFamily: 'System', fontSize: 14, lineHeight: 20, letterSpacing: 0.1 },
   labelMedium: { fontFamily: 'System', fontSize: 12, lineHeight: 16, letterSpacing: 0.5 },
   labelSmall: { fontFamily: 'System', fontSize: 11, lineHeight: 16, letterSpacing: 0.5 },
-} as const;
+};
 
-export const fonts = configureFonts({ config: fontConfig as any });
+export const fonts = configureFonts({ config: fontConfig });

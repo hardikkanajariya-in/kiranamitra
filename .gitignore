@@ -13,6 +13,7 @@ android/captures/
 android/local.properties
 android/*.iml
 android/.idea/
+android/.cxx/
 
 # iOS
 ios/Pods/
@@ -22,9 +23,15 @@ ios/*.xcworkspace/xcuserdata/
 ios/*.xcodeproj/xcuserdata/
 ios/*.xcodeproj/project.xcworkspace/xcshareddata/
 ios/.xcode.env.local
+ios/Podfile.lock
 
 # Metro
 .metro-health-check*
+
+# Bundler (Ruby / CocoaPods)
+vendor/bundle/
+.bundle/
+Gemfile.lock
 
 # Buck
 buck-out/
@@ -83,6 +90,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Gradle
+.gradle/
+
 # WatermelonDB
 *.db
 *.db-journal
@@ -90,5 +100,16 @@ yarn-error.log*
 # MMKV
 mmkv/
 
+# Nitro Modules (codegen)
+**/nitrogen/generated/
+
 # Backup exports
 *.backup.json
+
+# Watchman
+.watchmanconfig
+
+# React Native CLI
+*.haste_map.*
+*.metro.*
+/android/app/.cxx

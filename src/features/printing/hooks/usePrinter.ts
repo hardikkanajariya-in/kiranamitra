@@ -113,7 +113,7 @@ export const usePrinter = () => {
     await bluetoothPrinterService.disconnect();
     setIsConnected(false);
     setConnectedPrinter(null);
-    storage.delete(PRINTER_CONFIG_KEY);
+    storage.remove(PRINTER_CONFIG_KEY);
   }, []);
 
   const printBill = useCallback(async (data: PrintBillData) => {
