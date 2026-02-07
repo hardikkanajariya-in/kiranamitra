@@ -2,23 +2,7 @@
  * Tests for billRepository
  */
 
-const mockBill = {
-    id: 'b1',
-    billNumber: 'INV-001',
-    subtotal: 100,
-    grandTotal: 90,
-    status: 'completed',
-    update: jest.fn((fn: any) => fn(mockBill)),
-};
-const mockProduct = {
-    id: 'p1',
-    currentStock: 50,
-    update: jest.fn((fn: any) => fn(mockProduct)),
-};
-const mockCustomer = { id: 'c1', name: 'Raj' };
-const mockBillItem = { id: 'bi1', productId: 'p1', quantity: 2 };
-const mockCreditEntry = { balanceAfter: 500 };
-
+// Define mock functions that will be used inside jest.mock factory via arrow wrappers
 const mockObserve = jest.fn(() => 'observable');
 const mockFetch = jest.fn(() => Promise.resolve([]));
 const mockFind = jest.fn();
@@ -37,12 +21,12 @@ jest.mock('@core/database', () => ({
     database: {
         get: jest.fn(() => ({
             query: jest.fn(() => ({
-                observe: mockObserve,
-                fetch: mockFetch,
+                observe: (...a: any[]) => mockObserve(...a),
+                fetch: (...a: any[]) => mockFetch(...a),
             })),
-            find: mockFind,
-            findAndObserve: mockFindAndObserve,
-            create: mockCreate,
+            find: (...a: any[]) => mockFind(...a),
+            findAndObserve: (...a: any[]) => mockFindAndObserve(...a),
+            create: (...a: any[]) => mockCreate(...a),
         })),
         write: jest.fn((fn: any) => fn()),
     },
@@ -80,6 +64,20 @@ jest.mock('@core/constants', () => ({
 import { billRepository } from '@features/billing/repositories/billRepository';
 
 describe('billRepository', () => {
+    const mockProduct = {
+        id: 'p1',
+        currentStock: 50,
+        update: jest.fn((fn: any) => fn(mockProduct)),
+    };
+    const mockBill: any = {
+        id: 'b1',
+        billNumber: 'INV-001',
+        subtotal: 100,
+        grandTotal: 90,
+        status: 'completed',
+        update: jest.fn((fn: any) => fn(mockBill)),
+    };
+
     beforeEach(() => {
         jest.clearAllMocks();
         mockFind.mockResolvedValue(mockProduct);
@@ -98,12 +96,12 @@ describe('billRepository', () => {
 
     it('should find bill by id', () => {
         mockFind.mockResolvedValue(mockBill);
-        const result = billRepository.getById('b1');
+        billRepository.getById('b1');
         expect(mockFind).toHaveBeenCalledWith('b1');
     });
 
     it('should observe bill by id', () => {
-        const result = billRepository.observeById('b1');
+        billRepository.observeById('b1');
         expect(mockFindAndObserve).toHaveBeenCalledWith('b1');
     });
 
@@ -112,7 +110,7 @@ describe('billRepository', () => {
         expect(result).toBe('observable');
     });
 
-    it('should create a bill with items', async () => {
+    it('should create a bill with items (cash)', async () => {
         const cartItems = [
             { productId: 'p1', productName: 'Rice', quantity: 2, unitPrice: 50, discount: 0, total: 100 },
         ];
@@ -121,6 +119,7 @@ describe('billRepository', () => {
         await billRepository.createBill(cartItems, 'cash', null, 10, 100, 90);
         const { database } = require('@core/database');
         expect(database.write).toHaveBeenCalled();
+        expect(mockCreate).toHaveBeenCalled();
     });
 
     it('should create bill with credit payment for customer', async () => {
@@ -131,7 +130,7 @@ describe('billRepository', () => {
             ...mockProduct,
             update: jest.fn((fn: any) => fn(mockProduct)),
         });
-        mockFetch.mockResolvedValue([mockCreditEntry]);
+        mockFetch.mockResolvedValue([{ balanceAfter: 500 }]);
 
         await billRepository.createBill(cartItems, 'credit', 'c1', 0, 50, 50);
         const { database } = require('@core/database');
@@ -139,23 +138,11 @@ describe('billRepository', () => {
     });
 
     it('should cancel a bill and restore stock', async () => {
-        mockFind.mockResolvedValue({
-            ...mockBill,
-            update: jest.fn((fn: any) => fn(mockBill)),
-        });
-        mockFetch.mockResolvedValue([{
-            ...mockBillItem,
-            productId: 'p1',
-            quantity: 2,
-        }]);
-
-        // Override for product find
-        const findCalls: string[] = [];
         mockFind.mockImplementation((id: string) => {
-            findCalls.push(id);
             if (id === 'b1') return Promise.resolve({ ...mockBill, update: jest.fn((fn: any) => fn(mockBill)) });
             return Promise.resolve({ ...mockProduct, update: jest.fn((fn: any) => fn(mockProduct)) });
         });
+        mockFetch.mockResolvedValue([{ productId: 'p1', quantity: 2 }]);
 
         await billRepository.cancelBill('b1');
         const { database } = require('@core/database');

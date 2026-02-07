@@ -2,17 +2,9 @@
  * Tests for customerRepository
  */
 
-const mockCustomer = {
-    id: 'c1',
-    name: 'Raj',
-    phone: '9876543210',
-    isActive: true,
-    update: jest.fn((fn: any) => { fn(mockCustomer); return mockCustomer; }),
-};
-
 const mockObserve = jest.fn(() => 'observable');
 const mockFetch = jest.fn(() => Promise.resolve([]));
-const mockFind = jest.fn(() => Promise.resolve(mockCustomer));
+const mockFind = jest.fn();
 const mockFindAndObserve = jest.fn(() => 'findAndObservable');
 const mockCreate = jest.fn((fn: any) => {
     const rec: any = {
@@ -32,12 +24,12 @@ jest.mock('@core/database', () => ({
     database: {
         get: jest.fn(() => ({
             query: jest.fn(() => ({
-                observe: mockObserve,
-                fetch: mockFetch,
+                observe: (...a: any[]) => mockObserve(...a),
+                fetch: (...a: any[]) => mockFetch(...a),
             })),
-            find: mockFind,
-            findAndObserve: mockFindAndObserve,
-            create: mockCreate,
+            find: (...a: any[]) => mockFind(...a),
+            findAndObserve: (...a: any[]) => mockFindAndObserve(...a),
+            create: (...a: any[]) => mockCreate(...a),
         })),
         write: jest.fn((fn: any) => fn()),
     },
@@ -65,8 +57,17 @@ jest.mock('@core/constants', () => ({
 import { customerRepository } from '@features/customers/repositories/customerRepository';
 
 describe('customerRepository', () => {
+    const mockCustomer: any = {
+        id: 'c1',
+        name: 'Raj',
+        phone: '9876543210',
+        isActive: true,
+        update: jest.fn((fn: any) => { fn(mockCustomer); return mockCustomer; }),
+    };
+
     beforeEach(() => {
         jest.clearAllMocks();
+        mockCustomer.update = jest.fn((fn: any) => { fn(mockCustomer); return mockCustomer; });
         mockFind.mockResolvedValue(mockCustomer);
         mockFetch.mockResolvedValue([]);
     });

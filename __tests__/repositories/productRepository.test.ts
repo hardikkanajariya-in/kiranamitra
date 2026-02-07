@@ -2,21 +2,6 @@
  * Tests for productRepository
  */
 
-const mockProduct = {
-    id: 'p1',
-    name: 'Rice',
-    currentStock: 50,
-    isActive: true,
-    update: jest.fn((fn: any) => { fn(mockProduct); return mockProduct; }),
-    destroyPermanently: jest.fn(),
-};
-const mockCategory = {
-    id: 'cat1',
-    name: 'Grocery',
-    update: jest.fn((fn: any) => { fn(mockCategory); return mockCategory; }),
-    destroyPermanently: jest.fn(),
-};
-
 const mockObserve = jest.fn(() => 'observable');
 const mockFetch = jest.fn(() => Promise.resolve([]));
 const mockFind = jest.fn();
@@ -46,12 +31,12 @@ jest.mock('@core/database', () => ({
     database: {
         get: jest.fn(() => ({
             query: jest.fn(() => ({
-                observe: mockObserve,
-                fetch: mockFetch,
+                observe: (...a: any[]) => mockObserve(...a),
+                fetch: (...a: any[]) => mockFetch(...a),
             })),
-            find: mockFind,
-            findAndObserve: mockFindAndObserve,
-            create: mockCreate,
+            find: (...a: any[]) => mockFind(...a),
+            findAndObserve: (...a: any[]) => mockFindAndObserve(...a),
+            create: (...a: any[]) => mockCreate(...a),
         })),
         write: jest.fn((fn: any) => fn()),
     },
@@ -76,8 +61,27 @@ jest.mock('@nozbe/watermelondb', () => ({
 import { productRepository } from '@features/products/repositories/productRepository';
 
 describe('productRepository', () => {
+    const mockProduct: any = {
+        id: 'p1',
+        name: 'Rice',
+        currentStock: 50,
+        isActive: true,
+        update: jest.fn((fn: any) => { fn(mockProduct); return mockProduct; }),
+        destroyPermanently: jest.fn(),
+    };
+    const mockCategory: any = {
+        id: 'cat1',
+        name: 'Grocery',
+        update: jest.fn((fn: any) => { fn(mockCategory); return mockCategory; }),
+        destroyPermanently: jest.fn(),
+    };
+
     beforeEach(() => {
         jest.clearAllMocks();
+        mockProduct.update = jest.fn((fn: any) => { fn(mockProduct); return mockProduct; });
+        mockProduct.destroyPermanently = jest.fn();
+        mockCategory.update = jest.fn((fn: any) => { fn(mockCategory); return mockCategory; });
+        mockCategory.destroyPermanently = jest.fn();
         mockFind.mockResolvedValue(mockProduct);
     });
 

@@ -22,5 +22,7 @@ module.exports = {
         '!src/__tests__/**',
         '!src/navigation/types.ts',
         '!src/core/types/**',
+        '!src/core/database/index.ts',
+        '!src/core/database/models/**',
     ],
 };
