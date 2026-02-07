@@ -104,6 +104,7 @@ const { LightTheme: NavLight, DarkTheme: NavDark } = adaptNavigationTheme({
 export const CombinedLightTheme = {
   ...lightTheme,
   ...NavLight,
+  fonts: lightTheme.fonts,
   colors: {
     ...lightTheme.colors,
     ...NavLight.colors,
@@ -113,6 +114,7 @@ export const CombinedLightTheme = {
 export const CombinedDarkTheme = {
   ...darkTheme,
   ...NavDark,
+  fonts: darkTheme.fonts,
   colors: {
     ...darkTheme.colors,
     ...NavDark.colors,

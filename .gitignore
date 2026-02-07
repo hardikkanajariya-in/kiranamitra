@@ -114,3 +114,4 @@ mmkv/
 *.metro.*
 /android/app/.cxx
 /android/.kotlin
+/screenshots
