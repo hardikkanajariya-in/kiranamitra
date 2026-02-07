@@ -8,6 +8,7 @@ import { CurrencyText } from '@shared/components/CurrencyText';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { DateRangePicker } from '@shared/components/DateRangePicker';
 import { reportService } from '../services/reportService';
+import { Colors } from '@core/theme/colors';
 import { SalesReportData, DateRange } from '@core/types';
 import { getDateRangeForPeriod } from '@shared/utils/date';
 
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
     borderBottomWidth: 0.5,
-    borderBottomColor: '#E0E0E0',
+    borderBottomColor: Colors.border,
   },
   dailyRight: {
     alignItems: 'flex-end',

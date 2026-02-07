@@ -29,5 +29,6 @@
   "outOfStockCount_plural": "{{count}} વસ્તુઓનો સ્ટોક ખતમ",
   "filterAll": "બધા",
   "filterLowStock": "ઓછો સ્ટોક",
-  "filterOutOfStock": "સ્ટોક ખતમ"
+  "filterOutOfStock": "સ્ટોક ખતમ",
+  "minStock": "લઘુતમ: {{threshold}} {{unit}}"
 }

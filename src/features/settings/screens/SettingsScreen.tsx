@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { Divider, useTheme, List } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,8 +18,16 @@ export const SettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <AppHeader title={t('settings')} />
+      <AppHeader
+        title={t('settings')}
+        showBack
+        onBack={() => navigation.goBack()}
+      />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
       <ScrollView contentContainerStyle={styles.content}>
         {/* Store Profile */}
         <StoreProfileForm />
@@ -56,6 +64,7 @@ export const SettingsScreen: React.FC<{ navigation: any }> = ({ navigation }) =>
         {/* Backup & Restore */}
         <BackupRestore />
       </ScrollView>
+      </KeyboardAvoidingView>
 
       <PrinterSetupModal
         visible={printerModalVisible}

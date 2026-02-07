@@ -52,7 +52,7 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
           <CurrencyText
             amount={item.amount}
             variant="titleSmall"
-            color={isCredit ? theme.colors.error : '#2E7D32'}
+            color={isCredit ? theme.colors.error : theme.colors.primary}
           />
           <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
             {t('balance')}: ₹{item.balanceAfter.toFixed(2)}

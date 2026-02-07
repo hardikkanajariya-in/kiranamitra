@@ -5,79 +5,82 @@ describe('useBillingStore', () => {
   beforeEach(() => {
     resetIdCounter();
     useBillingStore.setState({
-      items: [],
-      customerId: null,
-      customerName: 'Walk-in',
+      cartItems: [],
+      selectedCustomerId: null,
       discount: 0,
       paymentMode: 'cash',
       notes: '',
+      subtotal: 0,
+      grandTotal: 0,
     });
   });
 
   it('should initialize with empty cart', () => {
     const state = useBillingStore.getState();
-    expect(state.items).toHaveLength(0);
+    expect(state.cartItems).toHaveLength(0);
     expect(state.subtotal).toBe(0);
     expect(state.grandTotal).toBe(0);
   });
 
   it('should add item to cart', () => {
-    const { addItem } = useBillingStore.getState();
+    const { addToCart } = useBillingStore.getState();
     const item = createMockCartItem({ productId: 'p1', unitPrice: 100, quantity: 2 });
-    addItem(item);
+    addToCart(item);
 
     const state = useBillingStore.getState();
-    expect(state.items).toHaveLength(1);
-    expect(state.items[0].productId).toBe('p1');
+    expect(state.cartItems).toHaveLength(1);
+    expect(state.cartItems[0].productId).toBe('p1');
   });
 
   it('should update existing item quantity', () => {
-    const { addItem, updateItem } = useBillingStore.getState();
+    const { addToCart } = useBillingStore.getState();
     const item = createMockCartItem({ productId: 'p1', unitPrice: 100, quantity: 1 });
-    addItem(item);
+    addToCart(item);
 
-    updateItem('p1', 3);
+    const { updateQuantity } = useBillingStore.getState();
+    updateQuantity('p1', 3);
     const state = useBillingStore.getState();
-    expect(state.items[0].quantity).toBe(3);
+    expect(state.cartItems[0].quantity).toBe(3);
   });
 
   it('should remove item from cart', () => {
-    const { addItem, removeItem } = useBillingStore.getState();
-    addItem(createMockCartItem({ productId: 'p1' }));
-    addItem(createMockCartItem({ productId: 'p2' }));
+    const { addToCart } = useBillingStore.getState();
+    addToCart(createMockCartItem({ productId: 'p1' }));
+    addToCart(createMockCartItem({ productId: 'p2' }));
 
-    removeItem('p1');
+    const { removeFromCart } = useBillingStore.getState();
+    removeFromCart('p1');
     const state = useBillingStore.getState();
-    expect(state.items).toHaveLength(1);
-    expect(state.items[0].productId).toBe('p2');
+    expect(state.cartItems).toHaveLength(1);
+    expect(state.cartItems[0].productId).toBe('p2');
   });
 
   it('should clear cart', () => {
-    const { addItem, clearCart } = useBillingStore.getState();
-    addItem(createMockCartItem({ productId: 'p1' }));
-    addItem(createMockCartItem({ productId: 'p2' }));
+    const { addToCart } = useBillingStore.getState();
+    addToCart(createMockCartItem({ productId: 'p1' }));
+    addToCart(createMockCartItem({ productId: 'p2' }));
 
+    const { clearCart } = useBillingStore.getState();
     clearCart();
     const state = useBillingStore.getState();
-    expect(state.items).toHaveLength(0);
-    expect(state.customerId).toBeNull();
-    expect(state.customerName).toBe('Walk-in');
+    expect(state.cartItems).toHaveLength(0);
+    expect(state.selectedCustomerId).toBeNull();
     expect(state.discount).toBe(0);
   });
 
   it('should set customer', () => {
     const { setCustomer } = useBillingStore.getState();
-    setCustomer('c1', 'Test Customer');
+    setCustomer('c1');
 
     const state = useBillingStore.getState();
-    expect(state.customerId).toBe('c1');
-    expect(state.customerName).toBe('Test Customer');
+    expect(state.selectedCustomerId).toBe('c1');
   });
 
   it('should set discount', () => {
-    const { addItem, setDiscount } = useBillingStore.getState();
-    addItem(createMockCartItem({ productId: 'p1', unitPrice: 100, quantity: 2, total: 200 }));
-    setDiscount(50);
+    const { addToCart } = useBillingStore.getState();
+    addToCart(createMockCartItem({ productId: 'p1', unitPrice: 100, quantity: 2, total: 200 }));
+    const { setBillDiscount } = useBillingStore.getState();
+    setBillDiscount(50);
 
     const state = useBillingStore.getState();
     expect(state.discount).toBe(50);

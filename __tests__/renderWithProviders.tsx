@@ -8,7 +8,7 @@ import { CombinedLightTheme } from '@core/theme';
 const AllProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <SafeAreaProvider>
-      <PaperProvider theme={CombinedLightTheme}>
+      <PaperProvider theme={CombinedLightTheme as any}>
         <NavigationContainer>
           {children}
         </NavigationContainer>

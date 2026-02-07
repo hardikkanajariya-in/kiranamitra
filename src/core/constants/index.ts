@@ -2,6 +2,7 @@
 export const PAYMENT_MODES = {
   CASH: 'cash',
   UPI: 'upi',
+  CARD: 'card',
   CREDIT: 'credit',
   MIXED: 'mixed',
 } as const;

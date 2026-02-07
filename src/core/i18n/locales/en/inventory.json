@@ -29,5 +29,6 @@
   "outOfStockCount_plural": "{{count}} items out of stock",
   "filterAll": "All",
   "filterLowStock": "Low Stock",
-  "filterOutOfStock": "Out of Stock"
+  "filterOutOfStock": "Out of Stock",
+  "minStock": "Min: {{threshold}} {{unit}}"
 }

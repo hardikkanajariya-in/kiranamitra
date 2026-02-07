@@ -1,9 +1,9 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DashboardStackParamList } from './types';
 import { DashboardScreen } from '@features/dashboard/screens/DashboardScreen';
 
-const Stack = createStackNavigator<DashboardStackParamList>();
+const Stack = createNativeStackNavigator<DashboardStackParamList>();
 
 export const DashboardStack: React.FC = () => {
   return (

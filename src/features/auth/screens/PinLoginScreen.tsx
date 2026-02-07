@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { PinPad } from '../components/PinPad';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -25,6 +26,7 @@ export const PinLoginScreen: React.FC = () => {
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
+      edges={['top', 'bottom']}
     >
       <View style={styles.content}>
         <View style={[styles.iconContainer, { backgroundColor: theme.colors.primaryContainer }]}>

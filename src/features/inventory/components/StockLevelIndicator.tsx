@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, useTheme, ProgressBar } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import { Colors } from '@core/theme/colors';
 
 interface StockLevelIndicatorProps {
   currentStock: number;
@@ -14,14 +16,15 @@ export const StockLevelIndicator: React.FC<StockLevelIndicatorProps> = ({
   unit,
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation('inventory');
 
   const maxDisplay = Math.max(lowStockThreshold * 3, currentStock);
   const progress = maxDisplay > 0 ? Math.min(currentStock / maxDisplay, 1) : 0;
 
   const getColor = () => {
     if (currentStock <= 0) return theme.colors.error;
-    if (currentStock <= lowStockThreshold) return '#F57C00'; // warning orange
-    return '#2E7D32'; // success green
+    if (currentStock <= lowStockThreshold) return Colors.warning;
+    return Colors.success;
   };
 
   return (
@@ -31,7 +34,7 @@ export const StockLevelIndicator: React.FC<StockLevelIndicatorProps> = ({
           {currentStock} {unit}
         </Text>
         <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-          Min: {lowStockThreshold} {unit}
+          {t('minStock', { threshold: lowStockThreshold, unit })}
         </Text>
       </View>
       <ProgressBar

@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
 import { AuthStack } from './AuthStack';
 import { MainTabNavigator } from './MainTabNavigator';
 import { useAuthStore } from '@features/auth/store/useAuthStore';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator: React.FC = () => {
-  const { isAuthenticated, isPinSet } = useAuthStore();
+  const { isAuthenticated, isPinEnabled, initializeAuth } = useAuthStore();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    initializeAuth();
     // Small delay to allow stores to rehydrate
     const timer = setTimeout(() => setIsReady(true), 100);
     return () => clearTimeout(timer);

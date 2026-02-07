@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TextStyle } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { formatCurrency } from '@shared/utils/currency';
+import { Colors } from '@core/theme/colors';
 
 type SizeVariant = 'large' | 'medium' | 'small';
 type PaperVariant =
@@ -60,7 +61,7 @@ export const CurrencyText: React.FC<CurrencyTextProps> = ({
   const colorStyle: TextStyle = color
     ? { color }
     : colored
-      ? { color: amount >= 0 ? '#43A047' : '#E53935' }
+      ? { color: amount >= 0 ? Colors.paymentGreen : Colors.creditRed }
       : { color: theme.colors.onSurface };
 
   return (

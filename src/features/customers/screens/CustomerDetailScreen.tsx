@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Linking } from 'react-native';
+import { View, StyleSheet, ScrollView, Linking, Alert } from 'react-native';
 import { Text, useTheme, Card, Button, Divider, Portal, Dialog, TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -27,23 +27,35 @@ export const CustomerDetailScreen: React.FC<{ navigation: any; route: any }> = (
   const [paymentNotes, setPaymentNotes] = useState('');
 
   const handleDelete = async () => {
-    await customerRepository.deactivate(customerId);
-    setShowDeleteDialog(false);
-    navigation.goBack();
+    try {
+      await customerRepository.deactivate(customerId);
+      setShowDeleteDialog(false);
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert(t('common:error'), t('common:operationFailed'));
+    }
   };
 
   const handleCollectPayment = async () => {
     const amount = parseFloat(paymentAmount);
     if (isNaN(amount) || amount <= 0) return;
 
-    await customerRepository.addCreditPayment(customerId, amount, paymentNotes);
-    setShowPaymentDialog(false);
-    setPaymentAmount('');
-    setPaymentNotes('');
+    try {
+      await customerRepository.addCreditPayment(customerId, amount, paymentNotes);
+      setShowPaymentDialog(false);
+      setPaymentAmount('');
+      setPaymentNotes('');
+    } catch (error) {
+      Alert.alert(t('common:error'), t('common:operationFailed'));
+    }
   };
 
   if (isLoading || !customer) {
-    return <LoadingOverlay visible />;
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+        <LoadingOverlay visible />
+      </SafeAreaView>
+    );
   }
 
   return (
@@ -108,7 +120,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: any; route: any }> = (
               <CurrencyText
                 amount={outstandingCredit}
                 variant="headlineSmall"
-                color={outstandingCredit > 0 ? theme.colors.error : '#2E7D32'}
+                color={outstandingCredit > 0 ? theme.colors.error : theme.colors.primary}
               />
             </View>
             {outstandingCredit > 0 ? (

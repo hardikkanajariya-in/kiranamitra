@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTheme, Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -69,6 +69,11 @@ export const CustomerFormScreen: React.FC<{ navigation: any; route: any }> = ({
         onBack={() => navigation.goBack()}
       />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
+      >
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <FormField
           control={control}
@@ -115,6 +120,7 @@ export const CustomerFormScreen: React.FC<{ navigation: any; route: any }> = ({
           {isEditing ? t('update') : t('save')}
         </Button>
       </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

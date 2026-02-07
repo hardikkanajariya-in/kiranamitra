@@ -13,11 +13,11 @@ export interface StatusBadgeProps {
 }
 
 const badgeColors: Record<BadgeType, { bg: string; text: string }> = {
-  success: { bg: '#E8F5E9', text: Colors.success },
-  warning: { bg: '#FFF3E0', text: Colors.warning },
-  error: { bg: '#FFEBEE', text: Colors.error },
-  info: { bg: '#E3F2FD', text: Colors.info },
-  neutral: { bg: '#F5F5F5', text: '#616161' },
+  success: { bg: Colors.successBg, text: Colors.success },
+  warning: { bg: Colors.warningBg, text: Colors.warning },
+  error: { bg: Colors.errorBg, text: Colors.error },
+  info: { bg: Colors.infoBg, text: Colors.info },
+  neutral: { bg: Colors.neutralBg, text: Colors.neutralText },
 };
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({

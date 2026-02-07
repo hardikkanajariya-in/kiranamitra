@@ -29,5 +29,6 @@
   "outOfStockCount_plural": "{{count}} चीज़ों का स्टॉक खत्म",
   "filterAll": "सभी",
   "filterLowStock": "कम स्टॉक",
-  "filterOutOfStock": "स्टॉक खत्म"
+  "filterOutOfStock": "स्टॉक खत्म",
+  "minStock": "न्यूनतम: {{threshold}} {{unit}}"
 }

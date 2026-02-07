@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Alert } from 'react-native';
 import { Text, useTheme, Card, Button, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -23,13 +23,21 @@ export const ProductDetailScreen: React.FC<{ navigation: any; route: any }> = ({
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const handleDelete = async () => {
-    await productRepository.deactivate(productId);
-    setShowDeleteDialog(false);
-    navigation.goBack();
+    try {
+      await productRepository.deactivate(productId);
+      setShowDeleteDialog(false);
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert(t('common:error'), t('common:operationFailed'));
+    }
   };
 
   if (isLoading || !product) {
-    return <LoadingOverlay visible />;
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+        <LoadingOverlay visible />
+      </SafeAreaView>
+    );
   }
 
   const profitMargin = product.purchasePrice > 0

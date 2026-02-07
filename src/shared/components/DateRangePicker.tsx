@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@core/constants';
 
@@ -15,6 +16,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   to,
   onChange,
 }) => {
+  const { t } = useTranslation('common');
   const [fromText, setFromText] = useState(dayjs(from).format(DATE_FORMAT));
   const [toText, setToText] = useState(dayjs(to).format(DATE_FORMAT));
 
@@ -41,7 +43,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     <View style={styles.container}>
       <View style={styles.row}>
         <TextInput
-          label="From"
+          label={t('from')}
           mode="outlined"
           value={fromText}
           onChangeText={(text) => {
@@ -54,7 +56,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
         />
         <Text style={styles.separator}>→</Text>
         <TextInput
-          label="To"
+          label={t('to')}
           mode="outlined"
           value={toText}
           onChangeText={(text) => {
@@ -68,13 +70,13 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       </View>
       <View style={styles.quickButtons}>
         <Button compact mode="outlined" onPress={() => handleQuickSelect(0)} style={styles.quickBtn}>
-          Today
+          {t('today')}
         </Button>
         <Button compact mode="outlined" onPress={() => handleQuickSelect(7)} style={styles.quickBtn}>
-          7 Days
+          {t('days', { count: 7 })}
         </Button>
         <Button compact mode="outlined" onPress={() => handleQuickSelect(30)} style={styles.quickBtn}>
-          30 Days
+          {t('days', { count: 30 })}
         </Button>
       </View>
     </View>

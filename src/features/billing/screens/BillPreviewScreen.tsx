@@ -39,7 +39,11 @@ export const BillPreviewScreen: React.FC<{ navigation: any; route: any }> = ({
   }, [billId]);
 
   if (isLoading || !bill) {
-    return <LoadingOverlay visible />;
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+        <LoadingOverlay visible />
+      </SafeAreaView>
+    );
   }
 
   return (
@@ -49,8 +53,13 @@ export const BillPreviewScreen: React.FC<{ navigation: any; route: any }> = ({
         showBack
         onBack={() => navigation.goBack()}
         actions={[
-          { icon: 'printer', onPress: () => navigation.navigate('PrintBill', { billId }) },
-          { icon: 'share-variant', onPress: () => {} },
+          { icon: 'share-variant', onPress: () => {
+            // Share bill details
+            const billText = `${t('bill')} #${bill.billNumber}\n${t('common:total')}: ₹${bill.grandTotal.toFixed(2)}\n${t('common:date')}: ${formatDateTime(bill.createdAt)}`;
+            import('react-native-share').then(Share => {
+              Share.default.open({ message: billText }).catch(() => {});
+            }).catch(() => {});
+          }},
         ]}
       />
 
@@ -132,7 +141,7 @@ export const BillPreviewScreen: React.FC<{ navigation: any; route: any }> = ({
       <View style={styles.bottomActions}>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate('Billing')}
+          onPress={() => navigation.navigate('BillingHome')}
           icon="plus"
           style={styles.actionButton}
         >

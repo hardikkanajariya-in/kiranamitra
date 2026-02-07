@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTranslation } from 'react-i18next';
 import { PIN_LENGTH } from '@core/constants';
 
 interface PinPadProps {
@@ -23,6 +24,7 @@ export const PinPad: React.FC<PinPadProps> = ({
   onErrorAnimationEnd,
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [pin, setPin] = useState('');
   const shakeAnim = useRef(new Animated.Value(0)).current;
 
@@ -118,7 +120,7 @@ export const PinPad: React.FC<PinPadProps> = ({
             onPress={handleClear}
           >
             <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
-              Clear
+              {t('auth:clear')}
             </Text>
           </TouchableOpacity>
           {renderButton('0', () => handlePress('0'))}

@@ -1,11 +1,11 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CustomerStackParamList } from './types';
 import { CustomerListScreen } from '@features/customers/screens/CustomerListScreen';
 import { CustomerDetailScreen } from '@features/customers/screens/CustomerDetailScreen';
 import { CustomerFormScreen } from '@features/customers/screens/CustomerFormScreen';
 
-const Stack = createStackNavigator<CustomerStackParamList>();
+const Stack = createNativeStackNavigator<CustomerStackParamList>();
 
 export const CustomerStack: React.FC = () => {
   return (

@@ -10,6 +10,7 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { DateRangePicker } from '@shared/components/DateRangePicker';
 import { EmptyState } from '@shared/components/EmptyState';
 import { reportService } from '../services/reportService';
+import { Colors } from '@core/theme/colors';
 import { ProductPerformanceData, DateRange } from '@core/types';
 import { getDateRangeForPeriod } from '@shared/utils/date';
 
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#E8F5E9',
+    backgroundColor: Colors.successBg,
   },
   productInfo: {
     flex: 1,

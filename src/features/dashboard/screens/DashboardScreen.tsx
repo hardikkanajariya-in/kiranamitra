@@ -18,7 +18,7 @@ export const DashboardScreen: React.FC<{ navigation: any }> = ({ navigation }) =
   const dashboardData = useDashboardData();
   const greeting = getGreeting();
 
-  const handleNewBill = () => navigation.navigate('BillingTab', { screen: 'Billing' });
+  const handleNewBill = () => navigation.navigate('BillingTab', { screen: 'BillingHome' });
   const handleAddCustomer = () =>
     navigation.navigate('CustomersTab', { screen: 'CustomerForm' });
   const handleAddProduct = () =>
@@ -26,9 +26,9 @@ export const DashboardScreen: React.FC<{ navigation: any }> = ({ navigation }) =
   const handleCollectPayment = () =>
     navigation.navigate('CustomersTab', { screen: 'CustomerList' });
   const handleViewLowStock = () =>
-    navigation.navigate('InventoryTab', { screen: 'InventoryList', params: { filter: 'lowStock' } });
+    navigation.navigate('InventoryTab', { screen: 'InventoryOverview' });
   const handleViewUdhar = () =>
-    navigation.navigate('CustomersTab', { screen: 'CustomerList', params: { filter: 'withCredit' } });
+    navigation.navigate('CustomersTab', { screen: 'CustomerList' });
 
   if (dashboardData.isLoading) {
     return <LoadingOverlay visible />;

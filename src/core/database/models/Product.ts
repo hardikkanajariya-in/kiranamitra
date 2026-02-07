@@ -36,7 +36,7 @@ export default class Product extends Model {
   @children('inventory_logs') inventoryLogs: any;
 
   get isLowStock(): boolean {
-    return this.currentStock <= this.lowStockThreshold;
+    return this.currentStock > 0 && this.currentStock <= this.lowStockThreshold;
   }
 
   get isOutOfStock(): boolean {

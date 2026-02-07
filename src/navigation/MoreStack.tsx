@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MoreStackParamList } from './types';
 import { MoreMenuScreen } from './screens/MoreMenuScreen';
 import { ReportsScreen } from '@features/reports/screens/ReportsScreen';
@@ -9,7 +9,7 @@ import { InventoryReportScreen } from '@features/reports/screens/InventoryReport
 import { ProductPerformanceScreen } from '@features/reports/screens/ProductPerformanceScreen';
 import { SettingsScreen } from '@features/settings/screens/SettingsScreen';
 
-const Stack = createStackNavigator<MoreStackParamList>();
+const Stack = createNativeStackNavigator<MoreStackParamList>();
 
 export const MoreStack: React.FC = () => {
   return (

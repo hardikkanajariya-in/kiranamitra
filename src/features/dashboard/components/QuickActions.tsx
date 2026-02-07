@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FAB, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
 
 interface QuickActionsProps {
   onNewBill: () => void;

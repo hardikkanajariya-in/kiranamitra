@@ -112,7 +112,7 @@ export const BillingScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
       </ScrollView>
 
       {cartItems.length > 0 && (
-        <View style={styles.bottomSection}>
+        <View style={[styles.bottomSection, { borderTopColor: theme.colors.outlineVariant }]}>
           <PaymentModeSelector
             value={paymentMode}
             onChange={setPaymentMode}
@@ -129,7 +129,9 @@ export const BillingScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
           <View style={styles.actionRow}>
             <Button
               mode="outlined"
-              onPress={() => navigation.navigate('CustomerSelect')}
+              onPress={() =>
+                navigation.navigate('CustomersTab', { screen: 'CustomerList' })
+              }
               icon="account"
               style={styles.customerButton}
             >
@@ -159,7 +161,6 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
     paddingBottom: 16,
   },
   actionRow: {

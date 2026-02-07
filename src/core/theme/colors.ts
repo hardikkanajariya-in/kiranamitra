@@ -68,4 +68,13 @@ export const Colors = {
   // Credit colors
   creditRed: '#E53935',
   paymentGreen: '#43A047',
+
+  // Light tint backgrounds (for badges, highlights)
+  successBg: '#E8F5E9',
+  warningBg: '#FFF3E0',
+  errorBg: '#FFEBEE',
+  infoBg: '#E3F2FD',
+  neutralBg: '#F5F5F5',
+  neutralText: '#616161',
+  border: '#E0E0E0',
 } as const;

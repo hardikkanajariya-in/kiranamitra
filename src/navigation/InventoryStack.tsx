@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { InventoryStackParamList } from './types';
 import { ProductListScreen } from '@features/products/screens/ProductListScreen';
 import { ProductDetailScreen } from '@features/products/screens/ProductDetailScreen';
@@ -7,7 +7,7 @@ import { ProductFormScreen } from '@features/products/screens/ProductFormScreen'
 import { StockAdjustmentScreen } from '@features/products/screens/StockAdjustmentScreen';
 import { InventoryScreen } from '@features/inventory/screens/InventoryScreen';
 
-const Stack = createStackNavigator<InventoryStackParamList>();
+const Stack = createNativeStackNavigator<InventoryStackParamList>();
 
 export const InventoryStack: React.FC = () => {
   return (

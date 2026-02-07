@@ -26,11 +26,15 @@ export const CustomerListScreen: React.FC<{ navigation: any; route: any }> = ({
 
   useEffect(() => {
     const loadCredits = async () => {
-      const map: Record<string, number> = {};
-      for (const customer of customers) {
-        map[customer.id] = await customerRepository.getOutstandingCredit(customer.id);
+      try {
+        const map: Record<string, number> = {};
+        for (const customer of customers) {
+          map[customer.id] = await customerRepository.getOutstandingCredit(customer.id);
+        }
+        setCreditMap(map);
+      } catch (error) {
+        console.error('Failed to load credits:', error);
       }
-      setCreditMap(map);
     };
     if (customers.length > 0) {
       loadCredits();

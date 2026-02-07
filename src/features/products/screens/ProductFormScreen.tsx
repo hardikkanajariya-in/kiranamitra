@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, ScrollView, Alert } from 'react-native';
+import { StyleSheet, ScrollView, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTheme, Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -44,6 +44,7 @@ export const ProductFormScreen: React.FC<{ navigation: any; route: any }> = ({
       productRepository.getById(productId).then((product) => {
         reset({
           name: product.name,
+          categoryId: product.categoryId,
           purchasePrice: product.purchasePrice,
           sellingPrice: product.sellingPrice,
           currentStock: product.currentStock,
@@ -76,6 +77,10 @@ export const ProductFormScreen: React.FC<{ navigation: any; route: any }> = ({
         onBack={() => navigation.goBack()}
       />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <FormField
           control={control}
@@ -142,6 +147,7 @@ export const ProductFormScreen: React.FC<{ navigation: any; route: any }> = ({
           {isEditing ? t('update') : t('save')}
         </Button>
       </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

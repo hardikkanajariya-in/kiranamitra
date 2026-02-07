@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Alert } from 'react-native';
+import { StyleSheet, ScrollView, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { useTheme, Button, SegmentedButtons, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -47,7 +47,11 @@ export const StockAdjustmentScreen: React.FC<{ navigation: any; route: any }> = 
   };
 
   if (isLoading || !product) {
-    return <LoadingOverlay visible />;
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+        <LoadingOverlay visible />
+      </SafeAreaView>
+    );
   }
 
   return (
@@ -58,6 +62,10 @@ export const StockAdjustmentScreen: React.FC<{ navigation: any; route: any }> = 
         onBack={() => navigation.goBack()}
       />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <Text variant="titleMedium" style={{ color: theme.colors.onSurface, marginBottom: 8 }}>
           {product.name} — {t('currentStock')}: {product.currentStock} {product.unit}
@@ -107,6 +115,7 @@ export const StockAdjustmentScreen: React.FC<{ navigation: any; route: any }> = 
           {t('confirmAdjustment')}
         </Button>
       </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

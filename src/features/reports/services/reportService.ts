@@ -137,10 +137,21 @@ export const reportService = {
   },
 
   getProductPerformance: async (from: Date, to: Date): Promise<ProductPerformanceData[]> => {
-    const billItems = await billItemsCollection
+    // bill_items has no created_at column; filter by joining through bills
+    const bills = await billsCollection
       .query(
         Q.where('created_at', Q.gte(from.getTime())),
         Q.where('created_at', Q.lte(to.getTime())),
+        Q.where('status', Q.notEq(BILL_STATUSES.CANCELLED)),
+      )
+      .fetch();
+
+    const billIds = bills.map((b: Bill) => b.id);
+    if (billIds.length === 0) return [];
+
+    const billItems = await billItemsCollection
+      .query(
+        Q.where('bill_id', Q.oneOf(billIds)),
       )
       .fetch();
 
