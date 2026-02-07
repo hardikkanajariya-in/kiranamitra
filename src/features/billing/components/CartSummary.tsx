@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 12,
+    borderRadius: 8,
     marginHorizontal: 16,
     marginVertical: 8,
   },

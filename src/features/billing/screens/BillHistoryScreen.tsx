@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 8,
     marginBottom: 4,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',

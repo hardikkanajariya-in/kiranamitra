@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 32,
-        borderRadius: 12,
+        borderRadius: 8,
         elevation: 1,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
     },
     billsCard: {
-        borderRadius: 12,
+        borderRadius: 8,
         paddingHorizontal: 16,
         paddingVertical: 4,
         elevation: 1,

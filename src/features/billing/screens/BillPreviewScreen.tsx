@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   headerCard: {
     margin: 16,
     marginBottom: 12,
-    borderRadius: 16,
+    borderRadius: 8,
     padding: 16,
   },
   headerTop: {
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
   itemsCard: {
     marginHorizontal: 16,
     marginBottom: 12,
-    borderRadius: 16,
+    borderRadius: 8,
     padding: 16,
   },
   sectionHeader: {
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
   summaryCard: {
     marginHorizontal: 16,
     marginBottom: 16,
-    borderRadius: 16,
+    borderRadius: 8,
     padding: 16,
   },
   summaryRow: {
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     flex: 1,
-    borderRadius: 12,
+    borderRadius: 8,
   },
   shareButton: {
     flex: 0,

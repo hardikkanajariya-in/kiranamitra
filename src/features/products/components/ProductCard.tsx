@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     card: {
         marginHorizontal: 16,
         marginBottom: 10,
-        borderRadius: 12,
+        borderRadius: 8,
         padding: 14,
     },
     topRow: {

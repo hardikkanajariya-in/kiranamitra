@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 14,
         paddingHorizontal: 4,
-        borderRadius: 12,
+        borderRadius: 8,
         elevation: 1,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },

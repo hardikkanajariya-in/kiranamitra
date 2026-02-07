@@ -225,6 +225,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 20,
         bottom: 20,
-        borderRadius: 16,
+        borderRadius: 8,
     },
 });

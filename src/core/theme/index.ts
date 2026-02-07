@@ -14,7 +14,7 @@ import { fonts } from './fonts';
 export const lightTheme = {
   ...MD3LightTheme,
   fonts,
-  roundness: 12,
+  roundness: 8,
   colors: {
     ...MD3LightTheme.colors,
     primary: Colors.primary,
@@ -56,7 +56,7 @@ export const lightTheme = {
 export const darkTheme = {
   ...MD3DarkTheme,
   fonts,
-  roundness: 12,
+  roundness: 8,
   colors: {
     ...MD3DarkTheme.colors,
     primary: Colors.dark.primary,

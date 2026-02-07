@@ -53,7 +53,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 
 const styles = StyleSheet.create({
   dialog: {
-    borderRadius: 16,
+    borderRadius: 12,
   },
   title: {
     fontSize: 20,

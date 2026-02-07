@@ -88,7 +88,7 @@ export const TodaySalesHero: React.FC<TodaySalesHeroProps> = ({
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: 16,
-        borderRadius: 16,
+        borderRadius: 8,
         overflow: 'hidden',
         elevation: 4,
         shadowColor: '#000',

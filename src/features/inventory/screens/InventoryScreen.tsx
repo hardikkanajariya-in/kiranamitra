@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     overviewCard: {
         marginHorizontal: 16,
         marginTop: 8,
-        borderRadius: 12,
+        borderRadius: 8,
         padding: 16,
     },
     overviewRow: {
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        borderRadius: 12,
+        borderRadius: 8,
         gap: 2,
     },
     healthNumber: {
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     inventoryCard: {
         marginHorizontal: 16,
         marginBottom: 8,
-        borderRadius: 12,
+        borderRadius: 8,
         flexDirection: 'row',
         overflow: 'hidden',
     },
