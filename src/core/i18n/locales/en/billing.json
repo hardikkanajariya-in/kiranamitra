@@ -31,6 +31,9 @@
   "itemTotal": "Item Total",
   "removeItem": "Remove Item",
   "billDate": "Bill Date",
+  "itemsSection": "Items",
+  "itemCount": "{{count}} item",
+  "itemCount_plural": "{{count}} items",
   "items": "{{count}} item",
   "items_plural": "{{count}} items",
   "confirmBill": "Confirm Bill",
@@ -58,5 +61,10 @@
   "searchProduct": "Search products...",
   "stock": "Stock",
   "card": "Card",
-  "tapToAdd": "Tap a product to add to bill"
+  "tapToAdd": "Tap a product to add to bill",
+  "todayBills": "Today's Bills",
+  "todaySales": "Today's Sales",
+  "billsFound": "bills",
+  "sharePdf": "Share PDF",
+  "pdfGenerating": "Generating PDF..."
 }

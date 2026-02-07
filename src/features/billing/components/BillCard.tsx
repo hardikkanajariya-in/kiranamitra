@@ -1,10 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Card, Text, useTheme } from 'react-native-paper';
+import { View, StyleSheet, Pressable } from 'react-native';
+import { Text, useTheme, Surface } from 'react-native-paper';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { StatusBadge } from '@shared/components/StatusBadge';
+import { AppIcon } from '@shared/components/Icon';
 import { formatDateTime } from '@shared/utils/date';
-import { BILL_STATUSES } from '@core/constants';
+import { BILL_STATUSES, PAYMENT_MODES } from '@core/constants';
+import { Colors } from '@core/theme/colors';
 
 interface BillCardProps {
   billNumber: string;
@@ -32,58 +34,151 @@ export const BillCard: React.FC<BillCardProps> = ({
     return 'success';
   };
 
-  return (
-    <Card style={styles.card} mode="elevated" onPress={onPress}>
-      <Card.Content style={styles.content}>
-        <View style={styles.left}>
-          <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
-            #{billNumber}
-          </Text>
-          {customerName ? (
-            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-              {customerName}
-            </Text>
-          ) : null}
-          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-            {formatDateTime(createdAt)}
-          </Text>
-        </View>
+  const getPaymentIcon = (): string => {
+    switch (paymentMode) {
+      case PAYMENT_MODES.CASH: return 'cash';
+      case PAYMENT_MODES.UPI: return 'cellphone';
+      case PAYMENT_MODES.CARD: return 'credit-card';
+      case PAYMENT_MODES.CREDIT: return 'account-clock';
+      default: return 'cash';
+    }
+  };
 
-        <View style={styles.right}>
-          <CurrencyText
-            amount={grandTotal}
-            variant="titleMedium"
-            color={status === BILL_STATUSES.CANCELLED ? theme.colors.onSurfaceVariant : undefined}
-          />
-          <View style={styles.badges}>
-            <StatusBadge label={paymentMode.toUpperCase()} variant="info" />
-            <StatusBadge label={status} variant={getStatusVariant()} />
+  const getPaymentColor = (): string => {
+    switch (paymentMode) {
+      case PAYMENT_MODES.CASH: return Colors.success;
+      case PAYMENT_MODES.UPI: return Colors.info;
+      case PAYMENT_MODES.CARD: return Colors.primary;
+      case PAYMENT_MODES.CREDIT: return Colors.warning;
+      default: return Colors.info;
+    }
+  };
+
+  const isCancelled = status === BILL_STATUSES.CANCELLED;
+
+  return (
+    <Pressable onPress={onPress}>
+      <Surface style={[styles.card, { backgroundColor: theme.colors.surface }]} elevation={1}>
+        {/* Left accent strip */}
+        <View style={[styles.accent, { backgroundColor: isCancelled ? Colors.error : getPaymentColor() }]} />
+        
+        <View style={styles.content}>
+          {/* Top Row: Bill number + Amount */}
+          <View style={styles.topRow}>
+            <View style={styles.billInfo}>
+              <Text
+                variant="titleMedium"
+                style={[
+                  styles.billNumber,
+                  { color: isCancelled ? theme.colors.onSurfaceVariant : theme.colors.onSurface },
+                ]}
+              >
+                #{billNumber}
+              </Text>
+              {customerName ? (
+                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                  {customerName}
+                </Text>
+              ) : null}
+            </View>
+            <CurrencyText
+              amount={grandTotal}
+              variant="titleMedium"
+              color={isCancelled ? theme.colors.onSurfaceVariant : Colors.success}
+              style={styles.amount}
+            />
+          </View>
+
+          {/* Bottom Row: Date + Badges */}
+          <View style={styles.bottomRow}>
+            <View style={styles.dateRow}>
+              <AppIcon name="history" size={14} color={theme.colors.onSurfaceVariant} />
+              <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                {formatDateTime(createdAt)}
+              </Text>
+            </View>
+            <View style={styles.badges}>
+              <View style={[styles.paymentBadge, { backgroundColor: getPaymentColor() + '20' }]}>
+                <AppIcon name={getPaymentIcon()} size={12} color={getPaymentColor()} />
+                <Text style={[styles.paymentText, { color: getPaymentColor() }]}>
+                  {paymentMode.toUpperCase()}
+                </Text>
+              </View>
+              {isCancelled && (
+                <StatusBadge label={status} variant={getStatusVariant()} compact />
+              )}
+            </View>
           </View>
         </View>
-      </Card.Content>
-    </Card>
+
+        {/* Chevron */}
+        <View style={styles.chevron}>
+          <AppIcon name="chevron-right" size={18} color={theme.colors.onSurfaceVariant} />
+        </View>
+      </Surface>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
-    marginBottom: 8,
+    marginBottom: 10,
+    borderRadius: 12,
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  accent: {
+    width: 4,
   },
   content: {
+    flex: 1,
+    padding: 14,
+    gap: 10,
+  },
+  topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
-  left: {
+  billInfo: {
     flex: 1,
-    gap: 4,
+    gap: 2,
   },
-  right: {
-    alignItems: 'flex-end',
+  billNumber: {
+    fontWeight: '600',
+  },
+  amount: {
+    fontWeight: '700',
+  },
+  bottomRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  dateRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 4,
   },
   badges: {
     flexDirection: 'row',
+    gap: 6,
+  },
+  paymentBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
     gap: 4,
+  },
+  paymentText: {
+    fontSize: 10,
+    fontWeight: '700',
+  },
+  chevron: {
+    justifyContent: 'center',
+    paddingRight: 8,
   },
 });

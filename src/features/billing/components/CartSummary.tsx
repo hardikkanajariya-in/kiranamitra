@@ -24,7 +24,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
     <View style={[styles.container, { backgroundColor: theme.colors.surfaceVariant }]}>
       <View style={styles.row}>
         <Text variant="bodyMedium" style={{ color: theme.colors.onSurfaceVariant }}>
-          {t('subtotal')} ({itemCount} {t('items')})
+          {t('subtotal')} ({t('itemCount', { count: itemCount })})
         </Text>
         <CurrencyText amount={subtotal} variant="bodyMedium" />
       </View>

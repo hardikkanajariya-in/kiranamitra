@@ -31,6 +31,9 @@
   "itemTotal": "આઇટમ કુલ",
   "removeItem": "કાઢો",
   "billDate": "બિલની તારીખ",
+  "itemsSection": "આઇટમ",
+  "itemCount": "{{count}} આઇટમ",
+  "itemCount_plural": "{{count}} આઇટમ",
   "items": "{{count}} આઇટમ",
   "items_plural": "{{count}} આઇટમ",
   "confirmBill": "બિલ પાક્કું કરો",
@@ -58,5 +61,10 @@
   "searchProduct": "પ્રોડક્ટ શોધો...",
   "stock": "સ્ટોક",
   "card": "કાર્ડ",
-  "tapToAdd": "બિલમાં ઉમેરવા પ્રોડક્ટ દબાવો"
+  "tapToAdd": "બિલમાં ઉમેરવા પ્રોડક્ટ દબાવો",
+  "todayBills": "આજના બિલ",
+  "todaySales": "આજનું વેચાણ",
+  "billsFound": "બિલ",
+  "sharePdf": "PDF શેર કરો",
+  "pdfGenerating": "PDF બનાવી રહ્યા છે..."
 }

@@ -17,6 +17,7 @@ import { useBillingStore } from '@features/billing/store/useBillingStore';
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
     goBack: () => void;
+    setParams: (params: Record<string, unknown>) => void;
 }
 
 interface RouteProp {
@@ -94,7 +95,10 @@ export const CustomerListScreen: React.FC<{ navigation: NavigationProp; route: R
                             onPress={() => {
                                 if (selectionMode) {
                                     setCustomer(item.id);
-                                    navigation.goBack();
+                                    // Reset selectionMode param before navigating away
+                                    navigation.setParams({ selectionMode: false });
+                                    // Navigate back to BillingTab
+                                    navigation.navigate('BillingTab' as never, { screen: 'BillingHome' } as never);
                                 } else {
                                     navigation.navigate('CustomerDetail', { customerId: item.id });
                                 }
