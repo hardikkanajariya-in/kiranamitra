@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Text, useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
 import { CurrencyText } from '@shared/components/CurrencyText';
 
@@ -23,7 +23,7 @@ export const UdharSummaryCard: React.FC<UdharSummaryCardProps> = ({
     <Card style={styles.card} mode="elevated" onPress={onPress}>
       <Card.Content>
         <View style={styles.header}>
-          <Icon name="account-cash" size={24} color={theme.colors.error} />
+          <AppIcon name="account-cash" size={24} color={theme.colors.error} />
           <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
             {t('udharSummary')}
           </Text>

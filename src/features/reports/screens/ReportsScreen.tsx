@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
@@ -57,7 +57,7 @@ export const ReportsScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                     >
                         <Card.Content style={styles.cardContent}>
                             <View style={[styles.iconContainer, { backgroundColor: theme.colors.primaryContainer }]}>
-                                <Icon name={report.icon} size={28} color={theme.colors.primary} />
+                                <AppIcon name={report.icon} size={28} color={theme.colors.primary} />
                             </View>
                             <View style={styles.textContainer}>
                                 <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
@@ -67,7 +67,7 @@ export const ReportsScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                                     {report.description}
                                 </Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color={theme.colors.onSurfaceVariant} />
+                            <AppIcon name="chevron-right" size={24} color={theme.colors.onSurfaceVariant} />
                         </Card.Content>
                     </Card>
                 ))}

@@ -4,13 +4,14 @@ import { Text, useTheme, Card, Button, Portal, Dialog, TextInput } from 'react-n
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
+import { paperIcon } from '@shared/components/Icon';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { ConfirmDialog } from '@shared/components/ConfirmDialog';
 import { CreditLedger } from '../components/CreditLedger';
 import { useCustomerDetail } from '../hooks/useCustomers';
 import { customerRepository } from '../repositories/customerRepository';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
@@ -82,7 +83,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                 <Card style={styles.infoCard} mode="elevated">
                     <Card.Content>
                         <View style={styles.infoRow}>
-                            <Icon name="phone" size={20} color={theme.colors.onSurfaceVariant} />
+                            <AppIcon name="phone" size={20} color={theme.colors.onSurfaceVariant} />
                             <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
                                 {customer.phone || t('noPhone')}
                             </Text>
@@ -99,7 +100,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
 
                         {customer.address ? (
                             <View style={styles.infoRow}>
-                                <Icon name="map-marker" size={20} color={theme.colors.onSurfaceVariant} />
+                                <AppIcon name="map-marker" size={20} color={theme.colors.onSurfaceVariant} />
                                 <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
                                     {customer.address}
                                 </Text>
@@ -108,7 +109,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
 
                         {customer.notes ? (
                             <View style={styles.infoRow}>
-                                <Icon name="note-text" size={20} color={theme.colors.onSurfaceVariant} />
+                                <AppIcon name="note-text" size={20} color={theme.colors.onSurfaceVariant} />
                                 <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
                                     {customer.notes}
                                 </Text>
@@ -133,7 +134,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                         {outstandingCredit > 0 ? (
                             <Button
                                 mode="contained"
-                                icon="cash-plus"
+                                icon={paperIcon('cash-plus')}
                                 onPress={() => setShowPaymentDialog(true)}
                                 style={styles.collectButton}
                             >

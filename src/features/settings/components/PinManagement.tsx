@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { Text, useTheme, Button, Card } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import { useAuthStore } from '@features/auth/store/useAuthStore';
 import { PinPad } from '@features/auth/components/PinPad';
 
@@ -71,7 +72,7 @@ export const PinManagement: React.FC = () => {
             </Text>
             <Button
               mode="outlined"
-              icon="lock-reset"
+              icon={paperIcon('lock-reset')}
               onPress={() => setStep('verifyOld')}
               style={styles.button}
             >

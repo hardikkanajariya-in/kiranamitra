@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, useTheme, IconButton } from 'react-native-paper';
 import { CurrencyText } from '@shared/components/CurrencyText';
+import { paperIcon } from '@shared/components/Icon';
 import { CartItem } from '@core/types';
 
 interface CartItemRowProps {
@@ -28,7 +29,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
 
       <View style={styles.quantitySection}>
         <IconButton
-          icon="minus"
+          icon={paperIcon('minus')}
           size={18}
           mode="contained-tonal"
           onPress={() => onUpdateQuantity(Math.max(0.5, item.quantity - 1))}
@@ -37,7 +38,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
           {item.quantity}
         </Text>
         <IconButton
-          icon="plus"
+          icon={paperIcon('plus')}
           size={18}
           mode="contained-tonal"
           onPress={() => onUpdateQuantity(item.quantity + 1)}
@@ -47,7 +48,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
       <View style={styles.totalSection}>
         <CurrencyText amount={item.total} variant="titleSmall" />
         <IconButton
-          icon="close"
+          icon={paperIcon('close')}
           size={16}
           onPress={onRemove}
           iconColor={theme.colors.error}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, useTheme, Text, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import { useDebounce } from '@shared/hooks/useDebounce';
 import Product from '@core/database/models/Product';
 import { productRepository } from '@features/products/repositories/productRepository';
@@ -55,8 +56,8 @@ export const ProductSearchBar: React.FC<ProductSearchBarProps> = ({ onSelectProd
         value={query}
         onChangeText={handleQueryChange}
         placeholder={t('searchProduct')}
-        left={<TextInput.Icon icon="magnify" />}
-        right={query ? <TextInput.Icon icon="close" onPress={() => handleQueryChange('')} /> : undefined}
+        left={<TextInput.Icon icon={paperIcon('magnify')} />}
+        right={query ? <TextInput.Icon icon={paperIcon('close')} onPress={() => handleQueryChange('')} /> : undefined}
         style={styles.input}
       />
 

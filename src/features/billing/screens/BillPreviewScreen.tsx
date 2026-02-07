@@ -4,6 +4,7 @@ import { Text, useTheme, Card, Button, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
+import { paperIcon } from '@shared/components/Icon';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { StatusBadge } from '@shared/components/StatusBadge';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
@@ -147,7 +148,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
         <Button
           mode="contained"
           onPress={() => navigation.navigate('BillingHome')}
-          icon="plus"
+          icon={paperIcon('plus')}
           style={styles.actionButton}
         >
           {t('newBill')}

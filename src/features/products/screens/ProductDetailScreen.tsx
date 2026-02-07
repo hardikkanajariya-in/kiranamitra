@@ -10,7 +10,7 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { ConfirmDialog } from '@shared/components/ConfirmDialog';
 import { useProductDetail } from '../hooks/useProducts';
 import { productRepository } from '../repositories/productRepository';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon, paperIcon } from '@shared/components/Icon';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
@@ -145,7 +145,7 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
 
                         <Button
                             mode="outlined"
-                            icon="plus-minus"
+                            icon={paperIcon('plus-minus')}
                             onPress={() => navigation.navigate('StockAdjustment', { productId })}
                             style={styles.adjustButton}
                         >
@@ -161,12 +161,12 @@ export const ProductDetailScreen: React.FC<{ navigation: NavigationProp; route: 
                             {t('details')}
                         </Text>
                         <View style={styles.detailRow}>
-                            <Icon name="tag" size={20} color={theme.colors.onSurfaceVariant} />
+                            <AppIcon name="tag" size={20} color={theme.colors.onSurfaceVariant} />
                             <Text variant="bodyMedium">{t('unit')}: {product.unit}</Text>
                         </View>
                         {product.barcode ? (
                             <View style={styles.detailRow}>
-                                <Icon name="barcode" size={20} color={theme.colors.onSurfaceVariant} />
+                                <AppIcon name="barcode" size={20} color={theme.colors.onSurfaceVariant} />
                                 <Text variant="bodyMedium">{product.barcode}</Text>
                             </View>
                         ) : null}

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 
 interface QuickActionsProps {
     onNewBill: () => void;
@@ -23,25 +24,25 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
         <FAB.Group
             open={fabOpen}
             visible
-            icon={fabOpen ? 'close' : 'plus'}
+            icon={fabOpen ? paperIcon('close') : paperIcon('plus')}
             actions={[
                 {
-                    icon: 'receipt',
+                    icon: paperIcon('receipt'),
                     label: t('newBill'),
                     onPress: onNewBill,
                 },
                 {
-                    icon: 'account-plus',
+                    icon: paperIcon('account-plus'),
                     label: t('addCustomer'),
                     onPress: onAddCustomer,
                 },
                 {
-                    icon: 'package-variant',
+                    icon: paperIcon('package-variant'),
                     label: t('addProduct'),
                     onPress: onAddProduct,
                 },
                 {
-                    icon: 'cash-plus',
+                    icon: paperIcon('cash-plus'),
                     label: t('collectPayment'),
                     onPress: onCollectPayment,
                 },

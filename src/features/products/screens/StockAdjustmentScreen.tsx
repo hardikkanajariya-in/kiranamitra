@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AppHeader } from '@shared/components/AppHeader';
+import { paperIcon } from '@shared/components/Icon';
 import { FormField } from '@shared/components/FormField';
 import { stockAdjustmentSchema, StockAdjustmentFormData } from '../schemas/productSchema';
 import { productRepository } from '../repositories/productRepository';
@@ -80,8 +81,8 @@ export const StockAdjustmentScreen: React.FC<{ navigation: NavigationProp; route
                         value={adjustmentType}
                         onValueChange={(value) => setAdjustmentType(value as 'add' | 'remove')}
                         buttons={[
-                            { value: 'add', label: t('addStock'), icon: 'plus' },
-                            { value: 'remove', label: t('removeStock'), icon: 'minus' },
+                            { value: 'add', label: t('addStock'), icon: paperIcon('plus') },
+                            { value: 'remove', label: t('removeStock'), icon: paperIcon('minus') },
                         ]}
                         style={styles.segmented}
                     />

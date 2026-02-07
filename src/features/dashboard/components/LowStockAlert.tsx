@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Text, useTheme, Badge } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
 
 interface LowStockAlertProps {
@@ -33,7 +33,7 @@ export const LowStockAlert: React.FC<LowStockAlertProps> = ({
             <Card.Content>
                 <View style={styles.row}>
                     <View style={styles.iconContainer}>
-                        <Icon name="alert-circle" size={24} color={theme.colors.error} />
+                        <AppIcon name="alert-circle" size={24} color={theme.colors.error} />
                         <Badge style={[styles.badge, { backgroundColor: theme.colors.error }]}>
                             {totalAlerts}
                         </Badge>
@@ -57,7 +57,7 @@ export const LowStockAlert: React.FC<LowStockAlertProps> = ({
                         </View>
                     </View>
 
-                    <Icon name="chevron-right" size={24} color={theme.colors.onSurfaceVariant} />
+                    <AppIcon name="chevron-right" size={24} color={theme.colors.onSurfaceVariant} />
                 </View>
             </Card.Content>
         </Card>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SegmentedButtons } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import { PAYMENT_MODES } from '@core/constants';
 
 interface PaymentModeSelectorProps {
@@ -18,11 +19,11 @@ export const PaymentModeSelector: React.FC<PaymentModeSelectorProps> = ({
   const { t } = useTranslation('billing');
 
   const buttons = [
-    { value: PAYMENT_MODES.CASH, label: t('cash'), icon: 'cash' },
-    { value: PAYMENT_MODES.UPI, label: t('upi'), icon: 'cellphone' },
-    { value: PAYMENT_MODES.CARD, label: t('card'), icon: 'credit-card' },
+    { value: PAYMENT_MODES.CASH, label: t('cash'), icon: paperIcon('cash') },
+    { value: PAYMENT_MODES.UPI, label: t('upi'), icon: paperIcon('cellphone') },
+    { value: PAYMENT_MODES.CARD, label: t('card'), icon: paperIcon('credit-card') },
     ...(showCredit
-      ? [{ value: PAYMENT_MODES.CREDIT, label: t('credit'), icon: 'account-clock' }]
+      ? [{ value: PAYMENT_MODES.CREDIT, label: t('credit'), icon: paperIcon('account-clock') }]
       : []),
   ];
 

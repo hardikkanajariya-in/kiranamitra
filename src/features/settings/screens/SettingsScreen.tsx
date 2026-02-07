@@ -4,6 +4,7 @@ import { Divider, useTheme, List } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
+import { paperIcon } from '@shared/components/Icon';
 import { LanguagePicker } from '../components/LanguagePicker';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { StoreProfileForm } from '../components/StoreProfileForm';
@@ -53,8 +54,8 @@ export const SettingsScreen: React.FC<{ navigation: NavigationProp }> = ({ navig
                     <List.Item
                         title={t('printerSetup')}
                         description={t('printerSetupDesc')}
-                        left={(props) => <List.Icon {...props} icon="printer" />}
-                        right={(props) => <List.Icon {...props} icon="chevron-right" />}
+                        left={(props) => <List.Icon {...props} icon={paperIcon('printer')} />}
+                        right={(props) => <List.Icon {...props} icon={paperIcon('chevron-right')} />}
                         onPress={() => setPrinterModalVisible(true)}
                         style={styles.listItem}
                     />

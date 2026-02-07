@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Text, useTheme, Avatar } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { CurrencyText } from '@shared/components/CurrencyText';
 
 interface CustomerCardProps {
@@ -58,7 +58,7 @@ export const CustomerCard: React.FC<CustomerCardProps> = ({
           ) : null}
           {phone && onCall ? (
             <TouchableOpacity onPress={onCall} style={styles.callButton}>
-              <Icon name="phone" size={20} color={theme.colors.primary} />
+              <AppIcon name="phone" size={20} color={theme.colors.primary} />
             </TouchableOpacity>
           ) : null}
         </View>

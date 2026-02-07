@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { Text, useTheme, Button, Card } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import { backupService } from '@services/backupService';
 
 export const BackupRestore: React.FC = () => {
@@ -65,7 +66,7 @@ export const BackupRestore: React.FC = () => {
                     </View>
                     <Button
                         mode="contained"
-                        icon="export"
+                        icon={paperIcon('export')}
                         onPress={handleExport}
                         loading={isExporting}
                         disabled={isExporting || isImporting}
@@ -88,7 +89,7 @@ export const BackupRestore: React.FC = () => {
                     </View>
                     <Button
                         mode="outlined"
-                        icon="import"
+                        icon={paperIcon('import')}
                         onPress={handleImport}
                         loading={isImporting}
                         disabled={isExporting || isImporting}

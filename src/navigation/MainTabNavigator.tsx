@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { MainTabParamList } from './types';
 import { DashboardStack } from './DashboardStack';
 import { CustomerStack } from './CustomerStack';
@@ -38,7 +38,7 @@ export const MainTabNavigator: React.FC = () => {
         options={{
           tabBarLabel: t('dashboard'),
           tabBarIcon: ({ color, size }) => (
-            <Icon name="view-dashboard" size={size} color={color} />
+            <AppIcon name="view-dashboard" size={size} color={color} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ export const MainTabNavigator: React.FC = () => {
         options={{
           tabBarLabel: t('customers'),
           tabBarIcon: ({ color, size }) => (
-            <Icon name="account-group" size={size} color={color} />
+            <AppIcon name="account-group" size={size} color={color} />
           ),
         }}
       />
@@ -58,7 +58,7 @@ export const MainTabNavigator: React.FC = () => {
         options={{
           tabBarLabel: t('billing'),
           tabBarIcon: ({ color, size }) => (
-            <Icon name="receipt" size={size} color={color} />
+            <AppIcon name="receipt" size={size} color={color} />
           ),
         }}
       />
@@ -68,7 +68,7 @@ export const MainTabNavigator: React.FC = () => {
         options={{
           tabBarLabel: t('inventory'),
           tabBarIcon: ({ color, size }) => (
-            <Icon name="package-variant-closed" size={size} color={color} />
+            <AppIcon name="package-variant-closed" size={size} color={color} />
           ),
         }}
       />
@@ -78,7 +78,7 @@ export const MainTabNavigator: React.FC = () => {
         options={{
           tabBarLabel: t('more'),
           tabBarIcon: ({ color, size }) => (
-            <Icon name="dots-horizontal" size={size} color={color} />
+            <AppIcon name="dots-horizontal" size={size} color={color} />
           ),
         }}
       />

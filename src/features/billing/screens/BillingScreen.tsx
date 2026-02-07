@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
 import { EmptyState } from '@shared/components/EmptyState';
+import { paperIcon } from '@shared/components/Icon';
 import { ProductSearchBar } from '../components/ProductSearchBar';
 import { CartItemRow } from '../components/CartItemRow';
 import { CartSummary } from '../components/CartSummary';
@@ -136,7 +137,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                             onPress={() =>
                                 navigation.navigate('CustomersTab', { screen: 'CustomerList' })
                             }
-                            icon="account"
+                            icon={paperIcon('account')}
                             style={styles.customerButton}
                         >
                             {selectedCustomerId ? t('changeCustomer') : t('selectCustomer')}
@@ -144,7 +145,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                         <Button
                             mode="contained"
                             onPress={handleCreateBill}
-                            icon="check"
+                            icon={paperIcon('check')}
                             style={styles.createButton}
                         >
                             {t('createBill')}

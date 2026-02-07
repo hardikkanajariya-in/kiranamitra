@@ -6,7 +6,7 @@ import {
   Animated,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
 import { PIN_LENGTH } from '@core/constants';
 
@@ -131,7 +131,7 @@ export const PinPad: React.FC<PinPadProps> = ({
             style={[styles.button, { backgroundColor: 'transparent' }]}
             onPress={handleDelete}
           >
-            <Icon name="backspace-outline" size={24} color={theme.colors.onSurfaceVariant} />
+            <AppIcon name="backspace-outline" size={24} color={theme.colors.onSurfaceVariant} />
           </TouchableOpacity>
         </View>
       </View>

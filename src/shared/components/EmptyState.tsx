@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button, useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from './Icon';
 
 interface EmptyStateProps {
   icon: string;
@@ -22,7 +22,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 
   return (
     <View style={styles.container}>
-      <Icon
+      <AppIcon
         name={icon}
         size={80}
         color={theme.colors.onSurfaceVariant}

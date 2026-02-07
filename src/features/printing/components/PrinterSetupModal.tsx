@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, useTheme, Modal, Portal, Button, Card, ActivityIndicator, IconButton, List, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import { usePrinter } from '../hooks/usePrinter';
 import { BluetoothDevice } from '@core/types';
 
@@ -39,7 +40,7 @@ export const PrinterSetupModal: React.FC<PrinterSetupModalProps> = ({ visible, o
                     <Text variant="titleLarge" style={{ color: theme.colors.onSurface }}>
                         {t('printerSetup')}
                     </Text>
-                    <IconButton icon="close" onPress={onDismiss} />
+                    <IconButton icon={paperIcon('close')} onPress={onDismiss} />
                 </View>
 
                 <Divider />
@@ -89,7 +90,7 @@ export const PrinterSetupModal: React.FC<PrinterSetupModalProps> = ({ visible, o
                     <View style={styles.scanSection}>
                         <Button
                             mode="contained"
-                            icon="bluetooth"
+                            icon={paperIcon('bluetooth')}
                             onPress={scanDevices}
                             loading={isScanning}
                             disabled={isScanning}
@@ -119,7 +120,7 @@ export const PrinterSetupModal: React.FC<PrinterSetupModalProps> = ({ visible, o
                                     key={device.address}
                                     title={device.name}
                                     description={device.address}
-                                    left={(props) => <List.Icon {...props} icon="printer" />}
+                                    left={(props) => <List.Icon {...props} icon={paperIcon('printer')} />}}
                                     right={() =>
                                         connectedPrinter?.address === device.address ? (
                                             <Text

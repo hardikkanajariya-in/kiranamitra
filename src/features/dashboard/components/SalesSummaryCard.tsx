@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Text, useTheme } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
 import { CurrencyText } from '@shared/components/CurrencyText';
 
@@ -23,7 +23,7 @@ export const SalesSummaryCard: React.FC<SalesSummaryCardProps> = ({
     <Card style={styles.card} mode="elevated">
       <Card.Content>
         <View style={styles.header}>
-          <Icon name="chart-line" size={24} color={theme.colors.primary} />
+          <AppIcon name="chart-line" size={24} color={theme.colors.primary} />
           <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
             {t('salesSummary')}
           </Text>

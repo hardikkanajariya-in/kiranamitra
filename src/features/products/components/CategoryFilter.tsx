@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { Chip } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { paperIcon } from '@shared/components/Icon';
 import Category from '@core/database/models/Category';
 
 interface CategoryFilterProps {
@@ -40,7 +41,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                     }
                     style={styles.chip}
                     mode="outlined"
-                    icon={category.icon}
+                    icon={paperIcon(category.icon)}
                 >
                     {category.name}
                 </Chip>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import { paperIcon } from './Icon';
 
 interface Action {
   icon: string;
@@ -29,7 +30,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       {actions.map((action, index) => (
         <Appbar.Action
           key={`action-${index}`}
-          icon={action.icon}
+          icon={paperIcon(action.icon)}
           onPress={action.onPress}
         />
       ))}
