@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import 'react-native-gesture-handler/jestSetup';
 
 // Mock react-native-reanimated

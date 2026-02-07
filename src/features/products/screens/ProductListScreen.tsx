@@ -11,6 +11,7 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { ProductCard } from '../components/ProductCard';
 import { CategoryFilter } from '../components/CategoryFilter';
 import { useProducts, useCategories } from '../hooks/useProducts';
+import Product from '@core/database/models/Product';
 
 export const ProductListScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const theme = useTheme();
@@ -56,7 +57,7 @@ export const ProductListScreen: React.FC<{ navigation: any }> = ({ navigation })
       ) : (
         <FlashList
           data={products}
-          renderItem={({ item }) => (
+          renderItem={({ item }: { item: Product }) => (
             <ProductCard
               name={item.name}
               sellingPrice={item.sellingPrice}
@@ -68,7 +69,7 @@ export const ProductListScreen: React.FC<{ navigation: any }> = ({ navigation })
             />
           )}
           estimatedItemSize={72}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: Product) => item.id}
           contentContainerStyle={styles.listContent}
         />
       )}

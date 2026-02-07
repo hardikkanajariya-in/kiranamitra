@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { zustandStorage } from '@core/storage/zustandStorage';
+import { zustandMMKVStorage } from '@core/storage/zustandStorage';
 import { StoreProfile } from '@core/types';
 
 interface SettingsState {
@@ -45,7 +45,7 @@ export const useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'settings-store',
-      storage: createJSONStorage(() => zustandStorage),
+      storage: createJSONStorage(() => zustandMMKVStorage),
     },
   ),
 );

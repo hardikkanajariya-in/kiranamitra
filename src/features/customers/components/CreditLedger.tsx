@@ -78,7 +78,7 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
       renderItem={renderEntry}
       estimatedItemSize={72}
       ItemSeparatorComponent={() => <Divider />}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item: CreditEntry) => item.id}
     />
   );
 };

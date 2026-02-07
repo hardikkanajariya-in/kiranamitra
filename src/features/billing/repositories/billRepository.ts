@@ -71,9 +71,11 @@ export const billRepository = {
 
       // Create bill items and deduct stock
       for (const item of cartItems) {
+        const product = await productsCollection.find(item.productId);
+
         await billItemsCollection.create((bi: BillItem) => {
           bi.bill.set(bill);
-          bi.product.set(productsCollection.prepareFind(item.productId) as any);
+          bi.product.set(product);
           bi.productName = item.productName;
           bi.quantity = item.quantity;
           bi.unitPrice = item.unitPrice;
@@ -82,7 +84,6 @@ export const billRepository = {
         });
 
         // Deduct stock
-        const product = await productsCollection.find(item.productId);
         await product.update((p: Product) => {
           p.currentStock = Math.max(0, p.currentStock - item.quantity);
         });

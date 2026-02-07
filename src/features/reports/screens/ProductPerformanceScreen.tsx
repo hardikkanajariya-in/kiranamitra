@@ -68,8 +68,7 @@ export const ProductPerformanceScreen: React.FC<{ navigation: any }> = ({ naviga
         <DateRangePicker
           from={dateRange.from}
           to={dateRange.to}
-          onFromChange={(date: Date) => setDateRange((prev) => ({ ...prev, from: date }))}
-          onToChange={(date: Date) => setDateRange((prev) => ({ ...prev, to: date }))}
+          onChange={(range) => setDateRange(range)}
         />
 
         {/* Summary */}
@@ -117,7 +116,7 @@ export const ProductPerformanceScreen: React.FC<{ navigation: any }> = ({ naviga
             data={data}
             renderItem={renderProduct}
             estimatedItemSize={80}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item: ProductPerformanceData) => item.id}
             contentContainerStyle={styles.listContent}
           />
         )}

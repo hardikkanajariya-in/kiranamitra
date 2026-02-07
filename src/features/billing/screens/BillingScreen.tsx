@@ -45,6 +45,8 @@ export const BillingScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
       quantity: 1,
       unitPrice: product.sellingPrice,
       discount: 0,
+      unit: product.unit as any,
+      availableStock: product.currentStock,
     });
   };
 

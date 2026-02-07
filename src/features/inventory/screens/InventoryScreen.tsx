@@ -10,6 +10,7 @@ import { EmptyState } from '@shared/components/EmptyState';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { ProductCard } from '@features/products/components/ProductCard';
 import { useProducts } from '@features/products/hooks/useProducts';
+import Product from '@core/database/models/Product';
 import { StockLevelIndicator } from '../components/StockLevelIndicator';
 
 type StockFilter = 'all' | 'lowStock' | 'outOfStock';
@@ -86,7 +87,7 @@ export const InventoryScreen: React.FC<{ navigation: any; route: any }> = ({
       ) : (
         <FlashList
           data={filteredProducts}
-          renderItem={({ item }) => (
+          renderItem={({ item }: { item: Product }) => (
             <ProductCard
               name={item.name}
               sellingPrice={item.sellingPrice}
@@ -98,7 +99,7 @@ export const InventoryScreen: React.FC<{ navigation: any; route: any }> = ({
             />
           )}
           estimatedItemSize={72}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: Product) => item.id}
           contentContainerStyle={styles.listContent}
         />
       )}

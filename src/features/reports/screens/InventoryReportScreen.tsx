@@ -126,7 +126,7 @@ export const InventoryReportScreen: React.FC<{ navigation: any }> = ({ navigatio
           data={filteredProducts}
           renderItem={renderProduct}
           estimatedItemSize={80}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: ProductStockInfo) => item.id}
           contentContainerStyle={styles.listContent}
         />
       </View>

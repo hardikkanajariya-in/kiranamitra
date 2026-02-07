@@ -56,6 +56,7 @@
     "@react-native/typescript-config": "0.76.6",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.9.0",
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.3.12",
     "@types/react-native-html-to-pdf": "^0.8.3",
     "@types/react-native-vector-icons": "^6.4.18",

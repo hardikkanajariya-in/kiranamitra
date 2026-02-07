@@ -16,6 +16,7 @@ export interface CurrencyTextProps {
   style?: TextStyle;
   variant?: SizeVariant | PaperVariant;
   colored?: boolean;
+  color?: string;
 }
 
 const sizeMap: Record<SizeVariant, TextStyle> = {
@@ -47,6 +48,7 @@ export const CurrencyText: React.FC<CurrencyTextProps> = ({
   style,
   variant = 'medium',
   colored = false,
+  color,
 }) => {
   const theme = useTheme();
 
@@ -55,9 +57,11 @@ export const CurrencyText: React.FC<CurrencyTextProps> = ({
     paperSizeMap[variant as PaperVariant] ??
     sizeMap.medium;
 
-  const colorStyle: TextStyle = colored
-    ? { color: amount >= 0 ? '#43A047' : '#E53935' }
-    : { color: theme.colors.onSurface };
+  const colorStyle: TextStyle = color
+    ? { color }
+    : colored
+      ? { color: amount >= 0 ? '#43A047' : '#E53935' }
+      : { color: theme.colors.onSurface };
 
   return (
     <Text style={[sizeStyle, colorStyle, style]}>

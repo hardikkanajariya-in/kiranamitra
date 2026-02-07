@@ -10,6 +10,7 @@ import { EmptyState } from '@shared/components/EmptyState';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { CustomerCard } from '../components/CustomerCard';
 import { useCustomers } from '../hooks/useCustomers';
+import Customer from '@core/database/models/Customer';
 import { customerRepository } from '../repositories/customerRepository';
 import { useEffect } from 'react';
 
@@ -70,7 +71,7 @@ export const CustomerListScreen: React.FC<{ navigation: any; route: any }> = ({
       ) : (
         <FlashList
           data={customers}
-          renderItem={({ item }) => (
+          renderItem={({ item }: { item: Customer }) => (
             <CustomerCard
               name={item.name}
               phone={item.phone}
@@ -80,7 +81,7 @@ export const CustomerListScreen: React.FC<{ navigation: any; route: any }> = ({
             />
           )}
           estimatedItemSize={80}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: Customer) => item.id}
           contentContainerStyle={styles.listContent}
         />
       )}

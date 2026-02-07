@@ -3,6 +3,7 @@ import { database } from '@core/database';
 import Bill from '@core/database/models/Bill';
 import Customer from '@core/database/models/Customer';
 import Product from '@core/database/models/Product';
+import CreditEntry from '@core/database/models/CreditEntry';
 import { Q } from '@nozbe/watermelondb';
 import { getStartOfDay, getEndOfDay, getStartOfMonth } from '@shared/utils/date';
 import { BILL_STATUSES } from '@core/constants';
@@ -71,14 +72,23 @@ export const useDashboardData = (): DashboardData => {
           .fetchCount();
 
         // Total outstanding credit (udhar)
+        const creditEntriesCollection = database.get<CreditEntry>('credit_entries');
         const allCustomers = await customersCollection
           .query(Q.where('is_active', true))
           .fetch();
 
         let totalUdhar = 0;
         for (const customer of allCustomers) {
-          const credit = await customer.outstandingCredit;
-          totalUdhar += credit;
+          const latestEntries = await creditEntriesCollection
+            .query(
+              Q.where('customer_id', customer.id),
+              Q.sortBy('created_at', Q.desc),
+              Q.take(1),
+            )
+            .fetch();
+          if (latestEntries.length > 0) {
+            totalUdhar += latestEntries[0].balanceAfter;
+          }
         }
 
         // Low stock & out of stock

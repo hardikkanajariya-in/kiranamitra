@@ -91,7 +91,7 @@ export const CreditReportScreen: React.FC<{ navigation: any }> = ({ navigation }
             data={report.customers}
             renderItem={renderCustomer}
             estimatedItemSize={80}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item: CustomerCreditInfo) => item.id}
             contentContainerStyle={styles.listContent}
           />
         )}

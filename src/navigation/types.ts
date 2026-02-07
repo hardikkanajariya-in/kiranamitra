@@ -1,4 +1,4 @@
-import type { StackScreenProps } from '@react-navigation/stack';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 
@@ -64,7 +64,7 @@ export type RootStackParamList = {
 
 // ── Screen Props helpers ──
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  StackScreenProps<RootStackParamList, T>;
+  NativeStackScreenProps<RootStackParamList, T>;
 
 export type MainTabScreenProps<T extends keyof MainTabParamList> =
   CompositeScreenProps<
@@ -74,30 +74,30 @@ export type MainTabScreenProps<T extends keyof MainTabParamList> =
 
 export type DashboardScreenProps<T extends keyof DashboardStackParamList> =
   CompositeScreenProps<
-    StackScreenProps<DashboardStackParamList, T>,
+    NativeStackScreenProps<DashboardStackParamList, T>,
     MainTabScreenProps<keyof MainTabParamList>
   >;
 
 export type CustomerScreenProps<T extends keyof CustomerStackParamList> =
   CompositeScreenProps<
-    StackScreenProps<CustomerStackParamList, T>,
+    NativeStackScreenProps<CustomerStackParamList, T>,
     MainTabScreenProps<keyof MainTabParamList>
   >;
 
 export type InventoryScreenProps<T extends keyof InventoryStackParamList> =
   CompositeScreenProps<
-    StackScreenProps<InventoryStackParamList, T>,
+    NativeStackScreenProps<InventoryStackParamList, T>,
     MainTabScreenProps<keyof MainTabParamList>
   >;
 
 export type BillingScreenProps<T extends keyof BillingStackParamList> =
   CompositeScreenProps<
-    StackScreenProps<BillingStackParamList, T>,
+    NativeStackScreenProps<BillingStackParamList, T>,
     MainTabScreenProps<keyof MainTabParamList>
   >;
 
 export type MoreScreenProps<T extends keyof MoreStackParamList> =
   CompositeScreenProps<
-    StackScreenProps<MoreStackParamList, T>,
+    NativeStackScreenProps<MoreStackParamList, T>,
     MainTabScreenProps<keyof MainTabParamList>
   >;

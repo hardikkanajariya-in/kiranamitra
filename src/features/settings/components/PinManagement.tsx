@@ -10,13 +10,15 @@ type Step = 'menu' | 'verifyOld' | 'enterNew' | 'confirmNew';
 export const PinManagement: React.FC = () => {
   const theme = useTheme();
   const { t } = useTranslation('settings');
-  const { verifyPin, changePin } = useAuthStore();
+  const { verifyAndLogin, changePin } = useAuthStore();
   const [step, setStep] = useState<Step>('menu');
+  const [oldPin, setOldPin] = useState('');
   const [newPin, setNewPin] = useState('');
   const [error, setError] = useState('');
 
   const handleVerifyOldPin = (pin: string) => {
-    if (verifyPin(pin)) {
+    if (verifyAndLogin(pin)) {
+      setOldPin(pin);
       setError('');
       setStep('enterNew');
     } else {
@@ -32,11 +34,16 @@ export const PinManagement: React.FC = () => {
 
   const handleConfirmNewPin = (pin: string) => {
     if (pin === newPin) {
-      changePin(pin);
-      setStep('menu');
-      setNewPin('');
-      setError('');
-      Alert.alert(t('pinChanged'), t('pinChangedDesc'));
+      const success = changePin(oldPin, pin);
+      if (success) {
+        setStep('menu');
+        setOldPin('');
+        setNewPin('');
+        setError('');
+        Alert.alert(t('pinChanged'), t('pinChangedDesc'));
+      } else {
+        setError(t('pinChangeError'));
+      }
     } else {
       setError(t('pinMismatch'));
       setStep('enterNew');
@@ -46,6 +53,7 @@ export const PinManagement: React.FC = () => {
 
   const handleCancel = () => {
     setStep('menu');
+    setOldPin('');
     setNewPin('');
     setError('');
   };
@@ -103,7 +111,7 @@ export const PinManagement: React.FC = () => {
           {error}
         </Text>
       ) : null}
-      <PinPad onComplete={getHandler()} pinLength={4} />
+      <PinPad onComplete={getHandler()} length={4} />
       <Button mode="text" onPress={handleCancel} style={styles.cancelButton}>
         {t('cancel')}
       </Button>

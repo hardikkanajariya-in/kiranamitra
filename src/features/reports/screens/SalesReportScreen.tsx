@@ -42,8 +42,7 @@ export const SalesReportScreen: React.FC<{ navigation: any }> = ({ navigation })
         <DateRangePicker
           from={dateRange.from}
           to={dateRange.to}
-          onFromChange={(date) => setDateRange((prev) => ({ ...prev, from: date }))}
-          onToChange={(date) => setDateRange((prev) => ({ ...prev, to: date }))}
+          onChange={(range) => setDateRange(range)}
         />
 
         {/* Summary Cards */}

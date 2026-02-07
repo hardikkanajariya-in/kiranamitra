@@ -58,18 +58,18 @@ export const BillHistoryScreen: React.FC<{ navigation: any }> = ({ navigation })
       ) : (
         <FlashList
           data={bills}
-          renderItem={({ item }) => (
+          renderItem={({ item }: { item: Bill }) => (
             <BillCard
               billNumber={item.billNumber}
               grandTotal={item.grandTotal}
               paymentMode={item.paymentMode}
               status={item.status}
-              createdAt={item.createdAt}
+              createdAt={item.createdAt.getTime()}
               onPress={() => navigation.navigate('BillPreview', { billId: item.id })}
             />
           )}
           estimatedItemSize={88}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: Bill) => item.id}
           contentContainerStyle={styles.listContent}
         />
       )}
