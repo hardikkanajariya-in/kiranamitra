@@ -34,5 +34,9 @@
   "noInventoryItems": "No items found",
   "noInventoryItemsSubtitle": "Add products first to track inventory",
   "searchProduct": "Search products...",
-  "adjustError": "Failed to adjust stock. Please try again."
+  "adjustError": "Failed to adjust stock. Please try again.",
+  "costValue": "Cost Value",
+  "potentialProfit": "Potential Profit",
+  "itemsShowing": "items",
+  "valueLabel": "Value"
 }

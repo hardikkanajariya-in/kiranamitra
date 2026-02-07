@@ -48,5 +48,16 @@
   "productName": "Product Name",
   "pricing": "Pricing",
   "deleteProduct": "Delete Product",
-  "saveError": "Failed to save. Please try again."
+  "saveError": "Failed to save. Please try again.",
+  "sortNameAZ": "Name A-Z",
+  "sortNameZA": "Name Z-A",
+  "sortPriceLow": "Price: Low to High",
+  "sortPriceHigh": "Price: High to Low",
+  "sortStockLow": "Stock: Low to High",
+  "sortStockHigh": "Stock: High to Low",
+  "totalProducts": "Total Products",
+  "stockValue": "Stock Value",
+  "productsCount": "products",
+  "lowStock": "Low Stock",
+  "outOfStock": "Out of Stock"
 }

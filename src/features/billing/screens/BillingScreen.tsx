@@ -88,7 +88,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                 actions={[
                     { icon: 'history', onPress: () => navigation.navigate('BillHistory') },
                     ...(cartItems.length > 0
-                        ? [{ icon: 'delete-sweep', onPress: clearCart }]
+                        ? [{ icon: 'trash-2', onPress: clearCart }]
                         : []),
                 ]}
             />
@@ -132,9 +132,12 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
                         <Button
                             mode="outlined"
                             onPress={() =>
-                                navigation.navigate('CustomersTab', { screen: 'CustomerList' })
+                                navigation.navigate('CustomersTab', {
+                                    screen: 'CustomerList',
+                                    params: { selectionMode: true },
+                                })
                             }
-                            icon={paperIcon('account')}
+                            icon={paperIcon('user')}
                             style={styles.customerButton}
                         >
                             {selectedCustomerId ? t('changeCustomer') : t('selectCustomer')}

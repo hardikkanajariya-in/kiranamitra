@@ -26,5 +26,21 @@
   "reportGenerated": "રિપોર્ટ બની ગઈ",
   "shareReport": "રિપોર્ટ શેર કરો",
   "quantitySold": "વેચાયેલો જથ્થો",
-  "revenue": "આવક"
+  "revenue": "આવક",
+  "dailyBreakdown": "દૈનિક વિગતો",
+  "bills": "બિલ",
+  "lastTransaction": "છેલ્લો વ્યવહાર",
+  "customers": "ગ્રાહકો",
+  "noOutstanding": "કોઈ બાકી ઉધાર નથી",
+  "noOutstandingDesc": "બધા ગ્રાહકોએ બાકી ચૂકવી દીધી છે",
+  "totalStockValue": "કુલ સ્ટોક મૂલ્ય",
+  "lowStock": "ઓછો સ્ટોક",
+  "outOfStock": "સ્ટોક ખતમ",
+  "all": "બધા",
+  "totalRevenue": "કુલ આવક",
+  "totalProducts": "કુલ પ્રોડક્ટ",
+  "totalQtySold": "કુલ વેચાયેલો જથ્થો",
+  "qtySold": "વેચાયેલો જથ્થો",
+  "noData": "કોઈ ડેટા નથી",
+  "noDataDesc": "પસંદ કરેલી સમયમર્યાદાનો કોઈ પ્રોડક્ટ ડેટા નથી"
 }

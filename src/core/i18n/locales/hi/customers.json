@@ -24,5 +24,11 @@
   "maxPayment": "ज़्यादा से ज़्यादा: ₹{{amount}}",
   "customerUpdated": "ग्राहक अपडेट हो गया",
   "customerCreated": "ग्राहक जोड़ दिया गया",
-  "customerDeleted": "ग्राहक हटा दिया"
+  "customerDeleted": "ग्राहक हटा दिया",
+  "noCustomersSubtitle": "पहला ग्राहक जोड़ने के लिए + दबाएं",
+  "noPhone": "कोई फोन नंबर नहीं",
+  "call": "कॉल करें",
+  "deleteCustomer": "ग्राहक हटाएं",
+  "saveError": "सेव करने में विफल। कृपया पुनः प्रयास करें।",
+  "noCreditHistorySubtitle": "उधार के लेनदेन यहाँ दिखेंगे"
 }

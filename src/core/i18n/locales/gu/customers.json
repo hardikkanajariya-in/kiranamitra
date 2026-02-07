@@ -24,5 +24,11 @@
   "maxPayment": "મહત્તમ: ₹{{amount}}",
   "customerUpdated": "ગ્રાહક અપડેટ થઈ ગયો",
   "customerCreated": "ગ્રાહક ઉમેરાઈ ગયો",
-  "customerDeleted": "ગ્રાહક કાઢી નાખ્યો"
+  "customerDeleted": "ગ્રાહક કાઢી નાખ્યો",
+  "noCustomersSubtitle": "પહેલો ગ્રાહક ઉમેરવા + દબાવો",
+  "noPhone": "કોઈ ફોન નંબર નથી",
+  "call": "કૉલ કરો",
+  "deleteCustomer": "ગ્રાહક કાઢો",
+  "saveError": "સેવ કરવામાં વિફળ. ફરી પ્રયાસ કરો.",
+  "noCreditHistorySubtitle": "ઉધારના વ્યવહારો અહીં દેખાશે"
 }

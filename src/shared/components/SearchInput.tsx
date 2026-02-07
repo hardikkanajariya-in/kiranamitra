@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { useDebounce } from '@shared/hooks/useDebounce';
 import { StyleSheet } from 'react-native';
+import { paperIcon } from './Icon';
 
 export interface SearchInputProps {
   placeholder: string;
@@ -46,6 +47,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       onChangeText={setQuery}
       value={query}
       onClearIconPress={handleClear}
+      icon={paperIcon('search')}
+      clearIcon={paperIcon('x')}
       style={styles.searchbar}
       inputStyle={styles.input}
     />

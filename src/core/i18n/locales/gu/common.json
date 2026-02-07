@@ -50,5 +50,14 @@
   "update": "અપડેટ",
   "done": "થઈ ગયું",
   "walkIn": "વૉક-ઈન ગ્રાહક",
-  "selectOption": "વિકલ્પ પસંદ કરો"
+  "selectOption": "વિકલ્પ પસંદ કરો",
+  "dashboard": "ડેશબોર્ડ",
+  "customers": "ગ્રાહકો",
+  "billing": "બિલિંગ",
+  "inventory": "ઇન્વેન્ટરી",
+  "more": "વધુ",
+  "reports": "રિપોર્ટ",
+  "settings": "સેટિંગ્સ",
+  "viewReports": "વેચાણ, ઉધાર, ઇન્વેન્ટરી રિપોર્ટ જુઓ",
+  "manageSettings": "દુકાન પ્રોફાઇલ, ભાષા, બેકઅપ"
 }

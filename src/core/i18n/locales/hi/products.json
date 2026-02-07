@@ -43,5 +43,21 @@
   "selectCategory": "कैटेगरी चुनें",
   "selectUnit": "इकाई चुनें",
   "noCategories": "कोई कैटेगरी नहीं। पहले बनाएं।",
-  "deleteConfirm": "क्या आप इस प्रोडक्ट को हटाना चाहते हैं?"
+  "deleteConfirm": "क्या आप इस प्रोडक्ट को हटाना चाहते हैं?",
+  "noProductsSubtitle": "पहला प्रोडक्ट जोड़ने के लिए + दबाएं",
+  "productName": "प्रोडक्ट का नाम",
+  "pricing": "मूल्य",
+  "deleteProduct": "प्रोडक्ट हटाएं",
+  "saveError": "सेव करने में विफल। कृपया पुनः प्रयास करें।",
+  "sortNameAZ": "नाम A-Z",
+  "sortNameZA": "नाम Z-A",
+  "sortPriceLow": "कीमत: कम से ज्यादा",
+  "sortPriceHigh": "कीमत: ज्यादा से कम",
+  "sortStockLow": "स्टॉक: कम से ज्यादा",
+  "sortStockHigh": "स्टॉक: ज्यादा से कम",
+  "totalProducts": "कुल प्रोडक्ट",
+  "stockValue": "स्टॉक मूल्य",
+  "productsCount": "प्रोडक्ट",
+  "lowStock": "कम स्टॉक",
+  "outOfStock": "स्टॉक खत्म"
 }

@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ArrowLeft,
+  ArrowUpDown,
   Tag,
   Barcode,
   AlertCircle,
@@ -68,6 +69,8 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
   'chevron-down': ChevronDown,
   'chevron-left': ChevronLeft,
   'arrow-left': ArrowLeft,
+  'arrow-up-down': ArrowUpDown,
+  'sort': ArrowUpDown,
   'menu-down': ChevronDown,
 
   // Products
@@ -96,23 +99,27 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
 
   // Actions
   'close': X,
+  'x': X,
   'plus': Plus,
   'minus': Minus,
   'account-plus': UserPlus,
   'cash-plus': BadgeIndianRupee,
   'delete-sweep': Trash2,
   'delete': Trash2,
+  'trash-2': Trash2,
   'pencil': Pencil,
   'check': Check,
 
   // Billing
   'magnify': Search,
+  'search': Search,
   'cash': Banknote,
   'cellphone': Smartphone,
   'credit-card': CreditCard,
   'account-clock': UserClock,
   'cart-outline': ShoppingCart,
   'account': User,
+  'user': User,
   'history': History,
   'plus-minus': PlusMinusIcon,
   'share-variant': Share2,

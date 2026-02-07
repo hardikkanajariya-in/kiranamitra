@@ -26,5 +26,21 @@
   "reportGenerated": "रिपोर्ट बन गई",
   "shareReport": "रिपोर्ट शेयर करें",
   "quantitySold": "बिकी मात्रा",
-  "revenue": "आमदनी"
+  "revenue": "आमदनी",
+  "dailyBreakdown": "दैनिक विवरण",
+  "bills": "बिल",
+  "lastTransaction": "आखरी लेनदेन",
+  "customers": "ग्राहक",
+  "noOutstanding": "कोई बकाया उधार नहीं",
+  "noOutstandingDesc": "सभी ग्राहकों ने बकाया चुका दिया है",
+  "totalStockValue": "कुल स्टॉक मूल्य",
+  "lowStock": "कम स्टॉक",
+  "outOfStock": "स्टॉक खत्म",
+  "all": "सभी",
+  "totalRevenue": "कुल आमदनी",
+  "totalProducts": "कुल प्रोडक्ट",
+  "totalQtySold": "कुल बिकी मात्रा",
+  "qtySold": "बिकी मात्रा",
+  "noData": "कोई डेटा नहीं",
+  "noDataDesc": "चुनी गई अवधि का कोई प्रोडक्ट डेटा नहीं"
 }

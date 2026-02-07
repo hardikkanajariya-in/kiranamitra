@@ -33,5 +33,10 @@
   "minStock": "લઘુતમ: {{threshold}} {{unit}}",
   "noInventoryItems": "કોઈ વસ્તુ મળી નથી",
   "noInventoryItemsSubtitle": "ઇન્વેન્ટરી ટ્રૅક કરવા પહેલા પ્રોડક્ટ ઉમેરો",
-  "searchProduct": "પ્રોડક્ટ શોધો..."
+  "searchProduct": "પ્રોડક્ટ શોધો...",
+  "adjustError": "સ્ટોક બદલવામાં વિફળ. ફરી પ્રયાસ કરો.",
+  "costValue": "ખર્ચ મૂલ્ય",
+  "potentialProfit": "સંભાવિત નફો",
+  "itemsShowing": "વસ્તુઓ",
+  "valueLabel": "મૂલ્ય"
 }

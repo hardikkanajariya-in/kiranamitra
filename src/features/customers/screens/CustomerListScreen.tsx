@@ -12,20 +12,28 @@ import { CustomerCard } from '../components/CustomerCard';
 import { useCustomers } from '../hooks/useCustomers';
 import Customer from '@core/database/models/Customer';
 import { customerRepository } from '../repositories/customerRepository';
+import { useBillingStore } from '@features/billing/store/useBillingStore';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
     goBack: () => void;
 }
 
-export const CustomerListScreen: React.FC<{ navigation: NavigationProp }> = ({
+interface RouteProp {
+    params?: { selectionMode?: boolean };
+}
+
+export const CustomerListScreen: React.FC<{ navigation: NavigationProp; route: RouteProp }> = ({
     navigation,
+    route,
 }) => {
     const theme = useTheme();
     const { t } = useTranslation('customers');
     const [searchQuery, setSearchQuery] = useState('');
     const { customers, isLoading } = useCustomers(searchQuery);
     const [creditMap, setCreditMap] = useState<Record<string, number>>({});
+    const selectionMode = route.params?.selectionMode ?? false;
+    const setCustomer = useBillingStore((state) => state.setCustomer);
 
     useEffect(() => {
         const loadCredits = async () => {
@@ -83,7 +91,14 @@ export const CustomerListScreen: React.FC<{ navigation: NavigationProp }> = ({
                             name={item.name}
                             phone={item.phone}
                             outstandingCredit={creditMap[item.id]}
-                            onPress={() => navigation.navigate('CustomerDetail', { customerId: item.id })}
+                            onPress={() => {
+                                if (selectionMode) {
+                                    setCustomer(item.id);
+                                    navigation.goBack();
+                                } else {
+                                    navigation.navigate('CustomerDetail', { customerId: item.id });
+                                }
+                            }}
                             onCall={item.phone ? () => handleCall(item.phone) : undefined}
                         />
                     )}

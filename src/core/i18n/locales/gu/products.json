@@ -43,5 +43,21 @@
   "selectCategory": "કેટેગરી પસંદ કરો",
   "selectUnit": "એકમ પસંદ કરો",
   "noCategories": "કોઈ કેટેગરી નથી. પહેલા બનાવો.",
-  "deleteConfirm": "શું તમે આ પ્રોડક્ટ કાઢવા માગો છો?"
+  "deleteConfirm": "શું તમે આ પ્રોડક્ટ કાઢવા માગો છો?",
+  "noProductsSubtitle": "પહેલું પ્રોડક્ટ ઉમેરવા + દબાવો",
+  "productName": "પ્રોડક્ટનું નામ",
+  "pricing": "કિંમત",
+  "deleteProduct": "પ્રોડક્ટ કાઢો",
+  "saveError": "સેવ કરવામાં વિફળ. ફરી પ્રયાસ કરો.",
+  "sortNameAZ": "નામ A-Z",
+  "sortNameZA": "નામ Z-A",
+  "sortPriceLow": "કિંમત: ઓછીથી વધુ",
+  "sortPriceHigh": "કિંમત: વધુથી ઓછી",
+  "sortStockLow": "સ્ટોક: ઓછાથી વધુ",
+  "sortStockHigh": "સ્ટોક: વધુથી ઓછા",
+  "totalProducts": "કુલ પ્રોડક્ટ",
+  "stockValue": "સ્ટોક મૂલ્ય",
+  "productsCount": "પ્રોડક્ટ",
+  "lowStock": "ઓછો સ્ટોક",
+  "outOfStock": "સ્ટોક ખતમ"
 }

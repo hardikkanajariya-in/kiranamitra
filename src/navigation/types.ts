@@ -15,7 +15,7 @@ export type DashboardStackParamList = {
 
 // ── Customer Stack ──
 export type CustomerStackParamList = {
-  CustomerList: undefined;
+  CustomerList: { selectionMode?: boolean } | undefined;
   CustomerDetail: { customerId: string };
   CustomerForm: { customerId?: string } | undefined;
 };

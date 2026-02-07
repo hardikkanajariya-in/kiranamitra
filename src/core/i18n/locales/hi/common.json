@@ -50,5 +50,14 @@
   "update": "अपडेट",
   "done": "हो गया",
   "walkIn": "वॉक-इन ग्राहक",
-  "selectOption": "विकल्प चुनें"
+  "selectOption": "विकल्प चुनें",
+  "dashboard": "डैशबोर्ड",
+  "customers": "ग्राहक",
+  "billing": "बिलिंग",
+  "inventory": "इन्वेंटरी",
+  "more": "और",
+  "reports": "रिपोर्ट",
+  "settings": "सेटिंग्स",
+  "viewReports": "बिक्री, उधार, इन्वेंटरी रिपोर्ट देखें",
+  "manageSettings": "दुकान प्रोफाइल, भाषा, बैकअप"
 }
