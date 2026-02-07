@@ -57,5 +57,6 @@
   "total": "Total",
   "searchProduct": "Search products...",
   "stock": "Stock",
-  "card": "Card"
+  "card": "Card",
+  "tapToAdd": "Tap a product to add to bill"
 }

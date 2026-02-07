@@ -56,7 +56,7 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
             <SearchInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                placeholder={t('searchPlaceholder')}
+                placeholder={t('searchProduct')}
             />
 
             <View style={styles.filterRow}>

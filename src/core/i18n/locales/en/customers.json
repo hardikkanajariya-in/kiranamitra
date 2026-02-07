@@ -24,5 +24,11 @@
   "maxPayment": "Maximum: ₹{{amount}}",
   "customerUpdated": "Customer updated successfully",
   "customerCreated": "Customer added successfully",
-  "customerDeleted": "Customer deleted"
+  "customerDeleted": "Customer deleted",
+  "noCustomersSubtitle": "Tap + to add your first customer",
+  "noPhone": "No phone number",
+  "call": "Call",
+  "deleteCustomer": "Delete Customer",
+  "saveError": "Failed to save. Please try again.",
+  "noCreditHistorySubtitle": "Credit transactions will appear here"
 }

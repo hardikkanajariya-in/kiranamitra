@@ -43,5 +43,10 @@
   "selectCategory": "Select Category",
   "selectUnit": "Select Unit",
   "noCategories": "No categories. Create one first.",
-  "deleteConfirm": "Are you sure you want to delete this product?"
+  "deleteConfirm": "Are you sure you want to delete this product?",
+  "noProductsSubtitle": "Tap + to add your first product",
+  "productName": "Product Name",
+  "pricing": "Pricing",
+  "deleteProduct": "Delete Product",
+  "saveError": "Failed to save. Please try again."
 }

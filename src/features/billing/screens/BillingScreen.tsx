@@ -4,9 +4,9 @@ import { useTheme, Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
-import { EmptyState } from '@shared/components/EmptyState';
 import { paperIcon } from '@shared/components/Icon';
 import { ProductSearchBar } from '../components/ProductSearchBar';
+import { ProductQuickAdd } from '../components/ProductQuickAdd';
 import { CartItemRow } from '../components/CartItemRow';
 import { CartSummary } from '../components/CartSummary';
 import { PaymentModeSelector } from '../components/PaymentModeSelector';
@@ -39,7 +39,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
 
     const handleAddProduct = (product: Product) => {
         if (product.currentStock <= 0) {
-            Alert.alert(t('inventory:outOfStock'), t('outOfStockMessage'));
+            Alert.alert(t('outOfStock'), t('outOfStockMessage'));
             return;
         }
 
@@ -56,7 +56,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
 
     const handleCreateBill = async () => {
         if (cartItems.length === 0) {
-            Alert.alert(t('cartEmpty'), t('cartEmptyMessage'));
+            Alert.alert(t('emptyCart'), t('emptyCartMessage'));
             return;
         }
 
@@ -95,26 +95,23 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
 
             <ProductSearchBar onSelectProduct={handleAddProduct} />
 
-            <ScrollView style={styles.cartSection}>
-                {cartItems.length === 0 ? (
-                    <EmptyState
-                        icon="cart-outline"
-                        title={t('cartEmpty')}
-                        subtitle={t('cartEmptySubtitle')}
-                    />
-                ) : (
-                    <>
-                        {cartItems.map((item) => (
-                            <CartItemRow
-                                key={item.productId}
-                                item={item}
-                                onUpdateQuantity={(qty) => updateQuantity(item.productId, qty)}
-                                onRemove={() => removeFromCart(item.productId)}
-                            />
-                        ))}
-                    </>
-                )}
-            </ScrollView>
+            {cartItems.length === 0 ? (
+                <ProductQuickAdd
+                    onAddProduct={handleAddProduct}
+                    cartProductIds={cartItems.map((item) => item.productId)}
+                />
+            ) : (
+                <ScrollView style={styles.cartSection}>
+                    {cartItems.map((item) => (
+                        <CartItemRow
+                            key={item.productId}
+                            item={item}
+                            onUpdateQuantity={(qty) => updateQuantity(item.productId, qty)}
+                            onRemove={() => removeFromCart(item.productId)}
+                        />
+                    ))}
+                </ScrollView>
+            )}
 
             {cartItems.length > 0 && (
                 <View style={[styles.bottomSection, { borderTopColor: theme.colors.outlineVariant }]}>
