@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx",
-    "clean": "cd android && ./gradlew clean --offline && cd ..",
+    "clean": "npx rimraf android/build android/app/build",
+    "clean:gradle": "cd android && ./gradlew clean && cd ..",
     "build:android:debug": "cd android && ./gradlew assembleDebug",
     "build:android:release": "cd android && ./gradlew assembleRelease",
     "postinstall": "patch-package"

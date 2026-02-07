@@ -120,7 +120,7 @@ export const PrinterSetupModal: React.FC<PrinterSetupModalProps> = ({ visible, o
                                     key={device.address}
                                     title={device.name}
                                     description={device.address}
-                                    left={(props) => <List.Icon {...props} icon={paperIcon('printer')} />}}
+                                    left={(props) => <List.Icon {...props} icon={paperIcon('printer')} />}
                                     right={() =>
                                         connectedPrinter?.address === device.address ? (
                                             <Text
