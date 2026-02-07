@@ -81,11 +81,12 @@ export const BillingScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
       <AppHeader
         title={t('newBill')}
-        actions={
-          cartItems.length > 0
+        actions={[
+          { icon: 'history', onPress: () => navigation.navigate('BillHistory') },
+          ...(cartItems.length > 0
             ? [{ icon: 'delete-sweep', onPress: clearCart }]
-            : undefined
-        }
+            : []),
+        ]}
       />
 
       <ProductSearchBar onSelectProduct={handleAddProduct} />
