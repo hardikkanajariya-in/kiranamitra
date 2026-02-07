@@ -1,0 +1,94 @@
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# React Native
+# Android
+android/app/build/
+android/app/release/
+android/.gradle/
+android/build/
+android/captures/
+android/local.properties
+android/*.iml
+android/.idea/
+
+# iOS
+ios/Pods/
+ios/build/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcshareddata/
+ios/.xcode.env.local
+
+# Metro
+.metro-health-check*
+
+# Buck
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
+
+# Bundle artifacts
+*.jsbundle
+*.bundle
+
+# Builds
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Editor & IDE
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+
+# Temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# WatermelonDB
+*.db
+*.db-journal
+
+# MMKV
+mmkv/
+
+# Backup exports
+*.backup.json

@@ -1,0 +1,33 @@
+{
+  "title": "Inventory",
+  "stockLevel": "Stock Level",
+  "adjustStock": "Adjust Stock",
+  "addStock": "Add Stock",
+  "removeStock": "Remove Stock",
+  "reason": "Reason",
+  "reasons": {
+    "purchase": "New Purchase",
+    "damage": "Damaged",
+    "return": "Customer Return",
+    "manual": "Manual Adjustment",
+    "sale": "Sale"
+  },
+  "stockHistory": "Stock History",
+  "lowStock": "Low Stock",
+  "outOfStock": "Out of Stock",
+  "inStock": "In Stock",
+  "adjustmentSaved": "Stock adjusted successfully",
+  "quantity": "Quantity",
+  "notes": "Notes (optional)",
+  "currentStockLabel": "Current Stock: {{count}} {{unit}}",
+  "newStockLabel": "New Stock: {{count}} {{unit}}",
+  "noInventoryLogs": "No stock adjustments yet",
+  "stockValue": "Total Stock Value",
+  "lowStockCount": "{{count}} item below threshold",
+  "lowStockCount_plural": "{{count}} items below threshold",
+  "outOfStockCount": "{{count}} item out of stock",
+  "outOfStockCount_plural": "{{count}} items out of stock",
+  "filterAll": "All",
+  "filterLowStock": "Low Stock",
+  "filterOutOfStock": "Out of Stock"
+}

@@ -1,0 +1,174 @@
+import React from 'react';
+import { View, StyleSheet, ScrollView, Alert } from 'react-native';
+import { Text, useTheme, Button, TextInput } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppHeader } from '@shared/components/AppHeader';
+import { EmptyState } from '@shared/components/EmptyState';
+import { ProductSearchBar } from '../components/ProductSearchBar';
+import { CartItemRow } from '../components/CartItemRow';
+import { CartSummary } from '../components/CartSummary';
+import { PaymentModeSelector } from '../components/PaymentModeSelector';
+import { useBillingStore } from '../store/useBillingStore';
+import { billRepository } from '../repositories/billRepository';
+import Product from '@core/database/models/Product';
+import { PAYMENT_MODES } from '@core/constants';
+
+export const BillingScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const theme = useTheme();
+  const { t } = useTranslation('billing');
+  const {
+    cartItems,
+    subtotal,
+    discount,
+    grandTotal,
+    paymentMode,
+    selectedCustomerId,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    setPaymentMode,
+    setBillDiscount,
+    setCustomer,
+    clearCart,
+  } = useBillingStore();
+
+  const handleAddProduct = (product: Product) => {
+    if (product.currentStock <= 0) {
+      Alert.alert(t('outOfStock'), t('outOfStockMessage'));
+      return;
+    }
+
+    addToCart({
+      productId: product.id,
+      productName: product.name,
+      quantity: 1,
+      unitPrice: product.sellingPrice,
+      discount: 0,
+    });
+  };
+
+  const handleCreateBill = async () => {
+    if (cartItems.length === 0) {
+      Alert.alert(t('emptyCart'), t('emptyCartMessage'));
+      return;
+    }
+
+    if (paymentMode === PAYMENT_MODES.CREDIT && !selectedCustomerId) {
+      Alert.alert(t('selectCustomer'), t('selectCustomerForCredit'));
+      return;
+    }
+
+    try {
+      const bill = await billRepository.createBill(
+        cartItems,
+        paymentMode,
+        selectedCustomerId,
+        discount,
+        subtotal,
+        grandTotal,
+      );
+      clearCart();
+      navigation.navigate('BillPreview', { billId: bill.id });
+    } catch (error) {
+      Alert.alert(t('error'), t('billCreationError'));
+    }
+  };
+
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]} edges={['top']}>
+      <AppHeader
+        title={t('newBill')}
+        actions={
+          cartItems.length > 0
+            ? [{ icon: 'delete-sweep', onPress: clearCart }]
+            : undefined
+        }
+      />
+
+      <ProductSearchBar onSelectProduct={handleAddProduct} />
+
+      <ScrollView style={styles.cartSection}>
+        {cartItems.length === 0 ? (
+          <EmptyState
+            icon="cart-outline"
+            title={t('emptyCart')}
+            subtitle={t('emptyCartSubtitle')}
+          />
+        ) : (
+          <>
+            {cartItems.map((item) => (
+              <CartItemRow
+                key={item.productId}
+                item={item}
+                onUpdateQuantity={(qty) => updateQuantity(item.productId, qty)}
+                onRemove={() => removeFromCart(item.productId)}
+              />
+            ))}
+          </>
+        )}
+      </ScrollView>
+
+      {cartItems.length > 0 && (
+        <View style={styles.bottomSection}>
+          <PaymentModeSelector
+            value={paymentMode}
+            onChange={setPaymentMode}
+            showCredit={!!selectedCustomerId}
+          />
+
+          <CartSummary
+            subtotal={subtotal}
+            discount={discount}
+            grandTotal={grandTotal}
+            itemCount={cartItems.length}
+          />
+
+          <View style={styles.actionRow}>
+            <Button
+              mode="outlined"
+              onPress={() => navigation.navigate('CustomerSelect')}
+              icon="account"
+              style={styles.customerButton}
+            >
+              {selectedCustomerId ? t('changeCustomer') : t('selectCustomer')}
+            </Button>
+            <Button
+              mode="contained"
+              onPress={handleCreateBill}
+              icon="check"
+              style={styles.createButton}
+            >
+              {t('createBill')}
+            </Button>
+          </View>
+        </View>
+      )}
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  cartSection: {
+    flex: 1,
+  },
+  bottomSection: {
+    borderTopWidth: 1,
+    borderTopColor: '#E0E0E0',
+    paddingBottom: 16,
+  },
+  actionRow: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  customerButton: {
+    flex: 1,
+  },
+  createButton: {
+    flex: 1,
+  },
+});

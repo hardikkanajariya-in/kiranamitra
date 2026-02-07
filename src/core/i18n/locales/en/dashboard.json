@@ -1,0 +1,21 @@
+{
+  "title": "Dashboard",
+  "todaySales": "Today's Sales",
+  "totalCustomers": "Total Customers",
+  "pendingUdhar": "Pending Udhar",
+  "lowStockItems": "Low Stock Items",
+  "quickActions": "Quick Actions",
+  "newBill": "New Bill",
+  "addProduct": "Add Product",
+  "addCustomer": "Add Customer",
+  "salesSummary": "Sales Summary",
+  "recentBills": "Recent Bills",
+  "viewAll": "View All",
+  "goodMorning": "Good Morning",
+  "goodAfternoon": "Good Afternoon",
+  "goodEvening": "Good Evening",
+  "noBillsToday": "No bills today. Start by creating one!",
+  "billsToday": "{{count}} bill today",
+  "billsToday_plural": "{{count}} bills today",
+  "totalOutstanding": "Total Outstanding"
+}

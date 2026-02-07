@@ -1,0 +1,21 @@
+{
+  "title": "ડેશબોર્ડ",
+  "todaySales": "આજનું વેચાણ",
+  "totalCustomers": "કુલ ગ્રાહકો",
+  "pendingUdhar": "બાકી ઉધાર",
+  "lowStockItems": "ઓછો સ્ટોક",
+  "quickActions": "ઝડપી કાર્યવાહી",
+  "newBill": "નવું બિલ",
+  "addProduct": "પ્રોડક્ટ ઉમેરો",
+  "addCustomer": "ગ્રાહક ઉમેરો",
+  "salesSummary": "વેચાણ સારાંશ",
+  "recentBills": "તાજેતરના બિલ",
+  "viewAll": "બધા જુઓ",
+  "goodMorning": "સુપ્રભાત",
+  "goodAfternoon": "નમસ્કાર",
+  "goodEvening": "શુભ સાંજ",
+  "noBillsToday": "આજે કોઈ બિલ નથી. પહેલું બનાવો!",
+  "billsToday": "આજે {{count}} બિલ",
+  "billsToday_plural": "આજે {{count}} બિલ",
+  "totalOutstanding": "કુલ બાકી ઉધાર"
+}

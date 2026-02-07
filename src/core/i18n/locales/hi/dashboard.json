@@ -1,0 +1,21 @@
+{
+  "title": "डैशबोर्ड",
+  "todaySales": "आज की बिक्री",
+  "totalCustomers": "कुल ग्राहक",
+  "pendingUdhar": "बाकी उधार",
+  "lowStockItems": "कम स्टॉक",
+  "quickActions": "जल्दी कार्रवाई",
+  "newBill": "नया बिल",
+  "addProduct": "प्रोडक्ट जोड़ें",
+  "addCustomer": "ग्राहक जोड़ें",
+  "salesSummary": "बिक्री सारांश",
+  "recentBills": "हाल के बिल",
+  "viewAll": "सभी देखें",
+  "goodMorning": "सुप्रभात",
+  "goodAfternoon": "नमस्कार",
+  "goodEvening": "शुभ संध्या",
+  "noBillsToday": "आज कोई बिल नहीं। पहला बनाएं!",
+  "billsToday": "आज {{count}} बिल",
+  "billsToday_plural": "आज {{count}} बिल",
+  "totalOutstanding": "कुल बाकी उधार"
+}

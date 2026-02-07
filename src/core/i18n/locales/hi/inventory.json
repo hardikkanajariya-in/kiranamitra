@@ -1,0 +1,33 @@
+{
+  "title": "इन्वेंटरी",
+  "stockLevel": "स्टॉक लेवल",
+  "adjustStock": "स्टॉक बदलें",
+  "addStock": "स्टॉक जोड़ें",
+  "removeStock": "स्टॉक घटाएं",
+  "reason": "कारण",
+  "reasons": {
+    "purchase": "नई खरीद",
+    "damage": "टूट-फूट",
+    "return": "ग्राहक वापसी",
+    "manual": "मैनुअल",
+    "sale": "बिक्री"
+  },
+  "stockHistory": "स्टॉक इतिहास",
+  "lowStock": "कम स्टॉक",
+  "outOfStock": "स्टॉक खत्म",
+  "inStock": "स्टॉक में",
+  "adjustmentSaved": "स्टॉक अपडेट हो गया",
+  "quantity": "मात्रा",
+  "notes": "नोट (वैकल्पिक)",
+  "currentStockLabel": "मौजूदा स्टॉक: {{count}} {{unit}}",
+  "newStockLabel": "नया स्टॉक: {{count}} {{unit}}",
+  "noInventoryLogs": "अभी कोई स्टॉक बदलाव नहीं",
+  "stockValue": "कुल स्टॉक मूल्य",
+  "lowStockCount": "{{count}} चीज़ सीमा से कम",
+  "lowStockCount_plural": "{{count}} चीज़ें सीमा से कम",
+  "outOfStockCount": "{{count}} चीज़ का स्टॉक खत्म",
+  "outOfStockCount_plural": "{{count}} चीज़ों का स्टॉक खत्म",
+  "filterAll": "सभी",
+  "filterLowStock": "कम स्टॉक",
+  "filterOutOfStock": "स्टॉक खत्म"
+}

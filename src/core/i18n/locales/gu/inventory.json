@@ -1,0 +1,33 @@
+{
+  "title": "ઇન્વેન્ટરી",
+  "stockLevel": "સ્ટોક લેવલ",
+  "adjustStock": "સ્ટોક બદલો",
+  "addStock": "સ્ટોક ઉમેરો",
+  "removeStock": "સ્ટોક ઘટાડો",
+  "reason": "કારણ",
+  "reasons": {
+    "purchase": "નવી ખરીદી",
+    "damage": "નુકસાન",
+    "return": "ગ્રાહક પરત",
+    "manual": "મેન્યુઅલ",
+    "sale": "વેચાણ"
+  },
+  "stockHistory": "સ્ટોક ઇતિહાસ",
+  "lowStock": "ઓછો સ્ટોક",
+  "outOfStock": "સ્ટોક ખતમ",
+  "inStock": "સ્ટોકમાં",
+  "adjustmentSaved": "સ્ટોક અપડેટ થઈ ગયો",
+  "quantity": "જથ્થો",
+  "notes": "નોંધ (વૈકલ્પિક)",
+  "currentStockLabel": "હાલનો સ્ટોક: {{count}} {{unit}}",
+  "newStockLabel": "નવો સ્ટોક: {{count}} {{unit}}",
+  "noInventoryLogs": "હજુ કોઈ સ્ટોક ફેરફાર નથી",
+  "stockValue": "કુલ સ્ટોક મૂલ્ય",
+  "lowStockCount": "{{count}} વસ્તુ સીમાથી ઓછી",
+  "lowStockCount_plural": "{{count}} વસ્તુઓ સીમાથી ઓછી",
+  "outOfStockCount": "{{count}} વસ્તુનો સ્ટોક ખતમ",
+  "outOfStockCount_plural": "{{count}} વસ્તુઓનો સ્ટોક ખતમ",
+  "filterAll": "બધા",
+  "filterLowStock": "ઓછો સ્ટોક",
+  "filterOutOfStock": "સ્ટોક ખતમ"
+}
