@@ -155,8 +155,16 @@ jobs:
             ndk-
 
       # ── Signing ────────────────────────────────────────────────────
-      - name: Generate release keystore
+      - name: Cache signing keystore
         if: steps.skip.outputs.skip != 'true'
+        uses: actions/cache@v4
+        id: keystore-cache
+        with:
+          path: android/app/kiranamitra-release.keystore
+          key: signing-keystore-${{ env.KEY_ALIAS }}
+
+      - name: Generate release keystore
+        if: steps.skip.outputs.skip != 'true' && steps.keystore-cache.outputs.cache-hit != 'true'
         run: |
           keytool -genkeypair \
             -v \
