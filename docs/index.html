@@ -46,10 +46,54 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-particles" id="heroParticles"></div>
-            <div class="hero-ring hero-ring-1"></div>
-            <div class="hero-ring hero-ring-2"></div>
+            <!-- Geometric SVG shapes -->
+            <svg class="hero-shapes" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice">
+                <!-- Large circle top-right -->
+                <circle cx="1200" cy="120" r="300" stroke="#6C3CE1" stroke-opacity="0.08" stroke-width="1.5" />
+                <circle cx="1200" cy="120" r="200" stroke="#6C3CE1" stroke-opacity="0.05" stroke-width="1" />
+                <!-- Small circle bottom-left -->
+                <circle cx="100" cy="700" r="180" stroke="#F59E0B" stroke-opacity="0.08" stroke-width="1.5" />
+                <!-- Dotted circle mid-right -->
+                <circle cx="1350" cy="550" r="100" stroke="#8B5CF6" stroke-opacity="0.1" stroke-width="1"
+                    stroke-dasharray="6 6" />
+                <!-- Floating squares -->
+                <rect x="150" y="200" width="60" height="60" rx="12" stroke="#6C3CE1" stroke-opacity="0.07"
+                    stroke-width="1.5" transform="rotate(15 180 230)" />
+                <rect x="1100" y="650" width="45" height="45" rx="10" stroke="#F59E0B" stroke-opacity="0.08"
+                    stroke-width="1.5" transform="rotate(-20 1122 672)" />
+                <!-- Triangle accent -->
+                <polygon points="320,80 360,150 280,150" stroke="#8B5CF6" stroke-opacity="0.07" stroke-width="1.5"
+                    fill="none" />
+                <!-- Cross/plus marks -->
+                <g stroke="#6C3CE1" stroke-opacity="0.1" stroke-width="1.5">
+                    <line x1="900" y1="100" x2="900" y2="130" />
+                    <line x1="885" y1="115" x2="915" y2="115" />
+                </g>
+                <g stroke="#F59E0B" stroke-opacity="0.1" stroke-width="1.5">
+                    <line x1="200" y1="500" x2="200" y2="530" />
+                    <line x1="185" y1="515" x2="215" y2="515" />
+                </g>
+                <!-- Dots cluster -->
+                <circle cx="1300" cy="300" r="3" fill="#6C3CE1" fill-opacity="0.1" />
+                <circle cx="1320" cy="310" r="3" fill="#6C3CE1" fill-opacity="0.08" />
+                <circle cx="1310" cy="290" r="2" fill="#8B5CF6" fill-opacity="0.1" />
+                <circle cx="80" cy="400" r="3" fill="#F59E0B" fill-opacity="0.1" />
+                <circle cx="95" cy="385" r="2" fill="#F59E0B" fill-opacity="0.08" />
+                <!-- Gradient blob accent (soft) -->
+                <defs>
+                    <radialGradient id="blob1" cx="0.5" cy="0.5" r="0.5">
+                        <stop offset="0%" stop-color="#6C3CE1" stop-opacity="0.06" />
+                        <stop offset="100%" stop-color="#6C3CE1" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="blob2" cx="0.5" cy="0.5" r="0.5">
+                        <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.04" />
+                        <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="1100" cy="200" r="250" fill="url(#blob1)" />
+                <circle cx="200" cy="650" r="200" fill="url(#blob2)" />
+            </svg>
         </div>
         <div class="container hero-content hero-two-col">
             <div class="hero-text">
@@ -68,7 +112,7 @@
                         <i data-lucide="arrow-right" class="btn-icon"></i>
                     </a>
                     <a href="https://github.com/hardikkanajariya-in/kiranamitra" class="btn btn-ghost" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--text)">
                             <path
                                 d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
