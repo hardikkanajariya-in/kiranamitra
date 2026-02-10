@@ -8,7 +8,7 @@
         content="KiranaMitra — The complete offline-first POS & Inventory app built for Indian kirana stores. Manage billing, stock, customers & more. One-time purchase ₹999.">
     <meta name="keywords"
         content="kirana store app, POS app India, inventory management, billing app, offline POS, grocery store software">
-    <meta name="author" content="Hardik Kanajariya">
+    <meta name="author" content="hardikkanajariya.in">
     <meta name="theme-color" content="#6C3CE1">
     <meta property="og:title" content="KiranaMitra | POS & Inventory for Kirana Stores">
     <meta property="og:description"
@@ -27,7 +27,7 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <span class="logo-icon">🏪</span>
+                <i data-lucide="store" class="logo-icon"></i>
                 <span class="logo-text">KiranaMitra</span>
             </a>
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
@@ -49,31 +49,80 @@
             <div class="hero-gradient"></div>
             <div class="hero-particles" id="heroParticles"></div>
         </div>
-        <div class="container hero-content">
-            <div class="hero-badge" data-animate="fade-up">
-                <span class="badge-dot"></span> Built for Indian Kirana Stores
+        <div class="container hero-content hero-two-col">
+            <div class="hero-text">
+                <div class="hero-badge" data-animate="fade-up">
+                    <span class="badge-dot"></span> Built for Indian Kirana Stores
+                </div>
+                <h1 data-animate="fade-up" data-delay="100">Your Kirana Store,<br><span class="gradient-text">Digitally
+                        Powered</span></h1>
+                <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+                    Offline-first POS & Inventory Management that works without internet.
+                    Manage billing, stock, customers, and reports — all from your phone.
+                </p>
+                <div class="hero-buttons" data-animate="fade-up" data-delay="300">
+                    <a href="#pricing" class="btn btn-glow">
+                        <span>Get Started — ₹999</span>
+                        <i data-lucide="arrow-right" class="btn-icon"></i>
+                    </a>
+                    <a href="https://github.com/hardikkanajariya-in/kiranamitra" class="btn btn-ghost" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        <span>View Source</span>
+                    </a>
+                </div>
             </div>
-            <h1 data-animate="fade-up" data-delay="100">Your Kirana Store,<br><span class="gradient-text">Digitally
-                    Powered</span></h1>
-            <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
-                Offline-first POS & Inventory Management that works without internet.
-                Manage billing, stock, customers, and reports — all from your phone.
-            </p>
-            <div class="hero-buttons" data-animate="fade-up" data-delay="300">
-                <a href="#pricing" class="btn btn-glow">
-                    <span>Get Started — ₹999</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
-                <a href="https://github.com/hardikkanajariya-in/kiranamitra" class="btn btn-ghost" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    <span>View Source</span>
-                </a>
+            <div class="hero-visual" data-animate="fade-up" data-delay="200">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="mockup-header">
+                            <i data-lucide="store" class="mockup-header-icon"></i>
+                            <span>KiranaMitra</span>
+                        </div>
+                        <div class="mockup-stats-row">
+                            <div class="mockup-stat-card">
+                                <span class="mockup-stat-value">₹12,450</span>
+                                <span class="mockup-stat-label">Today's Sales</span>
+                            </div>
+                            <div class="mockup-stat-card">
+                                <span class="mockup-stat-value">23</span>
+                                <span class="mockup-stat-label">Bills</span>
+                            </div>
+                        </div>
+                        <div class="mockup-list">
+                            <div class="mockup-list-item">
+                                <div class="mockup-item-dot"></div>
+                                <div class="mockup-item-lines">
+                                    <div class="mockup-line mockup-line-long"></div>
+                                    <div class="mockup-line mockup-line-short"></div>
+                                </div>
+                                <div class="mockup-item-price">₹45</div>
+                            </div>
+                            <div class="mockup-list-item">
+                                <div class="mockup-item-dot"></div>
+                                <div class="mockup-item-lines">
+                                    <div class="mockup-line mockup-line-long"></div>
+                                    <div class="mockup-line mockup-line-short"></div>
+                                </div>
+                                <div class="mockup-item-price">₹120</div>
+                            </div>
+                            <div class="mockup-list-item">
+                                <div class="mockup-item-dot"></div>
+                                <div class="mockup-item-lines">
+                                    <div class="mockup-line mockup-line-long"></div>
+                                    <div class="mockup-line mockup-line-short"></div>
+                                </div>
+                                <div class="mockup-item-price">₹85</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="container">
             <div class="hero-stats" data-animate="fade-up" data-delay="400">
                 <div class="stat-item">
                     <span class="stat-number" data-count="9">0</span><span class="stat-suffix">+</span>
@@ -103,23 +152,23 @@
         <div class="container">
             <div class="proof-items">
                 <div class="proof-item">
-                    <span class="proof-icon">🇮🇳</span>
+                    <i data-lucide="flag" class="proof-icon"></i>
                     <span>Made in India</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-icon">📵</span>
+                    <i data-lucide="wifi-off" class="proof-icon"></i>
                     <span>No Internet Needed</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-icon">🔒</span>
+                    <i data-lucide="lock" class="proof-icon"></i>
                     <span>Data Stays on Phone</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-icon">🌍</span>
+                    <i data-lucide="globe" class="proof-icon"></i>
                     <span>3 Languages</span>
                 </div>
                 <div class="proof-item">
-                    <span class="proof-icon">⚡</span>
+                    <i data-lucide="zap" class="proof-icon"></i>
                     <span>Lightning Fast</span>
                 </div>
             </div>
@@ -136,51 +185,56 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card" data-animate="fade-up" data-delay="0">
-                    <div class="feature-icon-wrap gradient-1"><span class="feature-icon">📦</span></div>
+                    <div class="feature-icon-wrap gradient-1"><i data-lucide="package" class="feature-icon"></i></div>
                     <h3>Inventory Management</h3>
                     <p>Track stock levels, manage product variants, set reorder alerts, and handle bulk operations
                         effortlessly</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="50">
-                    <div class="feature-icon-wrap gradient-2"><span class="feature-icon">💰</span></div>
+                    <div class="feature-icon-wrap gradient-2"><i data-lucide="indian-rupee" class="feature-icon"></i>
+                    </div>
                     <h3>Billing & Payments</h3>
                     <p>Quick POS billing with Cash, Card & UPI support. Generate receipts and track all transactions</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="100">
-                    <div class="feature-icon-wrap gradient-3"><span class="feature-icon">👥</span></div>
+                    <div class="feature-icon-wrap gradient-3"><i data-lucide="users" class="feature-icon"></i></div>
                     <h3>Customer Management</h3>
                     <p>Track udhar (credit), purchase history, advance payments, and build lasting customer
                         relationships</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="150">
-                    <div class="feature-icon-wrap gradient-4"><span class="feature-icon">📊</span></div>
+                    <div class="feature-icon-wrap gradient-4"><i data-lucide="bar-chart-3" class="feature-icon"></i>
+                    </div>
                     <h3>Analytics & Reports</h3>
                     <p>Daily sales summaries, profit tracking, inventory reports, and product performance analytics</p>
                 </div>
-                <div class="feature-card" data-animate="fade-up" data-delay="200">
-                    <div class="feature-icon-wrap gradient-5"><span class="feature-icon">🖨️</span></div>
+                <div class="feature-card feature-coming-soon" data-animate="fade-up" data-delay="200">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <div class="feature-icon-wrap gradient-5"><i data-lucide="printer" class="feature-icon"></i></div>
                     <h3>Thermal Printing</h3>
-                    <p>Connect any Bluetooth thermal printer. Print bills, receipts, and stock labels instantly</p>
+                    <p>Bluetooth thermal printing for bills & receipts. Available after Phase 1 or via custom request
+                        (₹1,499)</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="250">
-                    <div class="feature-icon-wrap gradient-6"><span class="feature-icon">🌐</span></div>
+                    <div class="feature-icon-wrap gradient-6"><i data-lucide="languages" class="feature-icon"></i></div>
                     <h3>Multi-Language</h3>
                     <p>Full support for English, Hindi (हिंदी), and Gujarati (ગુજરાતી) — switch anytime</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="300">
-                    <div class="feature-icon-wrap gradient-7"><span class="feature-icon">📱</span></div>
+                    <div class="feature-icon-wrap gradient-7"><i data-lucide="smartphone" class="feature-icon"></i>
+                    </div>
                     <h3>100% Offline</h3>
                     <p>Works completely without internet. Your store data is always available, even in rural areas</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="350">
-                    <div class="feature-icon-wrap gradient-8"><span class="feature-icon">☁️</span></div>
+                    <div class="feature-icon-wrap gradient-8"><i data-lucide="cloud" class="feature-icon"></i></div>
                     <h3>Google Drive Backup</h3>
                     <p>Auto-backup to your Google Drive. Switch phones and restore everything in one tap</p>
                 </div>
                 <div class="feature-card" data-animate="fade-up" data-delay="400">
-                    <div class="feature-icon-wrap gradient-9"><span class="feature-icon">🔐</span></div>
-                    <h3>PIN Protected</h3>
-                    <p>Secure access with 4-digit PIN. Your business data stays private and protected</p>
+                    <div class="feature-icon-wrap gradient-9"><i data-lucide="file-text" class="feature-icon"></i></div>
+                    <h3>PDF Receipts</h3>
+                    <p>Generate professional PDF receipts for every transaction. Share digitally or print anytime</p>
                 </div>
             </div>
         </div>
@@ -264,7 +318,7 @@
                         <li><span class="check">✓</span> Email support</li>
                     </ul>
                     <a href="#downloads" class="btn btn-glow btn-full"><span>Buy Now — ₹999</span></a>
-                    <p class="pricing-note">Secure payment via Razorpay</p>
+                    <p class="pricing-note">Pay via Cash, UPI, or Bank Transfer</p>
                 </div>
             </div>
         </div>
@@ -280,42 +334,42 @@
             </div>
             <div class="tech-grid">
                 <div class="tech-item" data-animate="fade-up" data-delay="0">
-                    <div class="tech-logo">⚛️</div>
+                    <div class="tech-logo"><i data-lucide="smartphone"></i></div>
                     <h4>React Native 0.83</h4>
                     <p>Cross-platform mobile framework with New Architecture</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="50">
-                    <div class="tech-logo">🔷</div>
+                    <div class="tech-logo"><i data-lucide="file-code-2"></i></div>
                     <h4>TypeScript 5.8</h4>
                     <p>Full type safety across the entire codebase</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="100">
-                    <div class="tech-logo">💧</div>
+                    <div class="tech-logo"><i data-lucide="database"></i></div>
                     <h4>WatermelonDB</h4>
                     <p>High-performance SQLite for offline-first data</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="150">
-                    <div class="tech-logo">🎨</div>
+                    <div class="tech-logo"><i data-lucide="palette"></i></div>
                     <h4>Material Design 3</h4>
                     <p>Beautiful, accessible UI with React Native Paper</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="200">
-                    <div class="tech-logo">🐻</div>
+                    <div class="tech-logo"><i data-lucide="hard-drive"></i></div>
                     <h4>Zustand + MMKV</h4>
                     <p>Lightning-fast state management & persistence</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="250">
-                    <div class="tech-logo">🧭</div>
+                    <div class="tech-logo"><i data-lucide="compass"></i></div>
                     <h4>React Navigation 7</h4>
                     <p>Smooth native stack & tab navigation</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="300">
-                    <div class="tech-logo">🌍</div>
+                    <div class="tech-logo"><i data-lucide="globe"></i></div>
                     <h4>i18next</h4>
                     <p>Internationalization for EN, HI & GU</p>
                 </div>
                 <div class="tech-item" data-animate="fade-up" data-delay="350">
-                    <div class="tech-logo">🚀</div>
+                    <div class="tech-logo"><i data-lucide="rocket"></i></div>
                     <h4>GitHub Actions</h4>
                     <p>Automated CI/CD build & release pipeline</p>
                 </div>
@@ -333,22 +387,47 @@
             </div>
             <div class="download-container" data-animate="fade-up">
                 <div class="payment-box" id="paymentBox">
-                    <div class="payment-icon">🛒</div>
+                    <div class="payment-icon"><i data-lucide="shopping-cart" class="payment-lucide-icon"></i></div>
                     <h3>Purchase KiranaMitra APK</h3>
-                    <p>Pay ₹999 one-time via secure Razorpay payment gateway to get instant access to the latest APK
-                        download.</p>
+                    <p>Pay ₹999 one-time via Cash, UPI, or Bank Transfer to get the latest APK with lifetime updates.
+                    </p>
                     <div class="payment-price">
                         <span class="payment-currency">₹</span>
                         <span class="payment-amount">999</span>
                         <span class="payment-label">one-time</span>
                     </div>
-                    <button id="payBtn" class="btn btn-glow btn-full btn-large" onclick="initiatePayment()">
-                        <span>Pay ₹999 & Download</span>
-                    </button>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <i data-lucide="smartphone" class="method-icon"></i>
+                            <div>
+                                <strong>UPI Payment</strong>
+                                <p>Send ₹999 to our UPI ID and share screenshot</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <i data-lucide="building-2" class="method-icon"></i>
+                            <div>
+                                <strong>Bank Transfer</strong>
+                                <p>Request bank details via email</p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <i data-lucide="banknote" class="method-icon"></i>
+                            <div>
+                                <strong>Cash Payment</strong>
+                                <p>Available for local buyers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="mailto:hkdevs@hardikkanajariya.in?subject=KiranaMitra%20APK%20Purchase&body=Hi%2C%20I%20want%20to%20purchase%20KiranaMitra%20APK.%20Please%20share%20payment%20details."
+                        class="btn btn-glow btn-full btn-large">
+                        <span>Contact to Purchase — ₹999</span>
+                        <i data-lucide="mail" class="btn-icon"></i>
+                    </a>
                     <div class="payment-trust">
-                        <span>🔒 Secure Payment</span>
-                        <span>⚡ Instant Access</span>
-                        <span>♾️ Lifetime Updates</span>
+                        <span><i data-lucide="shield-check" class="trust-icon"></i> Secure Payment</span>
+                        <span><i data-lucide="zap" class="trust-icon"></i> Instant Access</span>
+                        <span><i data-lucide="infinity" class="trust-icon"></i> Lifetime Updates</span>
                     </div>
                 </div>
                 <div id="releases-list" class="releases-list" style="display: none;">
@@ -358,7 +437,7 @@
                 </div>
             </div>
             <div class="system-requirements" data-animate="fade-up">
-                <h3>📋 System Requirements</h3>
+                <h3><i data-lucide="clipboard-list" class="inline-icon"></i> System Requirements</h3>
                 <ul>
                     <li>Android 7.0+ (API 24+)</li>
                     <li>2GB RAM minimum (4GB recommended)</li>
@@ -425,8 +504,9 @@
                         <span class="faq-toggle">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>We accept UPI, Debit/Credit Cards, Net Banking, and wallets via Razorpay — India's most
-                            trusted payment gateway.</p>
+                        <p>We accept Cash, UPI, and Bank Transfer. Contact us at <a
+                                href="mailto:hkdevs@hardikkanajariya.in">hkdevs@hardikkanajariya.in</a> to make your
+                            payment and receive the APK.</p>
                     </div>
                 </div>
                 <div class="faq-item" data-animate="fade-up">
@@ -444,6 +524,44 @@
         </div>
     </section>
 
+    <!-- Custom Development Section -->
+    <section id="custom-dev" class="custom-dev">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Custom Solutions</span>
+                <h2>Need Something Custom?</h2>
+                <p class="subtitle">Get a tailored version of KiranaMitra built specifically for your business needs</p>
+            </div>
+            <div class="custom-dev-content" data-animate="fade-up">
+                <div class="custom-dev-card">
+                    <div class="custom-dev-icon"><i data-lucide="shield-check" class="custom-icon"></i></div>
+                    <h3>NDA-Signed Custom Development</h3>
+                    <p>Need features specific to your store? We offer confidential, NDA-signed custom development
+                        services. Get tailored modules, integrations, and workflows built exclusively for your business.
+                    </p>
+                    <ul class="custom-dev-features">
+                        <li><i data-lucide="check" class="custom-check"></i> Custom POS workflows & billing rules</li>
+                        <li><i data-lucide="check" class="custom-check"></i> Thermal printing integration (₹1,499)</li>
+                        <li><i data-lucide="check" class="custom-check"></i> Custom reporting & analytics dashboards
+                        </li>
+                        <li><i data-lucide="check" class="custom-check"></i> Third-party API integrations</li>
+                        <li><i data-lucide="check" class="custom-check"></i> NDA-signed confidential development</li>
+                        <li><i data-lucide="check" class="custom-check"></i> Dedicated support & maintenance</li>
+                    </ul>
+                    <div class="custom-dev-pricing">
+                        <span class="custom-price">Custom Quote</span>
+                        <span class="custom-price-note">Based on your requirements</span>
+                    </div>
+                    <a href="mailto:hkdevs@hardikkanajariya.in?subject=KiranaMitra%20Custom%20Development%20Inquiry"
+                        class="btn btn-outline btn-full">
+                        <i data-lucide="mail" class="btn-icon"></i>
+                        <span>Request a Quote</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Credits Section -->
     <section id="credits" class="credits">
         <div class="container">
@@ -453,7 +571,7 @@
             </div>
             <div class="credits-grid">
                 <div class="credit-card" data-animate="fade-up" data-delay="0">
-                    <div class="credit-icon">👨‍💻</div>
+                    <div class="credit-icon"><i data-lucide="code-2"></i></div>
                     <h3>Author</h3>
                     <p><strong>Hardik Kanajariya</strong></p>
                     <p>Full-stack mobile developer based in India</p>
@@ -464,7 +582,7 @@
                     </div>
                 </div>
                 <div class="credit-card" data-animate="fade-up" data-delay="100">
-                    <div class="credit-icon">📚</div>
+                    <div class="credit-icon"><i data-lucide="book-open"></i></div>
                     <h3>Open Source</h3>
                     <p>Built with <strong>15+ open-source libraries</strong> that power modern React Native development
                     </p>
@@ -473,7 +591,7 @@
                     </div>
                 </div>
                 <div class="credit-card" data-animate="fade-up" data-delay="200">
-                    <div class="credit-icon">🏪</div>
+                    <div class="credit-icon"><i data-lucide="store"></i></div>
                     <h3>Community</h3>
                     <p>Designed with feedback from Indian kirana store owners and small business managers</p>
                     <div class="credit-links">
@@ -490,7 +608,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-brand">
-                    <div class="footer-logo">🏪 KiranaMitra</div>
+                    <div class="footer-logo"><i data-lucide="store" class="footer-logo-icon"></i> KiranaMitra</div>
                     <p>The complete offline-first POS & Inventory app designed for Indian kirana stores.</p>
                     <div class="footer-social">
                         <a href="https://github.com/hardik-kanajariya" target="_blank" aria-label="GitHub">
@@ -544,14 +662,15 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 KiranaMitra by Hardik Kanajariya. All rights reserved.</p>
+                <p>&copy; 2026 KiranaMitra by <a href="https://www.hardikkanajariya.in" target="_blank"
+                        style="color:rgba(255,255,255,0.8);text-decoration:none;">hardikkanajariya.in</a>. All rights
+                    reserved.</p>
                 <p class="footer-tagline">Made with ❤️ in India</p>
             </div>
         </div>
     </footer>
 
-    <!-- Razorpay SDK -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="js/download.js"></script>
 </body>
 

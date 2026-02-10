@@ -178,7 +178,9 @@ body {
 }
 
 .logo-icon {
-    font-size: 1.6rem;
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
 }
 
 .nav-links {
@@ -294,10 +296,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 1;
-    text-align: center;
     color: #fff;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .hero-badge {
@@ -509,7 +508,9 @@ body {
 }
 
 .proof-icon {
-    font-size: 1.2rem;
+    width: 18px;
+    height: 18px;
+    stroke: rgba(255, 255, 255, 0.9);
 }
 
 /* ── Section Common ── */
@@ -601,7 +602,12 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-bottom: 1.2rem;
-    font-size: 1.6rem;
+}
+
+.feature-icon-wrap .feature-icon {
+    width: 28px;
+    height: 28px;
+    stroke: var(--primary);
 }
 
 .gradient-1 {
@@ -865,8 +871,16 @@ h2 {
 }
 
 .tech-logo {
-    font-size: 2rem;
     margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-logo svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary);
 }
 
 .tech-item h4 {
@@ -901,8 +915,10 @@ h2 {
 }
 
 .payment-icon {
-    font-size: 3rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .payment-box h3 {
@@ -1187,8 +1203,16 @@ h2 {
 }
 
 .credit-icon {
-    font-size: 2.5rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.credit-icon svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--primary);
 }
 
 .credit-card h3 {
@@ -1327,6 +1351,387 @@ h2 {
     font-size: 0.9rem;
 }
 
+/* ── Hero Two-Column ── */
+.hero-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero-two-col .hero-subtitle {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hero-two-col .hero-buttons {
+    justify-content: flex-start;
+}
+
+/* Phone Mockup */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-mockup {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 32px;
+    padding: 12px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+}
+
+.phone-notch {
+    width: 100px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin: 0 auto 12px;
+}
+
+.phone-screen {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 16px;
+    color: var(--text);
+}
+
+.mockup-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.mockup-header-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--primary);
+}
+
+.mockup-stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mockup-stat-card {
+    background: linear-gradient(135deg, rgba(108, 60, 225, 0.08), rgba(139, 92, 246, 0.08));
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.mockup-stat-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.mockup-stat-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.mockup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mockup-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: var(--light);
+    border-radius: 8px;
+}
+
+.mockup-item-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    flex-shrink: 0;
+}
+
+.mockup-item-lines {
+    flex: 1;
+}
+
+.mockup-line {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin-bottom: 4px;
+}
+
+.mockup-line-long {
+    width: 80%;
+}
+
+.mockup-line-short {
+    width: 50%;
+    margin-bottom: 0;
+}
+
+.mockup-item-price {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+/* ── Lucide Icon Sizing ── */
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+}
+
+.feature-icon {
+    width: 28px;
+    height: 28px;
+    stroke: var(--primary);
+}
+
+.proof-icon {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(255, 255, 255, 0.9);
+}
+
+.tech-logo svg,
+.tech-logo i {
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary);
+}
+
+.credit-icon svg,
+.credit-icon i {
+    width: 40px;
+    height: 40px;
+    stroke: var(--primary);
+}
+
+.inline-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+.footer-logo-icon {
+    width: 22px;
+    height: 22px;
+    stroke: #fff;
+    vertical-align: middle;
+}
+
+.payment-lucide-icon {
+    width: 48px;
+    height: 48px;
+    stroke: var(--primary);
+}
+
+.trust-icon {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+/* ── Coming Soon Badge ── */
+.feature-coming-soon {
+    position: relative;
+    opacity: 0.85;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 1;
+}
+
+/* ── Payment Methods ── */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--light);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.method-icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+    flex-shrink: 0;
+}
+
+.payment-method strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.payment-method p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ── Custom Development Section ── */
+.custom-dev {
+    background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%);
+}
+
+.custom-dev-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.custom-dev-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 3rem 2.5rem;
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow-glow);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-dev-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--accent));
+}
+
+.custom-dev-icon {
+    margin-bottom: 1.5rem;
+}
+
+.custom-icon {
+    width: 48px;
+    height: 48px;
+    stroke: var(--primary);
+}
+
+.custom-dev-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.custom-dev-card>p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.custom-dev-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.custom-dev-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.custom-dev-features li:last-child {
+    border-bottom: none;
+}
+
+.custom-check {
+    width: 18px;
+    height: 18px;
+    stroke: var(--success);
+    flex-shrink: 0;
+}
+
+.custom-dev-pricing {
+    margin-bottom: 1.5rem;
+}
+
+.custom-price {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+.custom-price-note {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
     .features-grid {
@@ -1339,6 +1744,14 @@ h2 {
 
     .footer-content {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-two-col {
+        gap: 2rem;
+    }
+
+    .phone-mockup {
+        width: 240px;
     }
 }
 
@@ -1354,6 +1767,32 @@ h2 {
     .hero {
         padding: 100px 0 60px;
         min-height: auto;
+    }
+
+    .hero-two-col {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: none;
+    }
+
+    .hero-two-col .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-two-col .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .phone-mockup {
+        width: 220px;
     }
 
     .hero h1 {
@@ -1470,5 +1909,13 @@ h2 {
 
     .proof-item {
         font-size: 0.8rem;
+    }
+
+    .custom-dev-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .payment-methods {
+        gap: 8px;
     }
 }

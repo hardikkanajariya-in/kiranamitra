@@ -48,7 +48,7 @@ All data stays on your device using WatermelonDB (SQLite). Optional Google Drive
 | 📦 **Products** | Product catalog with categories, pricing (MRP/selling), low stock alerts |
 | 📋 **Inventory** | Stock-in/stock-out tracking, inventory adjustment logs |
 | 👥 **Customers** | Customer directory, credit (udhar) ledger, advance payment wallet |
-| 🧾 **Receipts** | PDF bill generation, Bluetooth thermal printer support (ESC/POS) |
+| 🧰 **Receipts** | PDF bill generation, Bluetooth thermal printer support (Coming Soon) |
 | 📈 **Reports** | Sales reports, credit reports, filterable by date range |
 | ☁️ **Google Drive Sync** | Auto-backup database to Google Drive, restore on new device |
 | 🌐 **Multi-language** | English, Hindi (हिंदी), Gujarati (ગુજરાતી) |
@@ -246,7 +246,7 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 - [x] Dashboard with stats
 
 ### Phase 3 — Advanced Features ✅
-- [x] Bluetooth thermal printing
+- [x] Bluetooth thermal printing (Coming Soon — available via custom request)
 - [x] PDF receipt generation
 - [x] Reports (sales, credit)
 - [x] Inventory stock tracking
@@ -268,6 +268,21 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 
 ---
 
+## Custom Development
+
+Need custom features for your store? We offer **NDA-signed custom development** services:
+
+- Custom POS workflows & billing rules
+- Thermal printing integration (₹1,499)
+- Custom reporting & analytics
+- Third-party API integrations
+- Dedicated support & maintenance
+
+**Pricing:** Custom quote based on requirements.  
+**Contact:** hkdevs@hardikkanajariya.in
+
+---
+
 ## Pricing
 
 | | Source Code | Pre-built APK |
@@ -277,6 +292,7 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 | **Includes** | Full codebase | Signed APK + lifetime updates |
 | **Support** | Community (GitHub Issues) | Email support |
 | **Commercial use** | ❌ Not permitted | ✅ Use in your store |
+| **Payment** | — | Cash, UPI, or Bank Transfer |
 
 > **Note:** You can always build the APK yourself from source for personal use. The ₹999 fee is for the convenience of a pre-built, signed, and tested APK with support.
 
@@ -284,7 +300,7 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 
 ## Author
 
-**Hardik Kanajariya**
+**hardikkanajariya.in**
 
 - 🌐 Website: [hardikkanajariya.in](https://www.hardikkanajariya.in)
 - 🐙 GitHub: [@hardik-kanajariya](https://github.com/hardik-kanajariya)

@@ -3,69 +3,7 @@
 // ============================================
 
 // ── Configuration ──
-const RAZORPAY_KEY = 'YOUR_RAZORPAY_KEY_ID'; // TODO: Replace with your Razorpay Key ID
-const PAYMENT_AMOUNT = 99900; // ₹999 in paise
 const GITHUB_RELEASES_URL = 'https://api.github.com/repos/hardikkanajariya-in/kiranamitra/releases';
-
-// ── Razorpay Payment ──
-function initiatePayment() {
-    if (RAZORPAY_KEY === 'YOUR_RAZORPAY_KEY_ID') {
-        // Fallback: If Razorpay isn't configured, show direct contact
-        alert('Payment gateway is being set up. Please contact hkdevs@hardikkanajariya.in to purchase.');
-        return;
-    }
-
-    const options = {
-        key: RAZORPAY_KEY,
-        amount: PAYMENT_AMOUNT,
-        currency: 'INR',
-        name: 'KiranaMitra',
-        description: 'KiranaMitra APK — One-time Purchase',
-        image: '',
-        handler: function (response) {
-            // Payment successful — reveal downloads
-            onPaymentSuccess(response.razorpay_payment_id);
-        },
-        prefill: {},
-        theme: { color: '#6C3CE1' },
-        modal: {
-            ondismiss: function () {
-                console.log('Payment cancelled');
-            }
-        }
-    };
-
-    try {
-        const rzp = new Razorpay(options);
-        rzp.on('payment.failed', function (response) {
-            alert('Payment failed. Please try again or contact support.');
-            console.error('Payment failed:', response.error);
-        });
-        rzp.open();
-    } catch (e) {
-        alert('Payment gateway is loading. Please try again in a moment.');
-        console.error('Razorpay error:', e);
-    }
-}
-
-function onPaymentSuccess(paymentId) {
-    const paymentBox = document.getElementById('paymentBox');
-    const releasesList = document.getElementById('releases-list');
-
-    // Show success message
-    paymentBox.innerHTML = `
-        <div style="text-align:center;padding:2rem 0;">
-            <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-            <h3 style="color:#10B981;margin-bottom:0.5rem;">Payment Successful!</h3>
-            <p style="color:#64748B;margin-bottom:0.5rem;">Payment ID: ${paymentId}</p>
-            <p style="color:#64748B;">Your download links are ready below.</p>
-        </div>
-    `;
-
-    // Show download links
-    releasesList.style.display = 'block';
-    loadReleases();
-}
 
 // ── Fetch GitHub Releases ──
 async function loadReleases() {
@@ -106,7 +44,7 @@ function createReleaseCard(release) {
     const downloadButtons = apkAssets.length > 0
         ? apkAssets.map(asset => `
             <a href="${asset.browser_download_url}" class="download-btn" download>
-                📥 ${asset.name}
+                <i data-lucide="download" style="width:18px;height:18px;stroke:currentColor;"></i> ${asset.name}
                 <span style="font-size:0.8rem;opacity:0.8">(${formatFileSize(asset.size)})</span>
             </a>
         `).join('')
@@ -263,6 +201,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ── Initialize Everything ──
 function init() {
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
     createParticles();
     initScrollAnimations();
     animateCounters();
