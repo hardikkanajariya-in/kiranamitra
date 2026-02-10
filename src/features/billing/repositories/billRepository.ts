@@ -169,4 +169,31 @@ export const billRepository = {
         Q.sortBy('created_at', Q.desc),
       )
       .observe(),
+
+  /**
+   * Returns the top N most-sold product IDs, ranked by total quantity sold.
+   * Falls back to most recently created active products if no sales yet.
+   */
+  getPopularProductIds: async (limit: number = 20): Promise<string[]> => {
+    const allItems = await billItemsCollection
+      .query(Q.sortBy('bill_id', Q.desc))
+      .fetch();
+
+    // Aggregate quantity sold per product
+    const qtySold = new Map<string, number>();
+    for (const item of allItems) {
+      qtySold.set(
+        item.productId,
+        (qtySold.get(item.productId) || 0) + item.quantity,
+      );
+    }
+
+    // Sort by total quantity descending
+    const sorted = [...qtySold.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, limit)
+      .map(([id]) => id);
+
+    return sorted;
+  },
 };

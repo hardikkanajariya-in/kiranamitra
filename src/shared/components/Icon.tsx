@@ -35,7 +35,7 @@ import {
   Banknote,
   Smartphone,
   CreditCard,
-  UserClock,
+  Clock,
   History,
   Trash2,
   ShoppingCart,
@@ -48,6 +48,7 @@ import {
   CheckCircle2,
   Eye,
   EyeOff,
+  FileText,
   type LucideProps,
 } from 'lucide-react-native';
 
@@ -116,7 +117,7 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
   'cash': Banknote,
   'cellphone': Smartphone,
   'credit-card': CreditCard,
-  'account-clock': UserClock,
+  'account-clock': Clock,
   'cart-outline': ShoppingCart,
   'account': User,
   'user': User,
@@ -126,6 +127,9 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
 
   // Printing
   'bluetooth': Bluetooth,
+
+  // Documents
+  'file-text': FileText,
 
   // Misc
   'check-circle-outline': CheckCircle2,

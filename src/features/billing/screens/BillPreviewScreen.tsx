@@ -62,7 +62,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
 
   const preparePdfData = (): BillPdfData | null => {
     if (!bill) return null;
-    
+
     return {
       storeName: storeProfile.name,
       storeAddress: storeProfile.address,
@@ -92,6 +92,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
 
     setIsGeneratingPdf(true);
     try {
+      console.log('Generating PDF with data:', pdfData);
       await billPdfService.sharePdf(pdfData);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : t('common:error');
@@ -138,7 +139,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
         showBack
         onBack={() => navigation.goBack()}
         actions={[
-          { icon: 'share-variant', onPress: handleSharePdf, disabled: isGeneratingPdf },
+          { icon: 'share-variant', onPress: handleSharePdf },
         ]}
       />
 
@@ -252,7 +253,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
         <Button
           mode="outlined"
           onPress={handleSharePdf}
-          icon={paperIcon('file-pdf-box')}
+          icon={paperIcon('file-text')}
           style={[styles.actionButton, styles.shareButton]}
           contentStyle={styles.actionButtonContent}
           loading={isGeneratingPdf}

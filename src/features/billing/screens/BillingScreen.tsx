@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, StyleSheet, ScrollView, Alert } from 'react-native';
 import { useTheme, Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppHeader } from '@shared/components/AppHeader';
 import { paperIcon } from '@shared/components/Icon';
 import { ProductSearchBar } from '../components/ProductSearchBar';
-import { ProductQuickAdd } from '../components/ProductQuickAdd';
+import { PopularProductsList } from '../components/PopularProductsList';
 import { CartItemRow } from '../components/CartItemRow';
 import { CartSummary } from '../components/CartSummary';
 import { PaymentModeSelector } from '../components/PaymentModeSelector';
@@ -37,7 +37,7 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
         clearCart,
     } = useBillingStore();
 
-    const handleAddProduct = (product: Product) => {
+    const handleAddProduct = useCallback((product: Product) => {
         if (product.currentStock <= 0) {
             Alert.alert(t('outOfStock'), t('outOfStockMessage'));
             return;
@@ -52,7 +52,24 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
             unit: product.unit,
             availableStock: product.currentStock,
         });
-    };
+    }, [addToCart, t]);
+
+    const handleAddMultipleProducts = useCallback(
+        (items: { product: Product; quantity: number }[]) => {
+            for (const { product, quantity } of items) {
+                addToCart({
+                    productId: product.id,
+                    productName: product.name,
+                    quantity,
+                    unitPrice: product.sellingPrice,
+                    discount: 0,
+                    unit: product.unit,
+                    availableStock: product.currentStock,
+                });
+            }
+        },
+        [addToCart],
+    );
 
     const handleCreateBill = async () => {
         if (cartItems.length === 0) {
@@ -96,8 +113,8 @@ export const BillingScreen: React.FC<{ navigation: NavigationProp }> = ({ naviga
             <ProductSearchBar onSelectProduct={handleAddProduct} />
 
             {cartItems.length === 0 ? (
-                <ProductQuickAdd
-                    onAddProduct={handleAddProduct}
+                <PopularProductsList
+                    onAddProducts={handleAddMultipleProducts}
                     cartProductIds={cartItems.map((item) => item.productId)}
                 />
             ) : (
