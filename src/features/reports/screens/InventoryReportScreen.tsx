@@ -120,6 +120,7 @@ export const InventoryReportScreen: React.FC<{ navigation: NavigationProp }> = (
                         <Chip
                             key={f}
                             selected={filter === f}
+                            showSelectedCheck={false}
                             onPress={() => setFilter(f)}
                             compact
                         >

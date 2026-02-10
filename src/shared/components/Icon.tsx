@@ -42,13 +42,31 @@ import {
   User,
   Check,
   Pencil,
-  PlusMinusIcon,
   Share2,
   Bluetooth,
   CheckCircle2,
   Eye,
   EyeOff,
   FileText,
+  Cloud,
+  LogIn,
+  LogOut,
+  RefreshCw,
+  Database,
+  Coffee,
+  Cookie,
+  CupSoda,
+  Wheat,
+  Nut,
+  Milk,
+  Flame,
+  Sparkles,
+  Box,
+  Droplets,
+  UtensilsCrossed,
+  FlaskConical,
+  Drumstick,
+  Container,
   type LucideProps,
 } from 'lucide-react-native';
 
@@ -122,7 +140,7 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
   'account': User,
   'user': User,
   'history': History,
-  'plus-minus': PlusMinusIcon,
+  'plus-minus': Plus,
   'share-variant': Share2,
 
   // Printing
@@ -139,6 +157,35 @@ const iconMap: Record<string, React.FC<LucideProps>> = {
   'eye-off': EyeOff,
   'eye-outline': Eye,
   'eye-off-outline': EyeOff,
+
+  // Google Drive / Sync
+  'cloud': Cloud,
+  'log-in': LogIn,
+  'log-out': LogOut,
+  'refresh-cw': RefreshCw,
+
+  // Data
+  'database': Database,
+
+  // Status
+  'check-circle': CheckCircle2,
+
+  // Product Categories (kirana store)
+  'coffee': Coffee,
+  'cookie': Cookie,
+  'cup-water': CupSoda,
+  'grain': Wheat,
+  'barley': Wheat,
+  'peanut': Nut,
+  'cow': Milk,
+  'bottle-tonic': FlaskConical,
+  'food-drumstick': Drumstick,
+  'face-man-shimmer': Sparkles,
+  'candle': Flame,
+  'food-variant': UtensilsCrossed,
+  'hand-wash': Droplets,
+  'shaker-outline': Container,
+  'cube-outline': Box,
 };
 
 export interface AppIconProps {
