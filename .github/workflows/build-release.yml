@@ -1,6 +1,8 @@
 name: Build & Release APK
 
 on:
+  push:
+    branches: [master]
   workflow_dispatch:
     inputs:
       bump:
@@ -35,31 +37,53 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Skip if release commit
+        id: skip
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%s)
+          if [[ "$COMMIT_MSG" == release:* ]]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⏭️ Skipping release commit: $COMMIT_MSG"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up JDK 17
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Set up Node.js
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
+        if: steps.skip.outputs.skip != 'true'
         run: npm ci
 
       # ── Version Bump ──────────────────────────────────────────────
       - name: Calculate next version
+        if: steps.skip.outputs.skip != 'true'
         id: version
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           echo "current=$CURRENT_VERSION" >> $GITHUB_OUTPUT
 
+          # Default to 'minor' on push, use input on manual dispatch
+          BUMP_TYPE="${{ inputs.bump }}"
+          if [ -z "$BUMP_TYPE" ]; then
+            BUMP_TYPE="minor"
+          fi
+          echo "bump=$BUMP_TYPE" >> $GITHUB_OUTPUT
+
           IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
 
-          case "${{ inputs.bump }}" in
+          case "$BUMP_TYPE" in
             major)
               MAJOR=$((MAJOR + 1))
               MINOR=0
@@ -84,6 +108,7 @@ jobs:
           echo "📦 Version: $CURRENT_VERSION → $NEW_VERSION (versionCode: $VERSION_CODE)"
 
       - name: Update package.json version
+        if: steps.skip.outputs.skip != 'true'
         run: |
           node -e "
             const fs = require('fs');
@@ -93,6 +118,7 @@ jobs:
           "
 
       - name: Update android/app/build.gradle version
+        if: steps.skip.outputs.skip != 'true'
         run: |
           sed -i "s/versionCode [0-9]*/versionCode ${{ steps.version.outputs.code }}/" android/app/build.gradle
           sed -i 's/versionName "[^"]*"/versionName "${{ steps.version.outputs.new }}"/' android/app/build.gradle
@@ -102,12 +128,14 @@ jobs:
 
       # ── Caching ────────────────────────────────────────────────────
       - name: Cache Gradle wrapper
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/cache@v4
         with:
           path: ~/.gradle/wrapper
           key: gradle-wrapper-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Cache Gradle dependencies
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -119,6 +147,7 @@ jobs:
 
       # ── Signing ────────────────────────────────────────────────────
       - name: Generate release keystore
+        if: steps.skip.outputs.skip != 'true'
         run: |
           keytool -genkeypair \
             -v \
@@ -133,6 +162,7 @@ jobs:
             -dname "CN=KiranaMitra, OU=Mobile, O=KiranaMitra, L=India, ST=GJ, C=IN"
 
       - name: Configure signing
+        if: steps.skip.outputs.skip != 'true'
         run: |
           cat >> android/gradle.properties <<EOF
           MYAPP_UPLOAD_STORE_FILE=kiranamitra-release.keystore
@@ -142,6 +172,7 @@ jobs:
           EOF
 
       - name: Update build.gradle signing config
+        if: steps.skip.outputs.skip != 'true'
         run: |
           sed -i 's|signingConfig signingConfigs.debug|signingConfig signingConfigs.release|' android/app/build.gradle
           sed -i '/signingConfigs {/,/}/ {
@@ -157,16 +188,19 @@ jobs:
 
       # ── Build ──────────────────────────────────────────────────────
       - name: Build Release APK
+        if: steps.skip.outputs.skip != 'true'
         working-directory: android
         run: ./gradlew assembleRelease --no-daemon
 
       - name: Rename APK with version
+        if: steps.skip.outputs.skip != 'true'
         run: |
           mv android/app/build/outputs/apk/release/app-release.apk \
              android/app/build/outputs/apk/release/KiranaMitra-v${{ steps.version.outputs.new }}.apk
 
       # ── Commit & Tag ───────────────────────────────────────────────
       - name: Commit version bump
+        if: steps.skip.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -177,6 +211,7 @@ jobs:
 
       # ── Release ────────────────────────────────────────────────────
       - name: Generate changelog
+        if: steps.skip.outputs.skip != 'true'
         id: changelog
         run: |
           PREV_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
@@ -205,6 +240,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
+        if: steps.skip.outputs.skip != 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.new }}
@@ -215,6 +251,7 @@ jobs:
           prerelease: false
 
       - name: Upload APK artifact
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: KiranaMitra-v${{ steps.version.outputs.new }}
