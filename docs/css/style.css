@@ -101,17 +101,31 @@ body {
     }
 }
 
-@keyframes gradient-shift {
+@keyframes subtle-drift {
     0% {
-        background-position: 0% 50%
+        transform: translate(0, 0) rotate(0deg);
     }
 
-    50% {
-        background-position: 100% 50%
+    33% {
+        transform: translate(30px, -20px) rotate(1deg);
+    }
+
+    66% {
+        transform: translate(-20px, 15px) rotate(-1deg);
     }
 
     100% {
-        background-position: 0% 50%
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(120px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(120px) rotate(-360deg);
     }
 }
 
@@ -268,14 +282,45 @@ body {
     position: absolute;
     inset: 0;
     z-index: 0;
+    background: var(--secondary);
+    overflow: hidden;
+}
+
+/* Subtle dot grid pattern */
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(108, 60, 225, 0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
+    z-index: 0;
+}
+
+/* Large decorative glow blob - top right */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(108, 60, 225, 0.25) 0%, rgba(108, 60, 225, 0.08) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: subtle-drift 12s ease-in-out infinite;
+    z-index: 0;
 }
 
 .hero-gradient {
+    /* Repurposed as a second decorative blob - bottom left */
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 25%, #4C1D95 50%, #6C3CE1 75%, #7C3AED 100%);
-    background-size: 300% 300%;
-    animation: gradient-shift 8s ease infinite;
+    bottom: -15%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(245, 158, 11, 0.05) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: subtle-drift 15s ease-in-out infinite reverse;
+    z-index: 0;
 }
 
 .hero-particles {
@@ -288,9 +333,34 @@ body {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(139, 92, 246, 0.4);
     border-radius: 50%;
     animation: particle-float var(--duration, 6s) ease-in-out infinite;
+}
+
+/* Decorative geometric rings */
+.hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(108, 60, 225, 0.15);
+    z-index: 0;
+}
+
+.hero-ring-1 {
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    right: 5%;
+    animation: subtle-drift 20s ease-in-out infinite;
+}
+
+.hero-ring-2 {
+    width: 250px;
+    height: 250px;
+    bottom: 15%;
+    left: 8%;
+    border-color: rgba(245, 158, 11, 0.1);
+    animation: subtle-drift 16s ease-in-out infinite reverse;
 }
 
 .hero-content {
@@ -303,9 +373,9 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(108, 60, 225, 0.15);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(108, 60, 225, 0.3);
     padding: 8px 20px;
     border-radius: 100px;
     font-size: 0.9rem;
@@ -382,14 +452,15 @@ body {
 }
 
 .btn-ghost {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(10px);
 }
 
 .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
@@ -422,9 +493,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(108, 60, 225, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(108, 60, 225, 0.2);
     border-radius: 16px;
     padding: 1.5rem 2rem;
     width: 100%;
@@ -459,7 +530,7 @@ body {
 .stat-divider {
     width: 1px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(139, 92, 246, 0.35);
 }
 
 /* Scroll Indicator */
@@ -1389,19 +1460,20 @@ h2 {
 
 .phone-mockup {
     width: 280px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
     border-radius: 32px;
     padding: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
     position: relative;
     animation: float 4s ease-in-out infinite;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(108, 60, 225, 0.15);
 }
 
 .phone-notch {
     width: 100px;
     height: 6px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     margin: 0 auto 12px;
 }
