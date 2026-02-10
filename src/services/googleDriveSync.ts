@@ -31,6 +31,9 @@ const TABLE_NAMES = [
 
 const BACKUP_FILENAME = 'kiranamitra_backup.json';
 const SYNC_STATE_KEY = 'google_drive_sync_state';
+const UPLOAD_TIMEOUT_MS = 120_000; // 2 minutes
+const MAX_UPLOAD_RETRIES = 3;
+const RETRY_BASE_DELAY_MS = 2_000;
 
 // ── Helpers ──
 const serializeRecord = (record: { _raw: Record<string, unknown> }): Record<string, unknown> => {
@@ -208,49 +211,76 @@ export const googleDriveSync = {
 
     /**
      * Upload backup JSON to Google Drive appData folder.
+     * Retries up to MAX_UPLOAD_RETRIES times with exponential backoff.
      */
     uploadToDrive: async (jsonContent: string): Promise<boolean> => {
         const gsModule = getGoogleSignIn();
         const GDriveClass = getGDrive();
         if (!gsModule || !GDriveClass) { return false; }
 
-        try {
-            const tokens = await gsModule.GoogleSignin.getTokens();
-            const gdrive = new GDriveClass();
-            gdrive.accessToken = tokens.accessToken;
+        for (let attempt = 1; attempt <= MAX_UPLOAD_RETRIES; attempt++) {
+            try {
+                // Refresh tokens on every attempt to avoid stale-token aborts
+                const tokens = await gsModule.GoogleSignin.getTokens();
+                const gdrive = new GDriveClass();
+                gdrive.accessToken = tokens.accessToken;
 
-            // Search for existing backup file in appDataFolder
-            const list = await gdrive.files.list({
-                q: `name='${BACKUP_FILENAME}' and trashed=false`,
-                spaces: 'appDataFolder',
-                fields: 'files(id, name)',
-            });
+                // Apply a fetch timeout via AbortController so large uploads
+                // don't hang indefinitely.
+                gdrive.fetchTimeout = UPLOAD_TIMEOUT_MS;
 
-            const existingFile = list?.files?.[0];
+                // Search for existing backup file in appDataFolder
+                const list = await gdrive.files.list({
+                    q: `name='${BACKUP_FILENAME}' and trashed=false`,
+                    spaces: 'appDataFolder',
+                    fields: 'files(id, name)',
+                });
 
-            if (existingFile?.id) {
-                // Update existing file
-                await gdrive.files.newMultipartUploader()
-                    .setIdOfFileToUpdate(existingFile.id)
-                    .setData(jsonContent, 'application/json')
-                    .execute();
-            } else {
-                // Create new file
-                await gdrive.files.newMultipartUploader()
-                    .setData(jsonContent, 'application/json')
-                    .setRequestBody({
-                        name: BACKUP_FILENAME,
-                        parents: ['appDataFolder'],
-                    })
-                    .execute();
+                const existingFile = list?.files?.[0];
+
+                if (existingFile?.id) {
+                    // Update existing file
+                    await gdrive.files.newMultipartUploader()
+                        .setIdOfFileToUpdate(existingFile.id)
+                        .setData(jsonContent, 'application/json')
+                        .execute();
+                } else {
+                    // Create new file
+                    await gdrive.files.newMultipartUploader()
+                        .setData(jsonContent, 'application/json')
+                        .setRequestBody({
+                            name: BACKUP_FILENAME,
+                            parents: ['appDataFolder'],
+                        })
+                        .execute();
+                }
+
+                setSyncState({ lastSyncedAt: dayjs().toISOString() });
+                return true;
+            } catch (error) {
+                const isAbortOrNetwork =
+                    error instanceof Error &&
+                    (/abort/i.test(error.message) ||
+                        /network/i.test(error.message) ||
+                        /timeout/i.test(error.message));
+
+                console.warn(
+                    `[GoogleDriveSync] upload attempt ${attempt}/${MAX_UPLOAD_RETRIES} failed:`,
+                    error,
+                );
+
+                if (!isAbortOrNetwork || attempt === MAX_UPLOAD_RETRIES) {
+                    console.error('Google Drive upload error:', error);
+                    return false;
+                }
+
+                // Exponential back-off: 2s → 4s → 8s …
+                const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
+                await new Promise(resolve => setTimeout(resolve, delay));
             }
-
-            setSyncState({ lastSyncedAt: dayjs().toISOString() });
-            return true;
-        } catch (error) {
-            console.error('Google Drive upload error:', error);
-            return false;
         }
+
+        return false;
     },
 
     /**
