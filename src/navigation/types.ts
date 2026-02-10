@@ -2,12 +2,6 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 
-// ── Auth Stack ──
-export type AuthStackParamList = {
-  PinCreate: undefined;
-  PinLogin: undefined;
-};
-
 // ── Dashboard Stack ──
 export type DashboardStackParamList = {
   DashboardHome: undefined;
@@ -58,7 +52,6 @@ export type MainTabParamList = {
 
 // ── Root Navigator ──
 export type RootStackParamList = {
-  Auth: NavigatorScreenParams<AuthStackParamList>;
   Main: NavigatorScreenParams<MainTabParamList>;
 };
 

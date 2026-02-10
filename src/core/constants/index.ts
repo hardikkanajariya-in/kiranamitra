@@ -51,6 +51,8 @@ export const UNIT_OPTIONS: { value: ProductUnit; labelKey: string }[] = [
 export const CREDIT_ENTRY_TYPES = {
   CREDIT: 'credit',
   PAYMENT: 'payment',
+  ADVANCE: 'advance',
+  ADVANCE_USED: 'advance_used',
 } as const;
 
 export type CreditEntryType = (typeof CREDIT_ENTRY_TYPES)[keyof typeof CREDIT_ENTRY_TYPES];

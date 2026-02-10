@@ -4,7 +4,6 @@ import { Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { AppIcon } from '@shared/components/Icon';
 import { CurrencyText } from '@shared/components/CurrencyText';
-import { Colors } from '@core/theme/colors';
 
 interface TodaySalesHeroProps {
     todaySales: number;
@@ -21,49 +20,50 @@ export const TodaySalesHero: React.FC<TodaySalesHeroProps> = ({
     const { t } = useTranslation('dashboard');
 
     const avgBill = todayBillCount > 0 ? todaySales / todayBillCount : 0;
+    const onPrimary = theme.colors.onPrimary;
 
     return (
-        <View style={[styles.container, { backgroundColor: theme.colors.primary }]}>
+        <View style={[styles.container, { backgroundColor: theme.colors.primary, shadowColor: theme.colors.shadow }]}>
             <View style={styles.heroContent}>
                 <View style={styles.mainStat}>
-                    <Text variant="labelLarge" style={styles.whiteLabel}>
+                    <Text variant="labelLarge" style={[styles.whiteLabel, { color: onPrimary + 'CC' }]}>
                         {t('todaySales')}
                     </Text>
                     <CurrencyText
                         amount={todaySales}
                         variant="displaySmall"
-                        color="#FFFFFF"
+                        color={onPrimary}
                     />
                 </View>
 
                 <View style={styles.subStats}>
                     <View style={styles.subStat}>
-                        <View style={[styles.subStatIcon, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
-                            <AppIcon name="receipt" size={16} color="#FFFFFF" />
+                        <View style={[styles.subStatIcon, { backgroundColor: onPrimary + '33' }]}>
+                            <AppIcon name="receipt" size={16} color={onPrimary} />
                         </View>
                         <View>
-                            <Text variant="titleMedium" style={styles.whiteText}>
+                            <Text variant="titleMedium" style={{ color: onPrimary, fontWeight: '700' }}>
                                 {todayBillCount}
                             </Text>
-                            <Text variant="labelSmall" style={styles.whiteSubLabel}>
+                            <Text variant="labelSmall" style={{ color: onPrimary + 'B3', marginTop: 1 }}>
                                 {t('bills')}
                             </Text>
                         </View>
                     </View>
 
-                    <View style={[styles.subStatDivider, { backgroundColor: 'rgba(255,255,255,0.3)' }]} />
+                    <View style={[styles.subStatDivider, { backgroundColor: onPrimary + '4D' }]} />
 
                     <View style={styles.subStat}>
-                        <View style={[styles.subStatIcon, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
-                            <AppIcon name="chart-line" size={16} color="#FFFFFF" />
+                        <View style={[styles.subStatIcon, { backgroundColor: onPrimary + '33' }]}>
+                            <AppIcon name="chart-line" size={16} color={onPrimary} />
                         </View>
                         <View>
                             <CurrencyText
                                 amount={avgBill}
                                 variant="titleMedium"
-                                color="#FFFFFF"
+                                color={onPrimary}
                             />
-                            <Text variant="labelSmall" style={styles.whiteSubLabel}>
+                            <Text variant="labelSmall" style={{ color: onPrimary + 'B3', marginTop: 1 }}>
                                 {t('avgBillValue')}
                             </Text>
                         </View>
@@ -72,14 +72,14 @@ export const TodaySalesHero: React.FC<TodaySalesHeroProps> = ({
             </View>
 
             {/* Monthly trend strip */}
-            <View style={[styles.monthStrip, { backgroundColor: Colors.primaryDark }]}>
+            <View style={[styles.monthStrip, { backgroundColor: onPrimary + '1A' }]}>
                 <View style={styles.monthStripContent}>
-                    <AppIcon name="chart-bar" size={16} color="rgba(255,255,255,0.7)" />
-                    <Text variant="labelMedium" style={styles.monthLabel}>
+                    <AppIcon name="chart-bar" size={16} color={onPrimary + 'B3'} />
+                    <Text variant="labelMedium" style={{ color: onPrimary + 'CC' }}>
                         {t('monthSales')}
                     </Text>
                 </View>
-                <CurrencyText amount={monthSales} variant="titleSmall" color="#FFFFFF" />
+                <CurrencyText amount={monthSales} variant="titleSmall" color={onPrimary} />
             </View>
         </View>
     );
@@ -88,10 +88,9 @@ export const TodaySalesHero: React.FC<TodaySalesHeroProps> = ({
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: 16,
-        borderRadius: 8,
+        borderRadius: 16,
         overflow: 'hidden',
         elevation: 4,
-        shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.15,
         shadowRadius: 8,
@@ -104,17 +103,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     whiteLabel: {
-        color: 'rgba(255,255,255,0.8)',
         marginBottom: 4,
         letterSpacing: 0.5,
-    },
-    whiteText: {
-        color: '#FFFFFF',
-        fontWeight: '700',
-    },
-    whiteSubLabel: {
-        color: 'rgba(255,255,255,0.7)',
-        marginTop: 1,
     },
     subStats: {
         flexDirection: 'row',
@@ -149,8 +139,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 8,
-    },
-    monthLabel: {
-        color: 'rgba(255,255,255,0.8)',
     },
 });

@@ -19,12 +19,12 @@ export const ProductSeeder: React.FC = () => {
     try {
       const result = await seedProducts();
       Alert.alert(
-        'Seed Complete',
-        `Added ${result.categories} categories and ${result.products} products with random stock.`,
+        t('seedComplete'),
+        t('seedCompleteDesc', { categories: result.categories, products: result.products }),
       );
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to seed products';
-      Alert.alert('Seed Failed', message);
+      const message = error instanceof Error ? error.message : t('seedFailed');
+      Alert.alert(t('seedFailed'), message);
     } finally {
       setLoading(false);
     }
@@ -35,9 +35,9 @@ export const ProductSeeder: React.FC = () => {
     setLoading(true);
     try {
       await clearAllProducts();
-      Alert.alert('Cleared', 'All products and categories have been removed.');
-    } catch (error) {
-      Alert.alert('Error', 'Failed to clear products.');
+      Alert.alert(t('cleared'), t('clearedDesc'));
+    } catch (_error) {
+      Alert.alert(t('error'), t('clearFailed'));
     } finally {
       setLoading(false);
     }
@@ -46,12 +46,12 @@ export const ProductSeeder: React.FC = () => {
   return (
     <>
       <List.Subheader style={{ color: theme.colors.primary }}>
-        Sample Data
+        {t('sampleData')}
       </List.Subheader>
 
       <List.Item
-        title="Load Sample Products"
-        description="Add 120+ Gujarat/Saurashtra region kirana products with categories"
+        title={t('loadSampleProducts')}
+        description={t('loadSampleProductsDesc')}
         left={(props) => <List.Icon {...props} icon={paperIcon('database')} />}
         right={(props) => <List.Icon {...props} icon={paperIcon('chevron-right')} />}
         onPress={() => setConfirmVisible(true)}
@@ -60,8 +60,8 @@ export const ProductSeeder: React.FC = () => {
       />
 
       <List.Item
-        title="Clear All Products"
-        description="Remove all products and categories"
+        title={t('clearAllProducts')}
+        description={t('clearAllProductsDesc')}
         left={(props) => (
           <List.Icon {...props} icon={paperIcon('trash-2')} color={theme.colors.error} />
         )}
@@ -73,18 +73,18 @@ export const ProductSeeder: React.FC = () => {
 
       <ConfirmDialog
         visible={confirmVisible}
-        title="Load Sample Products"
-        message="This will add ~120 sample kirana products with 15 categories to your database. Works only if no products exist yet. Continue?"
-        confirmLabel="Load"
+        title={t('loadSampleProducts')}
+        message={t('loadSampleConfirm')}
+        confirmLabel={t('loadLabel')}
         onConfirm={handleSeed}
         onDismiss={() => setConfirmVisible(false)}
       />
 
       <ConfirmDialog
         visible={clearConfirmVisible}
-        title="Clear All Products"
-        message="This will permanently delete ALL products and categories. This action cannot be undone. Are you sure?"
-        confirmLabel="Clear All"
+        title={t('clearAllProducts')}
+        message={t('clearAllConfirm')}
+        confirmLabel={t('clearAllLabel')}
         onConfirm={handleClear}
         onDismiss={() => setClearConfirmVisible(false)}
         destructive

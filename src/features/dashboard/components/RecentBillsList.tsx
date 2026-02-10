@@ -7,23 +7,11 @@ import { CurrencyText } from '@shared/components/CurrencyText';
 import { formatTime } from '@shared/utils/date';
 import Bill from '@core/database/models/Bill';
 import { BILL_STATUSES } from '@core/constants';
-import { Colors } from '@core/theme/colors';
 
 interface RecentBillsListProps {
     bills: Bill[];
     onViewAll: () => void;
 }
-
-const getStatusStyle = (status: string) => {
-    switch (status) {
-        case BILL_STATUSES.COMPLETED:
-            return { bg: Colors.successBg, color: Colors.success, icon: 'check-circle-outline' };
-        case BILL_STATUSES.CANCELLED:
-            return { bg: Colors.errorBg, color: Colors.error, icon: 'close' };
-        default:
-            return { bg: Colors.warningBg, color: Colors.warning, icon: 'account-clock' };
-    }
-};
 
 const getPaymentIcon = (mode: string) => {
     switch (mode) {
@@ -43,6 +31,17 @@ const getPaymentIcon = (mode: string) => {
 export const RecentBillsList: React.FC<RecentBillsListProps> = ({ bills, onViewAll }) => {
     const theme = useTheme();
     const { t } = useTranslation('dashboard');
+
+    const getStatusStyle = (status: string) => {
+        switch (status) {
+            case BILL_STATUSES.COMPLETED:
+                return { bg: theme.colors.primaryContainer, color: theme.colors.onPrimaryContainer, icon: 'check-circle-outline' };
+            case BILL_STATUSES.CANCELLED:
+                return { bg: theme.colors.errorContainer, color: theme.colors.onErrorContainer, icon: 'close' };
+            default:
+                return { bg: theme.colors.tertiaryContainer, color: theme.colors.onTertiaryContainer, icon: 'account-clock' };
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -123,19 +122,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 32,
-        borderRadius: 8,
+        borderRadius: 12,
         elevation: 1,
-        shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.08,
         shadowRadius: 4,
     },
     billsCard: {
-        borderRadius: 8,
+        borderRadius: 12,
         paddingHorizontal: 16,
         paddingVertical: 4,
         elevation: 1,
-        shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.08,
         shadowRadius: 4,

@@ -3,7 +3,6 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
-import { Colors } from '@core/theme/colors';
 
 interface LowStockAlertProps {
     lowStockCount: number;
@@ -27,13 +26,13 @@ export const LowStockAlert: React.FC<LowStockAlertProps> = ({
 
     return (
         <TouchableOpacity
-            style={[styles.card, { backgroundColor: theme.colors.surface }]}
+            style={[styles.card, { backgroundColor: theme.colors.surface, shadowColor: theme.colors.shadow }]}
             onPress={onPress}
             activeOpacity={0.7}
         >
             <View style={styles.row}>
-                <View style={[styles.iconContainer, { backgroundColor: Colors.warningBg }]}>
-                    <AppIcon name="alert-circle" size={22} color={Colors.warning} />
+                <View style={[styles.iconContainer, { backgroundColor: theme.colors.tertiaryContainer }]}>
+                    <AppIcon name="alert-circle" size={22} color={theme.colors.onTertiaryContainer} />
                 </View>
 
                 <View style={styles.content}>
@@ -42,17 +41,17 @@ export const LowStockAlert: React.FC<LowStockAlertProps> = ({
                     </Text>
                     <View style={styles.badges}>
                         {outOfStockCount > 0 && (
-                            <View style={[styles.badge, { backgroundColor: Colors.errorBg }]}>
-                                <View style={[styles.dot, { backgroundColor: Colors.stockOut }]} />
-                                <Text variant="labelSmall" style={{ color: Colors.error }}>
+                            <View style={[styles.badge, { backgroundColor: theme.colors.errorContainer }]}>
+                                <View style={[styles.dot, { backgroundColor: theme.colors.error }]} />
+                                <Text variant="labelSmall" style={{ color: theme.colors.onErrorContainer }}>
                                     {t('outOfStock', { count: outOfStockCount })}
                                 </Text>
                             </View>
                         )}
                         {lowStockCount > 0 && (
-                            <View style={[styles.badge, { backgroundColor: Colors.warningBg }]}>
-                                <View style={[styles.dot, { backgroundColor: Colors.stockLow }]} />
-                                <Text variant="labelSmall" style={{ color: Colors.warningDark }}>
+                            <View style={[styles.badge, { backgroundColor: theme.colors.tertiaryContainer }]}>
+                                <View style={[styles.dot, { backgroundColor: theme.colors.tertiary }]} />
+                                <Text variant="labelSmall" style={{ color: theme.colors.onTertiaryContainer }}>
                                     {t('lowStock', { count: lowStockCount })}
                                 </Text>
                             </View>
@@ -60,8 +59,8 @@ export const LowStockAlert: React.FC<LowStockAlertProps> = ({
                     </View>
                 </View>
 
-                <View style={[styles.alertCount, { backgroundColor: Colors.errorBg }]}>
-                    <Text variant="titleSmall" style={{ color: Colors.error, fontWeight: '700' }}>
+                <View style={[styles.alertCount, { backgroundColor: theme.colors.errorContainer }]}>
+                    <Text variant="titleSmall" style={{ color: theme.colors.onErrorContainer, fontWeight: '700' }}>
                         {totalAlerts}
                     </Text>
                 </View>
@@ -74,9 +73,8 @@ const styles = StyleSheet.create({
     card: {
         marginHorizontal: 16,
         marginBottom: 12,
-        borderRadius: 8,
+        borderRadius: 12,
         elevation: 1,
-        shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.08,
         shadowRadius: 4,

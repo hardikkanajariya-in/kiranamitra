@@ -10,7 +10,6 @@ import { EmptyState } from '@shared/components/EmptyState';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { AppIcon } from '@shared/components/Icon';
 import { useProducts } from '@features/products/hooks/useProducts';
-import { Colors } from '@core/theme/colors';
 import { formatCurrency } from '@shared/utils/currency';
 import Product from '@core/database/models/Product';
 
@@ -70,9 +69,9 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
     }, [products, filter]);
 
     const getStockColor = (product: Product): string => {
-        if (product.isOutOfStock) { return Colors.error; }
-        if (product.isLowStock) { return Colors.warning; }
-        return Colors.success;
+        if (product.isOutOfStock) { return theme.colors.error; }
+        if (product.isLowStock) { return theme.colors.tertiary; }
+        return theme.colors.primary;
     };
 
     if (isLoading) {
@@ -96,7 +95,7 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                         </Text>
                         <Text
                             variant="titleMedium"
-                            style={[styles.overviewValue, { color: Colors.primary }]}
+                            style={[styles.overviewValue, { color: theme.colors.primary }]}
                             numberOfLines={1}
                             adjustsFontSizeToFit
                         >
@@ -124,7 +123,7 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                         </Text>
                         <Text
                             variant="titleMedium"
-                            style={[styles.overviewValue, { color: Colors.success }]}
+                            style={[styles.overviewValue, { color: theme.colors.primary }]}
                             numberOfLines={1}
                             adjustsFontSizeToFit
                         >
@@ -140,12 +139,12 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                     <Surface
                         style={[
                             styles.healthCard,
-                            { backgroundColor: filter === 'all' ? Colors.infoBg : theme.colors.surface },
+                            { backgroundColor: filter === 'all' ? theme.colors.secondaryContainer : theme.colors.surface },
                         ]}
                         elevation={filter === 'all' ? 2 : 1}
                     >
-                        <AppIcon name="package-variant" size={22} color={Colors.info} />
-                        <Text variant="titleLarge" style={[styles.healthNumber, { color: Colors.info }]}>
+                        <AppIcon name="package-variant" size={22} color={theme.colors.tertiary} />
+                        <Text variant="titleLarge" style={[styles.healthNumber, { color: theme.colors.tertiary }]}>
                             {stats.total}
                         </Text>
                         <Text variant="labelSmall" style={{ color: theme.colors.onSurfaceVariant }}>
@@ -158,12 +157,12 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                     <Surface
                         style={[
                             styles.healthCard,
-                            { backgroundColor: filter === 'lowStock' ? Colors.warningBg : theme.colors.surface },
+                            { backgroundColor: filter === 'lowStock' ? theme.colors.tertiaryContainer : theme.colors.surface },
                         ]}
                         elevation={filter === 'lowStock' ? 2 : 1}
                     >
-                        <AppIcon name="alert-circle" size={22} color={Colors.warning} />
-                        <Text variant="titleLarge" style={[styles.healthNumber, { color: Colors.warning }]}>
+                        <AppIcon name="alert-circle" size={22} color={theme.colors.tertiary} />
+                        <Text variant="titleLarge" style={[styles.healthNumber, { color: theme.colors.tertiary }]}>
                             {stats.lowStock}
                         </Text>
                         <Text variant="labelSmall" style={{ color: theme.colors.onSurfaceVariant }}>
@@ -176,12 +175,12 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                     <Surface
                         style={[
                             styles.healthCard,
-                            { backgroundColor: filter === 'outOfStock' ? Colors.errorBg : theme.colors.surface },
+                            { backgroundColor: filter === 'outOfStock' ? theme.colors.errorContainer : theme.colors.surface },
                         ]}
                         elevation={filter === 'outOfStock' ? 2 : 1}
                     >
-                        <AppIcon name="close" size={22} color={Colors.error} />
-                        <Text variant="titleLarge" style={[styles.healthNumber, { color: Colors.error }]}>
+                        <AppIcon name="close" size={22} color={theme.colors.error} />
+                        <Text variant="titleLarge" style={[styles.healthNumber, { color: theme.colors.error }]}>
                             {stats.outOfStock}
                         </Text>
                         <Text variant="labelSmall" style={{ color: theme.colors.onSurfaceVariant }}>
@@ -215,63 +214,63 @@ export const InventoryScreen: React.FC<{ navigation: NavigationProp; route: Rout
                     <FlashList
                         data={filteredProducts}
                         renderItem={({ item }: { item: Product }) => {
-                        const stockColor = getStockColor(item);
-                        const maxDisplay = Math.max(item.lowStockThreshold * 3, item.currentStock, 1);
-                        const progress = Math.min(item.currentStock / maxDisplay, 1);
+                            const stockColor = getStockColor(item);
+                            const maxDisplay = Math.max(item.lowStockThreshold * 3, item.currentStock, 1);
+                            const progress = Math.min(item.currentStock / maxDisplay, 1);
 
-                        return (
-                            <Pressable
-                                onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
-                            >
-                                <Surface
-                                    style={[styles.inventoryCard, { backgroundColor: theme.colors.surface }]}
-                                    elevation={1}
+                            return (
+                                <Pressable
+                                    onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
                                 >
-                                    {/* Stock level color strip */}
-                                    <View style={[styles.stockStrip, { backgroundColor: stockColor }]} />
+                                    <Surface
+                                        style={[styles.inventoryCard, { backgroundColor: theme.colors.surface }]}
+                                        elevation={1}
+                                    >
+                                        {/* Stock level color strip */}
+                                        <View style={[styles.stockStrip, { backgroundColor: stockColor }]} />
 
-                                    <View style={styles.inventoryCardContent}>
-                                        <View style={styles.inventoryTopRow}>
-                                            <Text
-                                                variant="titleMedium"
-                                                style={{ color: theme.colors.onSurface, flex: 1 }}
-                                                numberOfLines={1}
-                                            >
-                                                {item.name}
-                                            </Text>
-                                            <Text
-                                                variant="titleMedium"
-                                                style={{ color: stockColor, fontWeight: '700' }}
-                                            >
-                                                {item.currentStock} {item.unit}
-                                            </Text>
+                                        <View style={styles.inventoryCardContent}>
+                                            <View style={styles.inventoryTopRow}>
+                                                <Text
+                                                    variant="titleMedium"
+                                                    style={{ color: theme.colors.onSurface, flex: 1 }}
+                                                    numberOfLines={1}
+                                                >
+                                                    {item.name}
+                                                </Text>
+                                                <Text
+                                                    variant="titleMedium"
+                                                    style={{ color: stockColor, fontWeight: '700' }}
+                                                >
+                                                    {item.currentStock} {item.unit}
+                                                </Text>
+                                            </View>
+
+                                            <ProgressBar
+                                                progress={progress}
+                                                color={stockColor}
+                                                style={[styles.inventoryBar, { backgroundColor: theme.colors.surfaceVariant }]}
+                                            />
+
+                                            <View style={styles.inventoryBottomRow}>
+                                                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                                                    {t('minStock', { threshold: item.lowStockThreshold, unit: item.unit })}
+                                                </Text>
+                                                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                                                    {t('valueLabel')}: {formatCurrency(item.currentStock * item.sellingPrice)}
+                                                </Text>
+                                            </View>
                                         </View>
 
-                                        <ProgressBar
-                                            progress={progress}
-                                            color={stockColor}
-                                            style={[styles.inventoryBar, { backgroundColor: theme.colors.surfaceVariant }]}
-                                        />
-
-                                        <View style={styles.inventoryBottomRow}>
-                                            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                                                {t('minStock', { threshold: item.lowStockThreshold, unit: item.unit })}
-                                            </Text>
-                                            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                                                {t('valueLabel')}: {formatCurrency(item.currentStock * item.sellingPrice)}
-                                            </Text>
+                                        {/* Navigate arrow */}
+                                        <View style={styles.navArrow}>
+                                            <AppIcon name="chevron-right" size={18} color={theme.colors.onSurfaceVariant} />
                                         </View>
-                                    </View>
-
-                                    {/* Navigate arrow */}
-                                    <View style={styles.navArrow}>
-                                        <AppIcon name="chevron-right" size={18} color={theme.colors.onSurfaceVariant} />
-                                    </View>
-                                </Surface>
-                            </Pressable>
-                        );
-                    }}
-                    keyExtractor={(item: Product) => item.id}
+                                    </Surface>
+                                </Pressable>
+                            );
+                        }}
+                        keyExtractor={(item: Product) => item.id}
                         estimatedItemSize={90}
                         contentContainerStyle={styles.listContent}
                     />
@@ -288,7 +287,7 @@ const styles = StyleSheet.create({
     overviewCard: {
         marginHorizontal: 16,
         marginTop: 8,
-        borderRadius: 8,
+        borderRadius: 12,
         padding: 16,
     },
     overviewRow: {
@@ -323,7 +322,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        borderRadius: 8,
+        borderRadius: 12,
         gap: 2,
     },
     healthNumber: {
@@ -339,7 +338,7 @@ const styles = StyleSheet.create({
     inventoryCard: {
         marginHorizontal: 16,
         marginBottom: 8,
-        borderRadius: 8,
+        borderRadius: 12,
         flexDirection: 'row',
         overflow: 'hidden',
     },

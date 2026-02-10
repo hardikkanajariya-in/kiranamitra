@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, useTheme, ProgressBar } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { Colors } from '@core/theme/colors';
 
 interface StockLevelIndicatorProps {
     currentStock: number;
@@ -26,9 +25,9 @@ export const StockLevelIndicator: React.FC<StockLevelIndicatorProps> = ({
             return theme.colors.error;
         }
         if (currentStock <= lowStockThreshold) {
-            return Colors.warning;
+            return theme.colors.tertiary;
         }
-        return Colors.success;
+        return theme.colors.primary;
     };
 
     return (

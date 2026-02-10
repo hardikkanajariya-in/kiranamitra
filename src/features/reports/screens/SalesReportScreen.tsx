@@ -8,7 +8,6 @@ import { CurrencyText } from '@shared/components/CurrencyText';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { DateRangePicker } from '@shared/components/DateRangePicker';
 import { reportService } from '../services/reportService';
-import { Colors } from '@core/theme/colors';
 import { SalesReportData, DateRange } from '@core/types';
 import { getDateRangeForPeriod } from '@shared/utils/date';
 
@@ -89,7 +88,7 @@ export const SalesReportScreen: React.FC<{ navigation: NavigationProp }> = ({ na
                             {t('dailyBreakdown')}
                         </Text>
                         {report.dailyBreakdown.map((day) => (
-                            <View key={day.date} style={styles.dailyRow}>
+                            <View key={day.date} style={[styles.dailyRow, { borderBottomColor: theme.colors.outlineVariant }]}>
                                 <Text variant="bodyMedium" style={{ color: theme.colors.onSurface }}>
                                     {day.date}
                                 </Text>
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
     },
     detailCard: {},
     sectionTitle: {
-        fontWeight: 'bold',
+        fontWeight: '700',
         marginBottom: 12,
     },
     dailyRow: {
@@ -134,7 +133,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 8,
         borderBottomWidth: 0.5,
-        borderBottomColor: Colors.border,
     },
     dailyRight: {
         alignItems: 'flex-end',

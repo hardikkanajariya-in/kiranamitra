@@ -16,7 +16,6 @@ import { billPdfService, BillPdfData } from '../services/billPdfService';
 import { useSettingsStore } from '@features/settings/store/useSettingsStore';
 import { formatDateTime } from '@shared/utils/date';
 import { BILL_STATUSES, PAYMENT_MODES, CURRENCY_SYMBOL } from '@core/constants';
-import { Colors } from '@core/theme/colors';
 
 interface BillPreviewScreenProps {
   navigation: { navigate: (screen: string, params?: Record<string, unknown>) => void; goBack: () => void };
@@ -120,11 +119,11 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
 
   const getPaymentColor = (): string => {
     switch (bill.paymentMode) {
-      case PAYMENT_MODES.CASH: return Colors.success;
-      case PAYMENT_MODES.UPI: return Colors.info;
-      case PAYMENT_MODES.CARD: return Colors.primary;
-      case PAYMENT_MODES.CREDIT: return Colors.warning;
-      default: return Colors.info;
+      case PAYMENT_MODES.CASH: return theme.colors.primary;
+      case PAYMENT_MODES.UPI: return theme.colors.tertiary;
+      case PAYMENT_MODES.CARD: return theme.colors.secondary;
+      case PAYMENT_MODES.CREDIT: return theme.colors.error;
+      default: return theme.colors.tertiary;
     }
   };
 
@@ -203,8 +202,8 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
         {customer && (
           <Surface style={[styles.customerCard, { backgroundColor: theme.colors.surface }]} elevation={1}>
             <View style={styles.customerRow}>
-              <View style={[styles.customerAvatar, { backgroundColor: Colors.info + '20' }]}>
-                <AppIcon name="user" size={18} color={Colors.info} />
+              <View style={[styles.customerAvatar, { backgroundColor: theme.colors.secondaryContainer }]}>
+                <AppIcon name="user" size={18} color={theme.colors.onSecondaryContainer} />
               </View>
               <View style={styles.customerInfo}>
                 <Text variant="titleSmall" style={{ color: theme.colors.onSurface }}>
@@ -284,10 +283,10 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
 
             {bill.discountTotal > 0 && (
               <View style={styles.summaryRow}>
-                <Text variant="bodyMedium" style={{ color: Colors.success }}>
+                <Text variant="bodyMedium" style={{ color: theme.colors.primary }}>
                   {t('discount')}
                 </Text>
-                <Text variant="bodyMedium" style={{ color: Colors.success }}>
+                <Text variant="bodyMedium" style={{ color: theme.colors.primary }}>
                   -{CURRENCY_SYMBOL}{bill.discountTotal.toFixed(2)}
                 </Text>
               </View>
@@ -302,7 +301,7 @@ export const BillPreviewScreen: React.FC<BillPreviewScreenProps> = ({
               <CurrencyText
                 amount={bill.grandTotal}
                 variant="titleLarge"
-                color={isCancelled ? theme.colors.onSurfaceVariant : Colors.primary}
+                color={isCancelled ? theme.colors.onSurfaceVariant : theme.colors.primary}
                 style={styles.grandTotalValue}
               />
             </View>

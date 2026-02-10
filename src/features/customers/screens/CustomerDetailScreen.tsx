@@ -12,6 +12,7 @@ import { CreditLedger } from '../components/CreditLedger';
 import { useCustomerDetail } from '../hooks/useCustomers';
 import { customerRepository } from '../repositories/customerRepository';
 import { AppIcon } from '@shared/components/Icon';
+import { CURRENCY_SYMBOL } from '@core/constants';
 
 interface NavigationProp {
     navigate: (screen: string, params?: Record<string, unknown>) => void;
@@ -118,29 +119,32 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                     </Card.Content>
                 </Card>
 
-                {/* Credit Summary */}
+                {/* Credit / Advance Summary */}
                 <Card style={styles.creditCard} mode="elevated">
                     <Card.Content>
                         <View style={styles.creditHeader}>
                             <Text variant="titleMedium" style={{ color: theme.colors.onSurface }}>
-                                {t('outstandingCredit')}
+                                {outstandingCredit > 0 ? t('outstandingCredit') : outstandingCredit < 0 ? t('advanceBalance') : t('outstandingCredit')}
                             </Text>
                             <CurrencyText
-                                amount={outstandingCredit}
+                                amount={Math.abs(outstandingCredit)}
                                 variant="headlineSmall"
-                                color={outstandingCredit > 0 ? theme.colors.error : theme.colors.primary}
+                                color={outstandingCredit > 0 ? theme.colors.error : outstandingCredit < 0 ? theme.colors.primary : theme.colors.onSurfaceVariant}
                             />
                         </View>
-                        {outstandingCredit > 0 ? (
-                            <Button
-                                mode="contained"
-                                icon={paperIcon('cash-plus')}
-                                onPress={() => setShowPaymentDialog(true)}
-                                style={styles.collectButton}
-                            >
-                                {t('collectPayment')}
-                            </Button>
-                        ) : null}
+                        {outstandingCredit < 0 && (
+                            <Text variant="bodySmall" style={{ color: theme.colors.primary, marginTop: 4 }}>
+                                {t('advanceNote')}
+                            </Text>
+                        )}
+                        <Button
+                            mode="contained"
+                            icon={paperIcon('cash-plus')}
+                            onPress={() => setShowPaymentDialog(true)}
+                            style={styles.collectButton}
+                        >
+                            {t('collectPayment')}
+                        </Button>
                     </Card.Content>
                 </Card>
 
@@ -175,7 +179,7 @@ export const CustomerDetailScreen: React.FC<{ navigation: NavigationProp; route:
                             onChangeText={setPaymentAmount}
                             keyboardType="numeric"
                             mode="outlined"
-                            left={<TextInput.Affix text="₹" />}
+                            left={<TextInput.Affix text={CURRENCY_SYMBOL} />}
                             style={styles.dialogInput}
                         />
                         <TextInput
@@ -237,7 +241,7 @@ const styles = StyleSheet.create({
     sectionTitle: {
         paddingHorizontal: 16,
         marginBottom: 8,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     dialogInput: {
         marginBottom: 12,

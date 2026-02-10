@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   callButton: {
-    padding: 4,
+    padding: 8,
   },
 });

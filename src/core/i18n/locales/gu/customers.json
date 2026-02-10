@@ -30,5 +30,9 @@
   "call": "કૉલ કરો",
   "deleteCustomer": "ગ્રાહક કાઢો",
   "saveError": "સેવ કરવામાં વિફળ. ફરી પ્રયાસ કરો.",
-  "noCreditHistorySubtitle": "ઉધારના વ્યવહારો અહીં દેખાશે"
+  "noCreditHistorySubtitle": "ઉધારના વ્યવહારો અહીં દેખાશે",
+  "advanceBalance": "અગ્રિમ રકમ",
+  "advanceNote": "આ ગ્રાહક પાસે અગ્રિમ પૈસા છે જે આવનારા બિલોમાં ગોઠવાશે",
+  "advance": "અગ્રિમ",
+  "advanceUsed": "અગ્રિમ વપરાયું"
 }

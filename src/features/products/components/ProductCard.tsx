@@ -4,7 +4,7 @@ import { Text, useTheme, ProgressBar, Surface } from 'react-native-paper';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
-import { Colors } from '@core/theme/colors';
+import { CURRENCY_SYMBOL } from '@core/constants';
 
 interface ProductCardProps {
     name: string;
@@ -39,15 +39,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     const { t } = useTranslation('products');
 
     const getStockColor = (): string => {
-        if (isOutOfStock) { return Colors.error; }
-        if (isLowStock) { return Colors.warning; }
-        return Colors.success;
+        if (isOutOfStock) { return theme.colors.error; }
+        if (isLowStock) { return theme.colors.tertiary; }
+        return theme.colors.primary;
     };
 
     const getStockBgColor = (): string => {
-        if (isOutOfStock) { return Colors.errorBg; }
-        if (isLowStock) { return Colors.warningBg; }
-        return Colors.successBg;
+        if (isOutOfStock) { return theme.colors.errorContainer; }
+        if (isLowStock) { return theme.colors.tertiaryContainer; }
+        return theme.colors.primaryContainer;
     };
 
     const getStockLabel = (): string => {
@@ -111,15 +111,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                                 variant="bodySmall"
                                 style={{ color: theme.colors.onSurfaceVariant, marginLeft: 8 }}
                             >
-                                cost ₹{purchasePrice.toFixed(0)}
+                                cost {CURRENCY_SYMBOL}{purchasePrice.toFixed(0)}
                             </Text>
                         ) : null}
                     </View>
                     {profit !== undefined && profit > 0 ? (
-                        <View style={[styles.profitBadge, { backgroundColor: Colors.successBg }]}>
-                            <AppIcon name="chart-line" size={12} color={Colors.success} />
-                            <Text style={[styles.profitText, { color: Colors.success }]}>
-                                +₹{profit.toFixed(0)}
+                        <View style={[styles.profitBadge, { backgroundColor: theme.colors.primaryContainer }]}>
+                            <AppIcon name="chart-line" size={12} color={theme.colors.primary} />
+                            <Text style={[styles.profitText, { color: theme.colors.primary }]}>
+                                +{CURRENCY_SYMBOL}{profit.toFixed(0)}
                             </Text>
                         </View>
                     ) : null}
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     card: {
         marginHorizontal: 16,
         marginBottom: 10,
-        borderRadius: 8,
+        borderRadius: 12,
         padding: 14,
     },
     topRow: {

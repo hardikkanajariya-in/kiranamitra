@@ -30,5 +30,9 @@
   "call": "Call",
   "deleteCustomer": "Delete Customer",
   "saveError": "Failed to save. Please try again.",
-  "noCreditHistorySubtitle": "Credit transactions will appear here"
+  "noCreditHistorySubtitle": "Credit transactions will appear here",
+  "advanceBalance": "Advance Balance",
+  "advanceNote": "This customer has advance money that will be adjusted in future bills",
+  "advance": "Advance",
+  "advanceUsed": "Advance Used"
 }

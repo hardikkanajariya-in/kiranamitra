@@ -30,5 +30,9 @@
   "call": "कॉल करें",
   "deleteCustomer": "ग्राहक हटाएं",
   "saveError": "सेव करने में विफल। कृपया पुनः प्रयास करें।",
-  "noCreditHistorySubtitle": "उधार के लेनदेन यहाँ दिखेंगे"
+  "noCreditHistorySubtitle": "उधार के लेनदेन यहाँ दिखेंगे",
+  "advanceBalance": "अग्रिम राशि",
+  "advanceNote": "इस ग्राहक के पास अग्रिम पैसे हैं जो आने वाले बिलों में समायोजित होंगे",
+  "advance": "अग्रिम",
+  "advanceUsed": "अग्रिम उपयोग"
 }

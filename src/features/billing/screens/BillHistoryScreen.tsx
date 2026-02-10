@@ -14,7 +14,6 @@ import { billRepository } from '../repositories/billRepository';
 import Bill from '@core/database/models/Bill';
 import { useDebounce } from '@shared/hooks/useDebounce';
 import { formatCurrency } from '@shared/utils/currency';
-import { Colors } from '@core/theme/colors';
 import dayjs from 'dayjs';
 
 interface BillHistoryScreenProps {
@@ -61,7 +60,7 @@ export const BillHistoryScreen: React.FC<BillHistoryScreenProps> = ({ navigation
           {/* Today's Summary */}
           <Surface style={[styles.summaryCard, { backgroundColor: theme.colors.surface }]} elevation={1}>
             <View style={styles.summaryItem}>
-              <AppIcon name="receipt" size={20} color={Colors.primary} />
+              <AppIcon name="receipt" size={20} color={theme.colors.primary} />
               <View>
                 <Text variant="titleLarge" style={[styles.summaryValue, { color: theme.colors.onSurface }]}>
                   {todayStats.count}
@@ -73,9 +72,9 @@ export const BillHistoryScreen: React.FC<BillHistoryScreenProps> = ({ navigation
             </View>
             <View style={[styles.summaryDivider, { backgroundColor: theme.colors.outlineVariant }]} />
             <View style={styles.summaryItem}>
-              <AppIcon name="cash" size={20} color={Colors.success} />
+              <AppIcon name="cash" size={20} color={theme.colors.primary} />
               <View>
-                <Text variant="titleLarge" style={[styles.summaryValue, { color: Colors.success }]}>
+                <Text variant="titleLarge" style={[styles.summaryValue, { color: theme.colors.primary }]}>
                   {formatCurrency(todayStats.total)}
                 </Text>
                 <Text variant="labelSmall" style={{ color: theme.colors.onSurfaceVariant }}>
@@ -136,7 +135,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 8,
     marginBottom: 4,
-    borderRadius: 8,
+    borderRadius: 12,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',

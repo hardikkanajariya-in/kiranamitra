@@ -3,7 +3,6 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { AppIcon } from '@shared/components/Icon';
-import { Colors } from '@core/theme/colors';
 
 interface QuickActionItem {
     icon: string;
@@ -34,29 +33,29 @@ export const QuickActionGrid: React.FC<QuickActionGridProps> = ({
             icon: 'receipt',
             labelKey: 'newBill',
             onPress: onNewBill,
-            bgColor: Colors.successBg,
-            iconColor: Colors.success,
+            bgColor: theme.colors.primaryContainer,
+            iconColor: theme.colors.onPrimaryContainer,
         },
         {
             icon: 'account-plus',
             labelKey: 'addCustomer',
             onPress: onAddCustomer,
-            bgColor: Colors.infoBg,
-            iconColor: Colors.info,
+            bgColor: theme.colors.secondaryContainer,
+            iconColor: theme.colors.onSecondaryContainer,
         },
         {
             icon: 'package-variant',
             labelKey: 'addProduct',
             onPress: onAddProduct,
-            bgColor: Colors.warningBg,
-            iconColor: Colors.warning,
+            bgColor: theme.colors.tertiaryContainer,
+            iconColor: theme.colors.onTertiaryContainer,
         },
         {
             icon: 'cash-plus',
             labelKey: 'collectPayment',
             onPress: onCollectPayment,
-            bgColor: '#F3E5F5',
-            iconColor: '#7B1FA2',
+            bgColor: theme.colors.inversePrimary,
+            iconColor: theme.colors.onPrimaryContainer,
         },
     ];
 
@@ -112,9 +111,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 14,
         paddingHorizontal: 4,
-        borderRadius: 8,
+        borderRadius: 12,
         elevation: 1,
-        shadowColor: '#000',
+        shadowColor: undefined,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.08,
         shadowRadius: 4,

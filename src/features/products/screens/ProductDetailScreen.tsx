@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         marginBottom: 0,
     },
     sectionTitle: {
-        fontWeight: 'bold',
+        fontWeight: '700',
         marginBottom: 12,
     },
     priceRow: {

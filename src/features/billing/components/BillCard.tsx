@@ -6,7 +6,6 @@ import { StatusBadge } from '@shared/components/StatusBadge';
 import { AppIcon } from '@shared/components/Icon';
 import { formatDateTime } from '@shared/utils/date';
 import { BILL_STATUSES, PAYMENT_MODES } from '@core/constants';
-import { Colors } from '@core/theme/colors';
 
 interface BillCardProps {
   billNumber: string;
@@ -46,11 +45,11 @@ export const BillCard: React.FC<BillCardProps> = ({
 
   const getPaymentColor = (): string => {
     switch (paymentMode) {
-      case PAYMENT_MODES.CASH: return Colors.success;
-      case PAYMENT_MODES.UPI: return Colors.info;
-      case PAYMENT_MODES.CARD: return Colors.primary;
-      case PAYMENT_MODES.CREDIT: return Colors.warning;
-      default: return Colors.info;
+      case PAYMENT_MODES.CASH: return theme.colors.primary;
+      case PAYMENT_MODES.UPI: return theme.colors.tertiary;
+      case PAYMENT_MODES.CARD: return theme.colors.secondary;
+      case PAYMENT_MODES.CREDIT: return theme.colors.error;
+      default: return theme.colors.primary;
     }
   };
 
@@ -60,8 +59,8 @@ export const BillCard: React.FC<BillCardProps> = ({
     <Pressable onPress={onPress}>
       <Surface style={[styles.card, { backgroundColor: theme.colors.surface }]} elevation={1}>
         {/* Left accent strip */}
-        <View style={[styles.accent, { backgroundColor: isCancelled ? Colors.error : getPaymentColor() }]} />
-        
+        <View style={[styles.accent, { backgroundColor: isCancelled ? theme.colors.error : getPaymentColor() }]} />
+
         <View style={styles.content}>
           {/* Top Row: Bill number + Amount */}
           <View style={styles.topRow}>
@@ -84,7 +83,7 @@ export const BillCard: React.FC<BillCardProps> = ({
             <CurrencyText
               amount={grandTotal}
               variant="titleMedium"
-              color={isCancelled ? theme.colors.onSurfaceVariant : Colors.success}
+              color={isCancelled ? theme.colors.onSurfaceVariant : theme.colors.primary}
               style={styles.amount}
             />
           </View>
@@ -98,9 +97,9 @@ export const BillCard: React.FC<BillCardProps> = ({
               </Text>
             </View>
             <View style={styles.badges}>
-              <View style={[styles.paymentBadge, { backgroundColor: getPaymentColor() + '20' }]}>
+              <View style={[styles.paymentBadge, { backgroundColor: getPaymentColor() + '1A' }]}>
                 <AppIcon name={getPaymentIcon()} size={12} color={getPaymentColor()} />
-                <Text style={[styles.paymentText, { color: getPaymentColor() }]}>
+                <Text variant="labelSmall" style={{ color: getPaymentColor(), fontWeight: '700' }}>
                   {paymentMode.toUpperCase()}
                 </Text>
               </View>
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
     marginBottom: 10,
-    borderRadius: 8,
+    borderRadius: 12,
     flexDirection: 'row',
     overflow: 'hidden',
   },

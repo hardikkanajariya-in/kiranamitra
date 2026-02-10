@@ -101,9 +101,9 @@ export const billRepository = {
         });
       }
 
-      // Handle credit (udhar)
-      if (paymentMode === PAYMENT_MODES.CREDIT && customer) {
-        // Get current credit balance
+      // Handle credit (udhar) or consume advance balance
+      if (customer) {
+        // Get current credit balance (negative = advance available)
         const existingEntries = await creditEntriesCollection
           .query(
             Q.where('customer_id', customerId!),
@@ -116,14 +116,52 @@ export const billRepository = {
           ? existingEntries[0].balanceAfter
           : 0;
 
-        await creditEntriesCollection.create((entry: CreditEntry) => {
-          entry.customer.set(customer);
-          entry.bill.set(bill);
-          entry.entryType = CREDIT_ENTRY_TYPES.CREDIT;
-          entry.amount = grandTotal;
-          entry.balanceAfter = currentBalance + grandTotal;
-          entry.notes = `Bill #${billNumber}`;
-        });
+        if (paymentMode === PAYMENT_MODES.CREDIT) {
+          // Customer is buying on credit
+          let effectiveCredit = grandTotal;
+
+          // If customer has advance (negative balance), use it first
+          if (currentBalance < 0) {
+            const advance = Math.abs(currentBalance);
+            const usedAdvance = Math.min(advance, grandTotal);
+            effectiveCredit = grandTotal - usedAdvance;
+
+            if (usedAdvance > 0) {
+              // Record advance usage
+              await creditEntriesCollection.create((entry: CreditEntry) => {
+                entry.customer.set(customer);
+                entry.bill.set(bill);
+                entry.entryType = CREDIT_ENTRY_TYPES.ADVANCE_USED;
+                entry.amount = usedAdvance;
+                entry.balanceAfter = currentBalance + usedAdvance;
+                entry.notes = `Advance used for Bill #${billNumber}`;
+              });
+            }
+
+            if (effectiveCredit > 0) {
+              // Remaining amount goes on credit
+              const balanceAfterAdvance = currentBalance + usedAdvance;
+              await creditEntriesCollection.create((entry: CreditEntry) => {
+                entry.customer.set(customer);
+                entry.bill.set(bill);
+                entry.entryType = CREDIT_ENTRY_TYPES.CREDIT;
+                entry.amount = effectiveCredit;
+                entry.balanceAfter = balanceAfterAdvance + effectiveCredit;
+                entry.notes = `Bill #${billNumber}`;
+              });
+            }
+          } else {
+            // No advance, full credit
+            await creditEntriesCollection.create((entry: CreditEntry) => {
+              entry.customer.set(customer);
+              entry.bill.set(bill);
+              entry.entryType = CREDIT_ENTRY_TYPES.CREDIT;
+              entry.amount = grandTotal;
+              entry.balanceAfter = currentBalance + grandTotal;
+              entry.notes = `Bill #${billNumber}`;
+            });
+          }
+        }
       }
 
       return bill;

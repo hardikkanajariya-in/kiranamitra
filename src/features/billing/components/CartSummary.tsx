@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Text, useTheme, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { CurrencyText } from '@shared/components/CurrencyText';
+import { CURRENCY_SYMBOL } from '@core/constants';
 
 interface CartSummaryProps {
   subtotal: number;
@@ -35,7 +36,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
             {t('discount')}
           </Text>
           <Text variant="bodyMedium" style={{ color: theme.colors.primary }}>
-            - ₹{discount.toFixed(2)}
+            - {CURRENCY_SYMBOL}{discount.toFixed(2)}
           </Text>
         </View>
       )}
@@ -43,7 +44,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       <Divider style={styles.divider} />
 
       <View style={styles.row}>
-        <Text variant="titleLarge" style={{ color: theme.colors.onSurface, fontWeight: 'bold' }}>
+        <Text variant="titleLarge" style={{ color: theme.colors.onSurface, fontWeight: '700' }}>
           {t('grandTotal')}
         </Text>
         <CurrencyText amount={grandTotal} variant="titleLarge" />
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderRadius: 8,
+    borderRadius: 12,
     marginHorizontal: 16,
     marginVertical: 8,
   },

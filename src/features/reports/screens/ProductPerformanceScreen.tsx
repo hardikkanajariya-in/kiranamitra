@@ -10,7 +10,6 @@ import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { DateRangePicker } from '@shared/components/DateRangePicker';
 import { EmptyState } from '@shared/components/EmptyState';
 import { reportService } from '../services/reportService';
-import { Colors } from '@core/theme/colors';
 import { ProductPerformanceData, DateRange } from '@core/types';
 import { getDateRangeForPeriod } from '@shared/utils/date';
 
@@ -43,7 +42,7 @@ export const ProductPerformanceScreen: React.FC<{ navigation: NavigationProp }> 
     const renderProduct = ({ item, index }: { item: ProductPerformanceData; index: number }) => (
         <Card style={styles.productCard} mode="elevated">
             <Card.Content style={styles.productRow}>
-                <View style={styles.rankBadge}>
+                <View style={[styles.rankBadge, { backgroundColor: theme.colors.primaryContainer }]}>
                     <Text variant="labelLarge" style={{ color: theme.colors.primary }}>
                         #{index + 1}
                     </Text>
@@ -122,6 +121,7 @@ export const ProductPerformanceScreen: React.FC<{ navigation: NavigationProp }> 
                         renderItem={renderProduct}
                         keyExtractor={(item: ProductPerformanceData) => item.id}
                         contentContainerStyle={styles.listContent}
+                        estimatedItemSize={70}
                     />
                 )}
             </View>
@@ -160,7 +160,6 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.successBg,
     },
     productInfo: {
         flex: 1,

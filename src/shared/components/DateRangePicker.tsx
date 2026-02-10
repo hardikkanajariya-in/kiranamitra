@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
+import { TextInput, Button, Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from '@core/constants';
@@ -17,6 +17,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   onChange,
 }) => {
   const { t } = useTranslation('common');
+  const theme = useTheme();
   const [fromText, setFromText] = useState(dayjs(from).format(DATE_FORMAT));
   const [toText, setToText] = useState(dayjs(to).format(DATE_FORMAT));
 
@@ -54,7 +55,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
           placeholder="DD/MM/YYYY"
           dense
         />
-        <Text style={styles.separator}>→</Text>
+        <Text variant="titleMedium" style={[styles.separator, { color: theme.colors.onSurfaceVariant }]}>→</Text>
         <TextInput
           label={t('to')}
           mode="outlined"

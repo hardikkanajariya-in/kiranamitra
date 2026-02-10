@@ -107,6 +107,7 @@ export const CustomerListScreen: React.FC<{ navigation: NavigationProp; route: R
                         />
                     )}
                     keyExtractor={(item: Customer) => item.id}
+                    estimatedItemSize={72}
                     contentContainerStyle={styles.listContent}
                 />
             )}

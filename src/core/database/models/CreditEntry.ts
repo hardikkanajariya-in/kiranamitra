@@ -30,4 +30,12 @@ export default class CreditEntry extends Model {
   get isPayment(): boolean {
     return this.entryType === 'payment';
   }
+
+  get isAdvance(): boolean {
+    return this.entryType === 'advance';
+  }
+
+  get isAdvanceUsed(): boolean {
+    return this.entryType === 'advance_used';
+  }
 }

@@ -96,13 +96,16 @@ export const customerRepository = {
 
             const currentBalance = entries.length > 0 ? entries[0].balanceAfter : 0;
             const newBalance = currentBalance - amount;
+            // newBalance < 0 means customer has advance (overpaid)
 
             // Create credit entry for payment
             const creditEntry = await creditEntriesCollection.create((entry: CreditEntry) => {
                 entry.customer.set(customer);
-                entry.entryType = CREDIT_ENTRY_TYPES.PAYMENT;
+                entry.entryType = newBalance < 0
+                    ? CREDIT_ENTRY_TYPES.ADVANCE
+                    : CREDIT_ENTRY_TYPES.PAYMENT;
                 entry.amount = amount;
-                entry.balanceAfter = Math.max(0, newBalance);
+                entry.balanceAfter = newBalance;
                 entry.notes = notes;
             });
 

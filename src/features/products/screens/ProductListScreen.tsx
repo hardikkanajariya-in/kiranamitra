@@ -12,7 +12,6 @@ import { AppIcon, paperIcon } from '@shared/components/Icon';
 import { ProductCard } from '../components/ProductCard';
 import { CategoryFilter } from '../components/CategoryFilter';
 import { useProducts, useCategories } from '../hooks/useProducts';
-import { Colors } from '@core/theme/colors';
 import Product from '@core/database/models/Product';
 
 type SortOption = 'name_asc' | 'name_desc' | 'price_low' | 'price_high' | 'stock_low' | 'stock_high';
@@ -102,7 +101,7 @@ export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ na
                     { icon: 'package-variant', onPress: () => navigation.navigate('InventoryOverview') },
                 ]}
             />
-            
+
             <SearchInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
@@ -187,8 +186,8 @@ export const ProductListScreen: React.FC<{ navigation: NavigationProp }> = ({ na
 
             <FAB
                 icon={paperIcon('plus')}
-                style={[styles.fab, { backgroundColor: Colors.primary }]}
-                color={Colors.onPrimary}
+                style={[styles.fab, { backgroundColor: theme.colors.primary }]}
+                color={theme.colors.onPrimary}
                 onPress={() => navigation.navigate('ProductForm')}
             />
         </SafeAreaView>
@@ -225,6 +224,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 20,
         bottom: 20,
-        borderRadius: 8,
+        borderRadius: 16,
     },
 });

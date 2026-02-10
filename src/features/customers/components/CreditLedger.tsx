@@ -8,7 +8,7 @@ import { StatusBadge } from '@shared/components/StatusBadge';
 import CreditEntry from '@core/database/models/CreditEntry';
 import { customerRepository } from '../repositories/customerRepository';
 import { formatDateTime } from '@shared/utils/date';
-import { CREDIT_ENTRY_TYPES } from '@core/constants';
+import { CREDIT_ENTRY_TYPES, CURRENCY_SYMBOL } from '@core/constants';
 import { EmptyState } from '@shared/components/EmptyState';
 
 interface CreditLedgerProps {
@@ -30,13 +30,31 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
 
   const renderEntry = ({ item }: { item: CreditEntry }) => {
     const isCredit = item.entryType === CREDIT_ENTRY_TYPES.CREDIT;
+    const isAdvance = item.entryType === CREDIT_ENTRY_TYPES.ADVANCE;
+    const isAdvanceUsed = item.entryType === CREDIT_ENTRY_TYPES.ADVANCE_USED;
+    const isPositive = isCredit; // credit adds to outstanding
+    const isNegative = !isCredit; // payment/advance/advance_used reduces
+
+    const getLabel = () => {
+      if (isCredit) return t('credit');
+      if (isAdvance) return t('advance');
+      if (isAdvanceUsed) return t('advanceUsed');
+      return t('payment');
+    };
+
+    const getVariant = (): 'error' | 'success' | 'info' => {
+      if (isCredit) return 'error';
+      if (isAdvance) return 'info';
+      if (isAdvanceUsed) return 'info';
+      return 'success';
+    };
 
     return (
       <View style={styles.entryRow}>
         <View style={styles.entryLeft}>
           <StatusBadge
-            label={isCredit ? t('credit') : t('payment')}
-            variant={isCredit ? 'error' : 'success'}
+            label={getLabel()}
+            variant={getVariant()}
           />
           <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
             {formatDateTime(item.createdAt)}
@@ -52,10 +70,11 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
           <CurrencyText
             amount={item.amount}
             variant="titleSmall"
-            color={isCredit ? theme.colors.error : theme.colors.primary}
+            color={isPositive ? theme.colors.error : theme.colors.primary}
+            style={isNegative ? undefined : undefined}
           />
           <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-            {t('balance')}: ₹{item.balanceAfter.toFixed(2)}
+            {t('balance')}: {item.balanceAfter < 0 ? '-' : ''}{CURRENCY_SYMBOL}{Math.abs(item.balanceAfter).toFixed(2)}
           </Text>
         </View>
       </View>
@@ -78,6 +97,7 @@ export const CreditLedger: React.FC<CreditLedgerProps> = ({ customerId }) => {
       renderItem={renderEntry}
       ItemSeparatorComponent={() => <Divider />}
       keyExtractor={(item: CreditEntry) => item.id}
+      estimatedItemSize={72}
     />
   );
 };

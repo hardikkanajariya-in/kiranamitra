@@ -1,7 +1,6 @@
 import React from 'react';
-import { Chip } from 'react-native-paper';
+import { Chip, useTheme } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-import { Colors } from '@core/theme/colors';
 
 type BadgeType = 'success' | 'warning' | 'error' | 'info' | 'neutral';
 
@@ -12,22 +11,32 @@ export interface StatusBadgeProps {
   compact?: boolean;
 }
 
-const badgeColors: Record<BadgeType, { bg: string; text: string }> = {
-  success: { bg: Colors.successBg, text: Colors.success },
-  warning: { bg: Colors.warningBg, text: Colors.warning },
-  error: { bg: Colors.errorBg, text: Colors.error },
-  info: { bg: Colors.infoBg, text: Colors.info },
-  neutral: { bg: Colors.neutralBg, text: Colors.neutralText },
-};
-
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
   label,
   type,
   variant,
   compact = false,
 }) => {
+  const theme = useTheme();
   const resolvedType = type ?? variant ?? 'neutral';
-  const colors = badgeColors[resolvedType];
+
+  const getBadgeColors = (): { bg: string; text: string } => {
+    switch (resolvedType) {
+      case 'success':
+        return { bg: theme.colors.primaryContainer, text: theme.colors.onPrimaryContainer };
+      case 'warning':
+        return { bg: theme.colors.tertiaryContainer, text: theme.colors.onTertiaryContainer };
+      case 'error':
+        return { bg: theme.colors.errorContainer, text: theme.colors.onErrorContainer };
+      case 'info':
+        return { bg: theme.colors.secondaryContainer, text: theme.colors.onSecondaryContainer };
+      case 'neutral':
+      default:
+        return { bg: theme.colors.surfaceVariant, text: theme.colors.onSurfaceVariant };
+    }
+  };
+
+  const colors = getBadgeColors();
 
   return (
     <Chip

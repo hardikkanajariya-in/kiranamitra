@@ -55,7 +55,5 @@ const styles = StyleSheet.create({
   dialog: {
     borderRadius: 12,
   },
-  title: {
-    fontSize: 20,
-  },
+  title: {},
 });

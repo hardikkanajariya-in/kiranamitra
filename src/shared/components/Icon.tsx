@@ -152,7 +152,7 @@ export interface AppIconProps {
  * Drop-in replacement for react-native-vector-icons Icon.
  * Uses Lucide SVG icons — no native font linking needed.
  */
-export const AppIcon: React.FC<AppIconProps> = ({ name, size = 24, color = '#000', style }) => {
+export const AppIcon: React.FC<AppIconProps> = ({ name, size = 24, color, style }) => {
   const LucideComponent = iconMap[name];
   if (!LucideComponent) {
     console.warn(`[AppIcon] Unknown icon name: "${name}"`);

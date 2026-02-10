@@ -4,7 +4,6 @@ import { Text, useTheme } from 'react-native-paper';
 import { AppIcon } from '@shared/components/Icon';
 import { useTranslation } from 'react-i18next';
 import { CurrencyText } from '@shared/components/CurrencyText';
-import { Colors } from '@core/theme/colors';
 
 interface UdharSummaryCardProps {
   totalUdhar: number;
@@ -22,25 +21,25 @@ export const UdharSummaryCard: React.FC<UdharSummaryCardProps> = ({
 
   return (
     <TouchableOpacity
-      style={[styles.card, { backgroundColor: theme.colors.surface }]}
+      style={[styles.card, { backgroundColor: theme.colors.surface, shadowColor: theme.colors.shadow }]}
       onPress={onPress}
       activeOpacity={0.7}
     >
       <View style={styles.row}>
-        <View style={[styles.iconContainer, { backgroundColor: Colors.errorBg }]}>
-          <AppIcon name="account-cash" size={22} color={Colors.creditRed} />
+        <View style={[styles.iconContainer, { backgroundColor: theme.colors.errorContainer }]}>
+          <AppIcon name="account-cash" size={22} color={theme.colors.error} />
         </View>
 
         <View style={styles.content}>
           <Text variant="labelMedium" style={{ color: theme.colors.onSurfaceVariant }}>
             {t('udharSummary')}
           </Text>
-          <CurrencyText amount={totalUdhar} variant="titleLarge" color={Colors.creditRed} />
+          <CurrencyText amount={totalUdhar} variant="titleLarge" color={theme.colors.error} />
         </View>
 
         <View style={styles.rightSection}>
-          <View style={[styles.customerBadge, { backgroundColor: Colors.errorBg }]}>
-            <Text variant="titleSmall" style={{ color: Colors.creditRed, fontWeight: '700' }}>
+          <View style={[styles.customerBadge, { backgroundColor: theme.colors.errorContainer }]}>
+            <Text variant="titleSmall" style={{ color: theme.colors.onErrorContainer, fontWeight: '700' }}>
               {totalCustomers}
             </Text>
           </View>
@@ -64,9 +63,8 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
     marginBottom: 12,
-    borderRadius: 8,
+    borderRadius: 12,
     elevation: 1,
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 4,

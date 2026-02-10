@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { customerRepository } from '../repositories/customerRepository';
 import Customer from '@core/database/models/Customer';
 import { useDebounce } from '@shared/hooks/useDebounce';
@@ -29,6 +29,10 @@ export const useCustomerDetail = (customerId: string) => {
     const [outstandingCredit, setOutstandingCredit] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
+    const refreshCredit = useCallback(() => {
+        customerRepository.getOutstandingCredit(customerId).then(setOutstandingCredit);
+    }, [customerId]);
+
     useEffect(() => {
         const subscription = customerRepository
             .observeById(customerId)
@@ -37,11 +41,21 @@ export const useCustomerDetail = (customerId: string) => {
                 setIsLoading(false);
             });
 
-        // Load outstanding credit
-        customerRepository.getOutstandingCredit(customerId).then(setOutstandingCredit);
+        // Load outstanding credit initially
+        refreshCredit();
 
-        return () => subscription.unsubscribe();
-    }, [customerId]);
+        // Observe credit entries for this customer so balance updates reactively
+        const creditSub = customerRepository
+            .getCreditEntries(customerId)
+            .subscribe(() => {
+                refreshCredit();
+            });
 
-    return { customer, outstandingCredit, isLoading };
+        return () => {
+            subscription.unsubscribe();
+            creditSub.unsubscribe();
+        };
+    }, [customerId, refreshCredit]);
+
+    return { customer, outstandingCredit, isLoading, refreshCredit };
 };

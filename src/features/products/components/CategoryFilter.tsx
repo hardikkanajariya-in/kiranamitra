@@ -4,7 +4,6 @@ import { Text, useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { AppIcon } from '@shared/components/Icon';
 import Category from '@core/database/models/Category';
-import { Colors } from '@core/theme/colors';
 
 interface CategoryFilterProps {
     categories: Category[];
@@ -39,10 +38,10 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                         styles.pill,
                         {
                             backgroundColor: isAllSelected
-                                ? Colors.primary
+                                ? theme.colors.primary
                                 : theme.colors.surfaceVariant,
                             borderColor: isAllSelected
-                                ? Colors.primary
+                                ? theme.colors.primary
                                 : theme.colors.outline,
                         },
                     ]}
@@ -50,17 +49,15 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                     <AppIcon
                         name="package-variant"
                         size={16}
-                        color={isAllSelected ? Colors.onPrimary : theme.colors.onSurfaceVariant}
+                        color={isAllSelected ? theme.colors.onPrimary : theme.colors.onSurfaceVariant}
                     />
                     <Text
-                        style={[
-                            styles.pillText,
-                            {
-                                color: isAllSelected
-                                    ? Colors.onPrimary
-                                    : theme.colors.onSurfaceVariant,
-                            },
-                        ]}
+                        variant="labelMedium"
+                        style={{
+                            color: isAllSelected
+                                ? theme.colors.onPrimary
+                                : theme.colors.onSurfaceVariant,
+                        }}
                     >
                         {t('allCategories')}
                     </Text>
@@ -70,20 +67,18 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                                 styles.countBadge,
                                 {
                                     backgroundColor: isAllSelected
-                                        ? 'rgba(255,255,255,0.25)'
+                                        ? theme.colors.onPrimary + '40'
                                         : theme.colors.surface,
                                 },
                             ]}
                         >
                             <Text
-                                style={[
-                                    styles.countText,
-                                    {
-                                        color: isAllSelected
-                                            ? Colors.onPrimary
-                                            : theme.colors.onSurfaceVariant,
-                                    },
-                                ]}
+                                variant="labelSmall"
+                                style={{
+                                    color: isAllSelected
+                                        ? theme.colors.onPrimary
+                                        : theme.colors.onSurfaceVariant,
+                                }}
                             >
                                 {totalProducts}
                             </Text>
@@ -108,10 +103,10 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                                 styles.pill,
                                 {
                                     backgroundColor: isSelected
-                                        ? Colors.primary
+                                        ? theme.colors.primary
                                         : theme.colors.surfaceVariant,
                                     borderColor: isSelected
-                                        ? Colors.primary
+                                        ? theme.colors.primary
                                         : theme.colors.outline,
                                 },
                             ]}
@@ -120,18 +115,16 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                                 <AppIcon
                                     name={category.icon}
                                     size={16}
-                                    color={isSelected ? Colors.onPrimary : theme.colors.onSurfaceVariant}
+                                    color={isSelected ? theme.colors.onPrimary : theme.colors.onSurfaceVariant}
                                 />
                             ) : null}
                             <Text
-                                style={[
-                                    styles.pillText,
-                                    {
-                                        color: isSelected
-                                            ? Colors.onPrimary
-                                            : theme.colors.onSurface,
-                                    },
-                                ]}
+                                variant="labelMedium"
+                                style={{
+                                    color: isSelected
+                                        ? theme.colors.onPrimary
+                                        : theme.colors.onSurface,
+                                }}
                                 numberOfLines={1}
                             >
                                 {category.name}
@@ -142,20 +135,18 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                                         styles.countBadge,
                                         {
                                             backgroundColor: isSelected
-                                                ? 'rgba(255,255,255,0.25)'
+                                                ? theme.colors.onPrimary + '40'
                                                 : theme.colors.surface,
                                         },
                                     ]}
                                 >
                                     <Text
-                                        style={[
-                                            styles.countText,
-                                            {
-                                                color: isSelected
-                                                    ? Colors.onPrimary
-                                                    : theme.colors.onSurfaceVariant,
-                                            },
-                                        ]}
+                                        variant="labelSmall"
+                                        style={{
+                                            color: isSelected
+                                                ? theme.colors.onPrimary
+                                                : theme.colors.onSurfaceVariant,
+                                        }}
                                     >
                                         {count}
                                     </Text>
@@ -187,10 +178,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         gap: 6,
     },
-    pillText: {
-        fontSize: 13,
-        fontWeight: '600',
-    },
     countBadge: {
         minWidth: 20,
         height: 20,
@@ -198,9 +185,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 5,
-    },
-    countText: {
-        fontSize: 10,
-        fontWeight: '700',
     },
 });

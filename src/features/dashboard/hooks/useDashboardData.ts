@@ -131,8 +131,8 @@ export const useDashboardData = (): DashboardData => {
 
     loadDashboardData();
 
-    // Set up a subscription to refresh every time bills table changes
-    const subscription = database
+    // Subscribe to changes in bills, products, credit_entries, and customers tables
+    const billsSub = database
       .get<Bill>('bills')
       .query()
       .observe()
@@ -140,7 +140,36 @@ export const useDashboardData = (): DashboardData => {
         loadDashboardData();
       });
 
-    return () => subscription.unsubscribe();
+    const productsSub = database
+      .get<Product>('products')
+      .query()
+      .observe()
+      .subscribe(() => {
+        loadDashboardData();
+      });
+
+    const creditSub = database
+      .get<CreditEntry>('credit_entries')
+      .query()
+      .observe()
+      .subscribe(() => {
+        loadDashboardData();
+      });
+
+    const customersSub = database
+      .get<Customer>('customers')
+      .query()
+      .observe()
+      .subscribe(() => {
+        loadDashboardData();
+      });
+
+    return () => {
+      billsSub.unsubscribe();
+      productsSub.unsubscribe();
+      creditSub.unsubscribe();
+      customersSub.unsubscribe();
+    };
   }, []);
 
   return data;

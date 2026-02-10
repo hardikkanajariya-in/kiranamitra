@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     sectionTitle: {
-        fontWeight: 'bold',
+        fontWeight: '700',
         marginBottom: 8,
     },
     deviceItem: {

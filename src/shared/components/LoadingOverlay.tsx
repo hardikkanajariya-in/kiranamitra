@@ -14,7 +14,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ visible }) => {
     }
 
     return (
-        <View style={[styles.overlay, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+        <View style={[styles.overlay, { backgroundColor: theme.colors.backdrop }]}>
             <View style={[styles.card, { backgroundColor: theme.colors.surface }]}>
                 <ActivityIndicator size="large" color={theme.colors.primary} />
             </View>

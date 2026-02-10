@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     title: {
-        fontWeight: 'bold',
+        fontWeight: '700',
         marginBottom: 12,
     },
     input: {

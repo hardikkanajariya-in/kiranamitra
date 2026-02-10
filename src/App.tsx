@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { PaperProvider } from 'react-native-paper';
@@ -12,17 +12,27 @@ import i18n from '@core/i18n';
 import { database } from '@core/database';
 import { CombinedLightTheme, CombinedDarkTheme } from '@core/theme';
 import { useSettingsStore } from '@features/settings/store/useSettingsStore';
+import { useSyncStore } from '@features/settings/store/useSyncStore';
+import { useAutoSync } from '@shared/hooks/useAutoSync';
 import { RootNavigator } from './navigation/RootNavigator';
 import { AppIcon } from '@shared/components/Icon';
 
 const paperSettings = {
-  icon: ({ name, size, color }: { name: string; size: number; color: string }) => (
+  icon: ({ name, size, color }: { name: string; size: number; color?: string }) => (
     <AppIcon name={name} size={size} color={color} />
   ),
 };
 
 const App: React.FC = () => {
   const { isDarkMode } = useSettingsStore();
+
+  // Initialize Google Drive sync on app start
+  useEffect(() => {
+    useSyncStore.getState().initialize();
+  }, []);
+
+  // Auto-sync when database changes or app comes to foreground
+  useAutoSync();
 
   // Use user preference, fallback to system
   const theme = isDarkMode ? CombinedDarkTheme : CombinedLightTheme;
