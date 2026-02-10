@@ -30,7 +30,6 @@ const TABLE_NAMES = [
 ] as const;
 
 const BACKUP_FILENAME = 'kiranamitra_backup.json';
-const DRIVE_FOLDER_NAME = 'KiranaMitra';
 const SYNC_STATE_KEY = 'google_drive_sync_state';
 
 // ── Helpers ──
@@ -98,6 +97,7 @@ export const googleDriveSync = {
         gsModule.GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive.appdata'],
             offlineAccess: false,
+            webClientId: '417628752587-8p730kdrcs78pp1b1qokv7mpq839s9n5.apps.googleusercontent.com'
         });
     },
 
@@ -112,13 +112,15 @@ export const googleDriveSync = {
         try {
             await GoogleSignin.hasPlayServices();
             const response = await GoogleSignin.signIn();
+            console.log('[GoogleDriveSync] signIn response:', JSON.stringify(response));
             const user = response?.data?.user;
             if (user?.email) {
                 setSyncState({ isSignedIn: true, userEmail: user.email });
                 return { email: user.email };
             }
             return null;
-        } catch {
+        } catch (error: unknown) {
+            console.error('[GoogleDriveSync] signIn error:', error);
             return null;
         }
     },

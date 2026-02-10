@@ -66,6 +66,10 @@ jobs:
         if: steps.skip.outputs.skip != 'true'
         run: npm ci
 
+      - name: Decode google-services.json
+        if: steps.skip.outputs.skip != 'true'
+        run: echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 -d > android/app/google-services.json
+
       # ── Version Bump ──────────────────────────────────────────────
       - name: Calculate next version
         if: steps.skip.outputs.skip != 'true'

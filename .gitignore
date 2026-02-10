@@ -7,6 +7,7 @@ node_modules/
 # Android
 android/app/build/
 android/app/release/
+android/app/google-services.json
 android/.gradle/
 android/build/
 android/captures/
