@@ -237,6 +237,9 @@ jobs:
           git add package.json android/app/build.gradle
           git commit -m "release: v${{ steps.version.outputs.new }}"
           git tag "v${{ steps.version.outputs.new }}"
+          # Reset ALL unstaged changes left over from the build process
+          git checkout -- .
+          git clean -fd 2>/dev/null || true
           git pull --rebase origin master
           git push origin master --tags
 
