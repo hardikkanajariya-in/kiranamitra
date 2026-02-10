@@ -2,32 +2,69 @@
 
 **Copyright (c) 2026 Hardik Kanajariya**
 
-## Terms of Use
+## Overview
 
-This software is **free to use** for personal and non-commercial purposes. You are welcome to download, install, and use this application at no cost.
+KiranaMitra uses a **dual licensing model**:
+
+- **Source Code** — Free for personal and non-commercial use (see terms below)
+- **Pre-built APK** — Available for a **one-time purchase of ₹999 INR** from the official website
+
+---
+
+## 1. Source Code License
+
+The source code of this project is free to use for **personal and non-commercial purposes**.
 
 ### You CAN:
 
-- Use this application for free, for personal or business operations (e.g., managing your kirana store)
-- Fork and modify the source code for personal use
+- View, study, and learn from the source code
+- Fork and modify the source code for personal, non-commercial use
+- Build the application from source for your own personal use
 - Contribute to the project via pull requests
-- Share the application with others (with proper attribution)
+- Share the source code with proper attribution (link to the original repository)
 
 ### You CANNOT:
 
-- Sell this source code or any derivative work for commercial purposes without explicit written permission from the author
-- Redistribute the source code as a paid product, template, or SaaS offering
+- Sell, sublicense, or commercially distribute the source code or any derivative work without explicit written permission from the author
+- Redistribute the source code or compiled builds as a paid product, template, SaaS offering, or commercial service
 - Remove or alter any credits, attributions, or license notices
 - Claim this work as your own
+- Use the source code to create a competing commercial product
 
-### Contributions
+---
+
+## 2. Pre-built APK License (Paid)
+
+The official pre-built, signed APK of KiranaMitra is available for purchase at **₹999 INR (one-time payment)** from the official website or authorized distribution channels.
+
+### Purchasers receive:
+
+- A ready-to-use signed APK with all features
+- Lifetime access to future updates at no additional cost
+- Email support from the developer
+
+### Terms:
+
+- The APK is licensed to the individual purchaser for personal or business use (e.g., managing their kirana store)
+- The APK must not be redistributed, resold, shared publicly, or reverse-engineered for commercial purposes
+- One purchase covers usage on the purchaser's own devices
+
+---
+
+## 3. Contributions
 
 We welcome and respect community contributions. By submitting a pull request, you agree that your contribution will be licensed under the same terms as this project.
 
-### Disclaimer
+---
+
+## 4. Disclaimer
 
 This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the author be liable for any claim, damages, or other liability arising from the use of this software.
 
 ---
 
-For commercial licensing inquiries, contact: **hkdevs@hardikkanajariya.in**
+## Contact
+
+- For commercial licensing inquiries: **hkdevs@hardikkanajariya.in**
+- For purchase/payment issues: **hkdevs@hardikkanajariya.in**
+- Website: **https://www.hardikkanajariya.in**

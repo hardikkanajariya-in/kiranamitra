@@ -5,7 +5,8 @@
 <h1 align="center">KiranaMitra</h1>
 
 <p align="center">
-  <strong>Free, offline-first POS & inventory app for Indian kirana stores</strong>
+  <strong>Offline-first POS & Inventory app for Indian kirana stores</strong><br>
+  <em>Source code: Free & Open | Pre-built APK: ₹999 one-time</em>
 </p>
 
 <p align="center">
@@ -30,7 +31,9 @@
 
 ## About
 
-**KiranaMitra** (किराना मित्र — "Grocery Friend") is a completely free, open-source Point of Sale and inventory management application built specifically for Indian kirana (grocery) stores. It works entirely offline with no subscription, no server, and no internet dependency.
+**KiranaMitra** (किराना मित्र — "Grocery Friend") is an offline-first Point of Sale and inventory management application built specifically for Indian kirana (grocery) stores. It works entirely offline with no subscription, no server, and no internet dependency.
+
+The **source code is open** for learning, contribution, and personal use. A **pre-built, signed APK** is available for a one-time purchase of **₹999 INR** — no subscriptions, no recurring fees, lifetime updates included.
 
 All data stays on your device using WatermelonDB (SQLite). Optional Google Drive backup keeps your data safe.
 
@@ -265,6 +268,20 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 
 ---
 
+## Pricing
+
+| | Source Code | Pre-built APK |
+|---|---|---|
+| **Price** | Free | ₹999 (one-time) |
+| **Use** | Learning, personal, contributions | Personal & business use |
+| **Includes** | Full codebase | Signed APK + lifetime updates |
+| **Support** | Community (GitHub Issues) | Email support |
+| **Commercial use** | ❌ Not permitted | ✅ Use in your store |
+
+> **Note:** You can always build the APK yourself from source for personal use. The ₹999 fee is for the convenience of a pre-built, signed, and tested APK with support.
+
+---
+
 ## Author
 
 **Hardik Kanajariya**
@@ -279,7 +296,12 @@ See the [open issues](https://github.com/hardikkanajariya-in/kiranamitra/issues)
 
 ## License
 
-This project is **free to use** for personal and non-commercial purposes. The source code is open for learning and contributions but **not for commercial resale** without permission.
+This project uses a **dual licensing model**:
+
+- **Source code** — Free for personal and non-commercial use
+- **Pre-built APK** — ₹999 INR one-time purchase (lifetime updates included)
+
+The source code is open for learning, contributions, and personal modifications. Commercial redistribution of the source code or compiled builds is **not permitted** without written permission.
 
 See [LICENSE](./LICENSE) for full terms.
 
