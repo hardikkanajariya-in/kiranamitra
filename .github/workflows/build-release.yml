@@ -145,6 +145,15 @@ jobs:
           restore-keys: |
             gradle-deps-
 
+      - name: Cache NDK
+        if: steps.skip.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/android/sdk/ndk
+          key: ndk-27.1.12297006
+          restore-keys: |
+            ndk-
+
       # ── Signing ────────────────────────────────────────────────────
       - name: Generate release keystore
         if: steps.skip.outputs.skip != 'true'
