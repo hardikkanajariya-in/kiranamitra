@@ -187,6 +187,10 @@ jobs:
           }' android/app/build.gradle
 
       # ── Build ──────────────────────────────────────────────────────
+      - name: Ensure Gradle wrapper is executable
+        if: steps.skip.outputs.skip != 'true'
+        run: chmod +x android/gradlew
+
       - name: Build Release APK
         if: steps.skip.outputs.skip != 'true'
         working-directory: android
