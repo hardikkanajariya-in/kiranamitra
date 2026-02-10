@@ -276,7 +276,7 @@ export const googleDriveSync = {
 
                 // Exponential back-off: 2s → 4s → 8s …
                 const delay = RETRY_BASE_DELAY_MS * Math.pow(2, attempt - 1);
-                await new Promise(resolve => setTimeout(resolve, delay));
+                await new Promise<void>(resolve => setTimeout(resolve, delay));
             }
         }
 

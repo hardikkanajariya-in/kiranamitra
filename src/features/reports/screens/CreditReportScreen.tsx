@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, useTheme, Card, Divider } from 'react-native-paper';
+import { Text, useTheme, Surface, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlashList } from '@shopify/flash-list';
 import { AppHeader } from '@shared/components/AppHeader';
+import { AppIcon } from '@shared/components/Icon';
 import { CurrencyText } from '@shared/components/CurrencyText';
 import { LoadingOverlay } from '@shared/components/LoadingOverlay';
 import { EmptyState } from '@shared/components/EmptyState';
@@ -33,27 +34,49 @@ export const CreditReportScreen: React.FC<{ navigation: NavigationProp }> = ({ n
         return <LoadingOverlay visible />;
     }
 
-    const renderCustomer = ({ item }: { item: CustomerCreditInfo }) => (
-        <Card style={styles.customerCard} mode="elevated">
-            <Card.Content style={styles.customerRow}>
-                <View style={styles.customerInfo}>
-                    <Text variant="titleSmall" style={{ color: theme.colors.onSurface }}>
-                        {item.name}
-                    </Text>
-                    <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                        {item.phone}
-                    </Text>
-                    <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                        {t('lastTransaction')}: {item.lastTransactionDate}
+    const renderCustomer = ({ item, index }: { item: CustomerCreditInfo; index: number }) => (
+        <Surface style={styles.customerCard} elevation={1}>
+            <View style={styles.customerRow}>
+                {/* Avatar / Rank */}
+                <View style={[styles.avatar, { backgroundColor: theme.colors.errorContainer }]}>
+                    <Text variant="labelLarge" style={{ color: theme.colors.error, fontWeight: '700' }}>
+                        {item.name.charAt(0).toUpperCase()}
                     </Text>
                 </View>
-                <CurrencyText
-                    amount={item.outstanding}
-                    variant="titleMedium"
-                    style={{ color: theme.colors.error }}
-                />
-            </Card.Content>
-        </Card>
+
+                {/* Customer info */}
+                <View style={styles.customerInfo}>
+                    <Text variant="titleSmall" style={[styles.customerName, { color: theme.colors.onSurface }]} numberOfLines={1}>
+                        {item.name}
+                    </Text>
+                    <View style={styles.customerMeta}>
+                        {item.phone ? (
+                            <View style={styles.metaItem}>
+                                <AppIcon name="phone" size={12} color={theme.colors.onSurfaceVariant} />
+                                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                                    {item.phone}
+                                </Text>
+                            </View>
+                        ) : null}
+                        <View style={styles.metaItem}>
+                            <AppIcon name="account-clock" size={12} color={theme.colors.onSurfaceVariant} />
+                            <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                                {item.lastTransactionDate}
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+
+                {/* Outstanding amount */}
+                <View style={styles.amountContainer}>
+                    <CurrencyText
+                        amount={item.outstanding}
+                        variant="titleSmall"
+                        color={theme.colors.error}
+                    />
+                </View>
+            </View>
+        </Surface>
     );
 
     return (
@@ -65,29 +88,35 @@ export const CreditReportScreen: React.FC<{ navigation: NavigationProp }> = ({ n
             />
 
             <View style={styles.content}>
-                {/* Total Outstanding */}
-                <Card style={styles.summaryCard} mode="elevated">
-                    <Card.Content style={styles.summaryContent}>
-                        <Text variant="labelLarge" style={{ color: theme.colors.onSurfaceVariant }}>
+                {/* Hero Summary */}
+                <Surface style={styles.heroCard} elevation={2}>
+                    <View style={styles.heroInner}>
+                        <View style={[styles.heroIconBox, { backgroundColor: theme.colors.errorContainer }]}>
+                            <AppIcon name="account-cash" size={28} color={theme.colors.error} />
+                        </View>
+                        <Text variant="labelMedium" style={[styles.heroLabel, { color: theme.colors.onSurfaceVariant }]}>
                             {t('totalOutstanding')}
                         </Text>
                         <CurrencyText
                             amount={report.totalOutstanding}
                             variant="headlineMedium"
-                            style={{ color: theme.colors.error }}
+                            color={theme.colors.error}
                         />
-                        <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
-                            {report.customers.length} {t('customers')}
-                        </Text>
-                    </Card.Content>
-                </Card>
+                        <View style={[styles.heroBadge, { backgroundColor: theme.colors.surfaceVariant }]}>
+                            <AppIcon name="account-group" size={14} color={theme.colors.onSurfaceVariant} />
+                            <Text variant="labelSmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                                {report.customers.length} {t('customers')}
+                            </Text>
+                        </View>
+                    </View>
+                </Surface>
 
                 <Divider style={styles.divider} />
 
                 {/* Customer List */}
                 {report.customers.length === 0 ? (
                     <EmptyState
-                        icon="check-circle-outline"
+                        icon="check-circle"
                         title={t('noOutstanding')}
                         subtitle={t('noOutstandingDesc')}
                     />
@@ -95,9 +124,11 @@ export const CreditReportScreen: React.FC<{ navigation: NavigationProp }> = ({ n
                     <FlashList
                         data={report.customers}
                         renderItem={renderCustomer}
-                        estimatedItemSize={72}
+                        // @ts-expect-error FlashList v2 moved estimatedItemSize
+                        estimatedItemSize={80}
                         keyExtractor={(item: CustomerCreditInfo) => item.id}
                         contentContainerStyle={styles.listContent}
+                        ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
                     />
                 )}
             </View>
@@ -111,31 +142,90 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: 16,
+        paddingTop: 16,
     },
-    summaryCard: {
-        marginBottom: 12,
+    heroCard: {
+        marginHorizontal: 20,
+        borderRadius: 16,
+        overflow: 'hidden',
     },
-    summaryContent: {
+    heroInner: {
         alignItems: 'center',
-        paddingVertical: 8,
+        paddingVertical: 24,
+        paddingHorizontal: 20,
+        gap: 8,
+    },
+    heroIconBox: {
+        width: 56,
+        height: 56,
+        borderRadius: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 4,
+    },
+    heroLabel: {
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        letterSpacing: 0.8,
+        fontSize: 11,
+    },
+    heroBadge: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+        borderRadius: 12,
+        marginTop: 4,
     },
     divider: {
-        marginBottom: 12,
+        marginVertical: 16,
+        marginHorizontal: 20,
     },
     customerCard: {
-        marginBottom: 8,
+        borderRadius: 12,
+        marginHorizontal: 20,
+        overflow: 'hidden',
     },
     customerRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+    },
+    avatar: {
+        width: 42,
+        height: 42,
+        borderRadius: 12,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     customerInfo: {
         flex: 1,
-        gap: 2,
+        marginLeft: 14,
+        marginRight: 8,
+        gap: 4,
+    },
+    customerName: {
+        fontWeight: '600',
+    },
+    customerMeta: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 12,
+    },
+    metaItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
+    amountContainer: {
+        alignItems: 'flex-end',
     },
     listContent: {
-        paddingBottom: 16,
+        paddingBottom: 32,
+    },
+    listSeparator: {
+        height: 8,
     },
 });
