@@ -37,260 +37,319 @@ const generateBillHtml = (data: BillPdfData): string => {
   const itemsHtml = data.items
     .map(
       (item, index) => `
-      <tr>
-        <td style="padding: 8px 4px; border-bottom: 1px solid #eee;">${index + 1}</td>
-        <td style="padding: 8px 4px; border-bottom: 1px solid #eee;">${item.productName}</td>
-        <td style="padding: 8px 4px; border-bottom: 1px solid #eee; text-align: center;">${item.quantity}${item.unit ? ` ${item.unit}` : ''}</td>
-        <td style="padding: 8px 4px; border-bottom: 1px solid #eee; text-align: right;">${formatCurrency(item.unitPrice)}</td>
-        <td style="padding: 8px 4px; border-bottom: 1px solid #eee; text-align: right;">${formatCurrency(item.total)}</td>
-      </tr>
-    `,
+      <tr class="${index % 2 === 1 ? 'row-alt' : ''}">
+        <td class="cell cell-center">${index + 1}</td>
+        <td class="cell">${item.productName}</td>
+        <td class="cell cell-center">${item.quantity}${item.unit ? ` ${item.unit}` : ''}</td>
+        <td class="cell cell-right">${formatCurrency(item.unitPrice)}</td>
+        <td class="cell cell-right cell-bold">${formatCurrency(item.total)}</td>
+      </tr>`,
     )
     .join('');
 
   const isCancelled = data.status === 'cancelled';
 
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body {
-          font-family: 'Helvetica Neue', Arial, sans-serif;
-          font-size: 12px;
-          color: #333;
-          padding: 20px;
-          background: #fff;
-        }
-        .container {
-          max-width: 400px;
-          margin: 0 auto;
-        }
-        .header {
-          text-align: center;
-          padding-bottom: 16px;
-          border-bottom: 2px solid #2e7d32;
-          margin-bottom: 16px;
-        }
-        .store-name {
-          font-size: 22px;
-          font-weight: bold;
-          color: #2e7d32;
-          margin-bottom: 4px;
-        }
-        .store-info {
-          font-size: 11px;
-          color: #666;
-          line-height: 1.4;
-        }
-        .bill-info {
-          display: flex;
-          justify-content: space-between;
-          background: #f8f9fa;
-          padding: 12px;
-          border-radius: 8px;
-          margin-bottom: 16px;
-        }
-        .bill-number {
-          font-size: 16px;
-          font-weight: bold;
-          color: #2e7d32;
-        }
-        .bill-date {
-          color: #666;
-          font-size: 11px;
-        }
-        .status-badge {
-          display: inline-block;
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 10px;
-          font-weight: bold;
-          text-transform: uppercase;
-        }
-        .status-completed {
-          background: #e8f5e9;
-          color: #2e7d32;
-        }
-        .status-cancelled {
-          background: #ffebee;
-          color: #c62828;
-        }
-        .customer-section {
-          background: #e3f2fd;
-          padding: 10px 12px;
-          border-radius: 8px;
-          margin-bottom: 16px;
-        }
-        .customer-label {
-          font-size: 10px;
-          color: #1565c0;
-          text-transform: uppercase;
-          font-weight: bold;
-        }
-        .customer-name {
-          font-size: 14px;
-          font-weight: bold;
-          color: #333;
-        }
-        .items-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-bottom: 16px;
-        }
-        .items-table th {
-          background: #2e7d32;
-          color: white;
-          padding: 10px 4px;
-          font-size: 11px;
-          text-align: left;
-        }
-        .items-table th:nth-child(3),
-        .items-table th:nth-child(4),
-        .items-table th:nth-child(5) {
-          text-align: right;
-        }
-        .summary-section {
-          border-top: 2px solid #eee;
-          padding-top: 12px;
-        }
-        .summary-row {
-          display: flex;
-          justify-content: space-between;
-          padding: 6px 0;
-        }
-        .summary-label {
-          color: #666;
-        }
-        .summary-value {
-          font-weight: 500;
-        }
-        .discount-row {
-          color: #2e7d32;
-        }
-        .total-row {
-          border-top: 2px solid #2e7d32;
-          margin-top: 8px;
-          padding-top: 12px;
-        }
-        .total-label {
-          font-size: 16px;
-          font-weight: bold;
-          color: #333;
-        }
-        .total-value {
-          font-size: 20px;
-          font-weight: bold;
-          color: #2e7d32;
-        }
-        .payment-badge {
-          display: inline-block;
-          background: #e8f5e9;
-          color: #2e7d32;
-          padding: 6px 16px;
-          border-radius: 16px;
-          font-weight: bold;
-          font-size: 12px;
-          margin-top: 12px;
-        }
-        .footer {
-          text-align: center;
-          margin-top: 24px;
-          padding-top: 16px;
-          border-top: 1px dashed #ccc;
-          color: #999;
-          font-size: 10px;
-        }
-        ${isCancelled ? '.total-value { color: #c62828; text-decoration: line-through; }' : ''}
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <div class="store-name">${data.storeName || 'Store Name'}</div>
-          <div class="store-info">
-            ${data.storeAddress ? `${data.storeAddress}<br>` : ''}
-            ${data.storePhone ? `Phone: ${data.storePhone}<br>` : ''}
-            ${data.gstNumber ? `GSTIN: ${data.gstNumber}` : ''}
-          </div>
-        </div>
+  const paymentColors: Record<string, string> = {
+    cash: '#2e7d32',
+    upi: '#1565c0',
+    card: '#6a1b9a',
+    credit: '#e65100',
+  };
+  const paymentColor = paymentColors[data.paymentMode] || '#2e7d32';
 
-        <div class="bill-info">
-          <div>
-            <div class="bill-number">#${data.billNumber}</div>
-            <div class="bill-date">${formatDateTime(data.createdAt)}</div>
-          </div>
-          <div>
-            <span class="status-badge ${isCancelled ? 'status-cancelled' : 'status-completed'}">
-              ${data.status}
-            </span>
-          </div>
-        </div>
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 24px 20px;
+    }
+    .invoice { max-width: 420px; margin: 0 auto; }
 
-        ${data.customerName
-      ? `
-        <div class="customer-section">
-          <div class="customer-label">Customer</div>
-          <div class="customer-name">${data.customerName}</div>
-          ${data.customerPhone ? `<div style="font-size: 11px; color: #666;">${data.customerPhone}</div>` : ''}
-        </div>
-        `
-      : ''
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 3px solid #2e7d32;
+    }
+    .store-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: #2e7d32;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .store-detail { font-size: 11px; color: #666; line-height: 1.6; }
+    .gst-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 6px;
+      letter-spacing: 0.3px;
     }
 
-        <table class="items-table">
-          <thead>
-            <tr>
-              <th style="width: 30px;">#</th>
-              <th>Item</th>
-              <th style="width: 60px; text-align: center;">Qty</th>
-              <th style="width: 70px; text-align: right;">Rate</th>
-              <th style="width: 80px; text-align: right;">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${itemsHtml}
-          </tbody>
-        </table>
-
-        <div class="summary-section">
-          <div class="summary-row">
-            <span class="summary-label">Subtotal (${data.items.length} items)</span>
-            <span class="summary-value">${formatCurrency(data.subtotal)}</span>
-          </div>
-          ${data.discountTotal > 0
-      ? `
-          <div class="summary-row discount-row">
-            <span>Discount</span>
-            <span>-${formatCurrency(data.discountTotal)}</span>
-          </div>
-          `
-      : ''
+    /* Invoice title row */
+    .invoice-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
     }
-          <div class="summary-row total-row">
-            <span class="total-label">Grand Total</span>
-            <span class="total-value">${formatCurrency(data.grandTotal)}</span>
-          </div>
-          <div style="text-align: center;">
-            <span class="payment-badge">${data.paymentMode.toUpperCase()}</span>
-          </div>
-        </div>
+    .invoice-label {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-completed { background: #e8f5e9; color: #2e7d32; }
+    .status-cancelled { background: #ffebee; color: #c62828; }
 
-        <div class="footer">
-          <p>Thank you for your purchase!</p>
-          <p style="margin-top: 4px;">Generated on ${formatDate(new Date())}</p>
-        </div>
+    /* Bill meta */
+    .meta-grid {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+    .meta-box {
+      flex: 1;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border-left: 3px solid #e0e0e0;
+    }
+    .meta-label {
+      font-size: 9px;
+      color: #999;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+    }
+    .meta-box.payment { border-left-color: ${paymentColor}; }
+    .meta-box.payment .meta-value { color: ${paymentColor}; }
+
+    /* Customer */
+    .customer-card {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .customer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #1565c0;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .customer-name { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+    .customer-phone { font-size: 11px; color: #666; }
+
+    /* Items table */
+    .items-table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+    .items-table thead th {
+      background: #2e7d32;
+      color: white;
+      padding: 10px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+    .items-table thead th:first-child { border-radius: 6px 0 0 0; }
+    .items-table thead th:last-child { border-radius: 0 6px 0 0; }
+    .cell { padding: 10px 8px; border-bottom: 1px solid #f0f0f0; font-size: 12px; }
+    .cell-center { text-align: center; }
+    .cell-right { text-align: right; }
+    .cell-bold { font-weight: 600; }
+    .row-alt { background: #fafafa; }
+
+    /* Summary */
+    .summary {
+      background: #f8f9fa;
+      border-radius: 0 0 6px 6px;
+      padding: 14px 16px;
+      border-top: 2px solid #e0e0e0;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 12px;
+      color: #666;
+    }
+    .summary-row span:last-child { font-weight: 500; color: #333; }
+    .discount-row { color: #2e7d32 !important; }
+    .discount-row span { color: #2e7d32 !important; }
+    .total-divider {
+      border: none;
+      border-top: 2px dashed #2e7d32;
+      margin: 10px 0;
+    }
+    .grand-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+    .grand-total-label { font-size: 15px; font-weight: 800; color: #1a1a1a; }
+    .grand-total-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #2e7d32;
+    }
+    ${isCancelled ? '.grand-total-value { color: #c62828; text-decoration: line-through; }' : ''}
+    .payment-pill {
+      display: inline-block;
+      background: ${paymentColor}15;
+      color: ${paymentColor};
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px dashed #ccc;
+    }
+    .footer-thanks {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2e7d32;
+      margin-bottom: 4px;
+    }
+    .footer-date { font-size: 9px; color: #aaa; }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <!-- Store Header -->
+    <div class="header">
+      <div class="store-name">${data.storeName || 'Store Name'}</div>
+      <div class="store-detail">
+        ${data.storeAddress ? `${data.storeAddress}<br>` : ''}
+        ${data.storePhone ? `Ph: ${data.storePhone}` : ''}
       </div>
-    </body>
-    </html>
-  `;
+      ${data.gstNumber ? `<div class="gst-badge">GSTIN: ${data.gstNumber}</div>` : ''}
+    </div>
+
+    <!-- Invoice Title & Status -->
+    <div class="invoice-title">
+      <span class="invoice-label">Invoice</span>
+      <span class="status ${isCancelled ? 'status-cancelled' : 'status-completed'}">${data.status}</span>
+    </div>
+
+    <!-- Meta Grid -->
+    <div class="meta-grid">
+      <div class="meta-box">
+        <div class="meta-label">Bill Number</div>
+        <div class="meta-value">#${data.billNumber}</div>
+      </div>
+      <div class="meta-box">
+        <div class="meta-label">Date</div>
+        <div class="meta-value">${formatDateTime(data.createdAt)}</div>
+      </div>
+      <div class="meta-box payment">
+        <div class="meta-label">Payment</div>
+        <div class="meta-value">${data.paymentMode.toUpperCase()}</div>
+      </div>
+    </div>
+
+    ${data.customerName ? `
+    <!-- Customer -->
+    <div class="customer-card">
+      <div class="customer-avatar">${data.customerName.charAt(0).toUpperCase()}</div>
+      <div>
+        <div class="customer-name">${data.customerName}</div>
+        ${data.customerPhone ? `<div class="customer-phone">Ph: ${data.customerPhone}</div>` : ''}
+      </div>
+    </div>` : ''}
+
+    <!-- Items Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th style="width: 28px;">#</th>
+          <th>Item</th>
+          <th style="width: 50px; text-align: center;">Qty</th>
+          <th style="width: 65px; text-align: right;">Rate</th>
+          <th style="width: 75px; text-align: right;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>${itemsHtml}</tbody>
+    </table>
+
+    <!-- Summary -->
+    <div class="summary">
+      <div class="summary-row">
+        <span>Subtotal (${data.items.length} ${data.items.length === 1 ? 'item' : 'items'})</span>
+        <span>${formatCurrency(data.subtotal)}</span>
+      </div>
+      ${data.discountTotal > 0 ? `
+      <div class="summary-row discount-row">
+        <span>Discount</span>
+        <span>-${formatCurrency(data.discountTotal)}</span>
+      </div>` : ''}
+      <hr class="total-divider">
+      <div class="grand-total">
+        <span class="grand-total-label">Grand Total</span>
+        <span class="grand-total-value">${formatCurrency(data.grandTotal)}</span>
+      </div>
+      <div style="text-align: center;">
+        <span class="payment-pill">${data.paymentMode.toUpperCase()}</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-thanks">Thank you for your purchase!</div>
+      <div class="footer-date">Generated on ${formatDate(new Date())}</div>
+    </div>
+  </div>
+</body>
+</html>`;
 };
 
 export const billPdfService = {
