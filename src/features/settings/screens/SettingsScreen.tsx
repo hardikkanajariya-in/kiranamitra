@@ -8,7 +8,6 @@ import { paperIcon } from '@shared/components/Icon';
 import { LanguagePicker } from '../components/LanguagePicker';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { StoreProfileForm } from '../components/StoreProfileForm';
-import { BackupRestore } from '../components/BackupRestore';
 import { GoogleDriveSync } from '../components/GoogleDriveSync';
 import { PrinterSetupModal } from '@features/printing/components/PrinterSetupModal';
 import { ProductSeeder } from '../components/ProductSeeder';
@@ -63,11 +62,6 @@ export const SettingsScreen: React.FC<{ navigation: NavigationProp }> = ({ navig
 
                     {/* Google Drive Sync */}
                     <GoogleDriveSync />
-
-                    <Divider style={styles.divider} />
-
-                    {/* Backup & Restore */}
-                    <BackupRestore />
 
                     <Divider style={styles.divider} />
 
