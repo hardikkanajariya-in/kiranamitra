@@ -208,7 +208,7 @@ Supported languages:
 
 ## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting a PR.
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)

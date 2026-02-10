@@ -1,0 +1,22 @@
+# Default code owners for KiranaMitra
+# These users will be automatically requested for review on PRs
+
+# Global owners
+* @hardik-kanajariya
+
+# Core infrastructure
+src/core/ @hardik-kanajariya
+
+# Database schema and migrations (critical - always review)
+src/core/database/schema.ts @hardik-kanajariya
+src/core/database/migrations.ts @hardik-kanajariya
+
+# Navigation structure
+src/navigation/ @hardik-kanajariya
+
+# CI/CD workflows
+.github/ @hardik-kanajariya
+
+# Build configuration
+android/ @hardik-kanajariya
+ios/ @hardik-kanajariya
