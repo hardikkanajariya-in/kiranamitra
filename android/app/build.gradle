@@ -83,8 +83,8 @@ android {
         applicationId "com.kiranamitra"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10100
-        versionName "1.1.0"
+        versionCode 10200
+        versionName "1.2.0"
     }
     signingConfigs {
         debug {
