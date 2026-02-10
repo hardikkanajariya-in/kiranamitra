@@ -97,7 +97,7 @@ export const BillCard: React.FC<BillCardProps> = ({
               </Text>
             </View>
             <View style={styles.badges}>
-              <View style={[styles.paymentBadge, { backgroundColor: getPaymentColor() + '1A' }]}>
+              <View style={[styles.paymentBadge, { backgroundColor: `${getPaymentColor()}1A` }]}>
                 <AppIcon name={getPaymentIcon()} size={12} color={getPaymentColor()} />
                 <Text variant="labelSmall" style={{ color: getPaymentColor(), fontWeight: '700' }}>
                   {paymentMode.toUpperCase()}

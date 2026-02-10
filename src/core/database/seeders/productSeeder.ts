@@ -1,7 +1,6 @@
 import { database } from '@core/database';
 import Product from '@core/database/models/Product';
 import Category from '@core/database/models/Category';
-import { Q } from '@nozbe/watermelondb';
 
 interface SeedCategory {
   name: string;

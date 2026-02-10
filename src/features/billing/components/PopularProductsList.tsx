@@ -33,59 +33,52 @@ export const PopularProductsList: React.FC<PopularProductsListProps> = ({
     useEffect(() => {
         let cancelled = false;
 
+        const fetchActiveProducts = (): Promise<Product[]> => {
+            return new Promise<Product[]>((resolve) => {
+                const sub = productRepository.observeAll().subscribe((products) => {
+                    resolve(products);
+                    setTimeout(() => sub.unsubscribe(), 0);
+                });
+            });
+        };
+
+        const buildPopularList = (popularIds: string[], allActiveProducts: Product[]): Product[] => {
+            const productMap = new Map<string, Product>();
+            for (const p of allActiveProducts) {
+                productMap.set(p.id, p);
+            }
+
+            const popular: Product[] = [];
+            for (const id of popularIds) {
+                const product = productMap.get(id);
+                if (product && product.isActive) {
+                    popular.push(product);
+                }
+            }
+
+            if (popular.length < POPULAR_LIMIT) {
+                const popularSet = new Set(popularIds);
+                const remaining = allActiveProducts
+                    .filter((p) => !popularSet.has(p.id))
+                    .slice(0, POPULAR_LIMIT - popular.length);
+                popular.push(...remaining);
+            }
+
+            return popular.slice(0, POPULAR_LIMIT);
+        };
+
         const loadPopularProducts = async () => {
             try {
-                // Get popular product IDs from bill history
                 const popularIds = await billRepository.getPopularProductIds(POPULAR_LIMIT);
+                const allActiveProducts = await fetchActiveProducts();
 
-                // Fetch active products
-                const allProducts = await productRepository.observeAll()
-                    .subscribe(() => { })
-                    .unsubscribe;
-
-                // Use a one-time fetch instead
-                const allActiveProducts = await new Promise<Product[]>((resolve) => {
-                    const sub = productRepository.observeAll().subscribe((products) => {
-                        resolve(products);
-                        setTimeout(() => sub.unsubscribe(), 0);
-                    });
-                });
-
-                if (cancelled) return;
-
-                let result: Product[];
-
-                if (popularIds.length > 0) {
-                    // Build ordered list from popular IDs
-                    const productMap = new Map<string, Product>();
-                    for (const p of allActiveProducts) {
-                        productMap.set(p.id, p);
-                    }
-
-                    // Ordered by popularity
-                    const popular: Product[] = [];
-                    for (const id of popularIds) {
-                        const product = productMap.get(id);
-                        if (product && product.isActive) {
-                            popular.push(product);
-                        }
-                    }
-
-                    // If we have fewer than POPULAR_LIMIT popular products,
-                    // fill remaining slots with other active products
-                    if (popular.length < POPULAR_LIMIT) {
-                        const popularSet = new Set(popularIds);
-                        const remaining = allActiveProducts
-                            .filter((p) => !popularSet.has(p.id))
-                            .slice(0, POPULAR_LIMIT - popular.length);
-                        popular.push(...remaining);
-                    }
-
-                    result = popular.slice(0, POPULAR_LIMIT);
-                } else {
-                    // No sales history — show newest products first
-                    result = allActiveProducts.slice(0, POPULAR_LIMIT);
+                if (cancelled) {
+                    return;
                 }
+
+                const result = popularIds.length > 0
+                    ? buildPopularList(popularIds, allActiveProducts)
+                    : allActiveProducts.slice(0, POPULAR_LIMIT);
 
                 if (!cancelled) {
                     setPopularProducts(result);
