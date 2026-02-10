@@ -1,0 +1,96 @@
+name: Build Release APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    env:
+      KEYSTORE_PASSWORD: KiranaMitra@2026
+      KEY_ALIAS: kiranamitra
+      KEY_PASSWORD: KiranaMitra@2026
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Gradle wrapper
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/wrapper
+          key: gradle-wrapper-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/configuration-cache
+          key: gradle-deps-${{ hashFiles('android/**/*.gradle*', 'android/gradle.properties') }}
+          restore-keys: |
+            gradle-deps-
+
+      - name: Generate release keystore
+        run: |
+          keytool -genkeypair \
+            -v \
+            -storetype PKCS12 \
+            -keystore android/app/kiranamitra-release.keystore \
+            -alias $KEY_ALIAS \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass $KEYSTORE_PASSWORD \
+            -keypass $KEY_PASSWORD \
+            -dname "CN=KiranaMitra, OU=Mobile, O=KiranaMitra, L=India, ST=GJ, C=IN"
+
+      - name: Configure signing
+        run: |
+          cat >> android/gradle.properties <<EOF
+          MYAPP_UPLOAD_STORE_FILE=kiranamitra-release.keystore
+          MYAPP_UPLOAD_KEY_ALIAS=$KEY_ALIAS
+          MYAPP_UPLOAD_STORE_PASSWORD=$KEYSTORE_PASSWORD
+          MYAPP_UPLOAD_KEY_PASSWORD=$KEY_PASSWORD
+          EOF
+
+      - name: Update build.gradle signing config
+        run: |
+          sed -i 's|signingConfig signingConfigs.debug|signingConfig signingConfigs.release|' android/app/build.gradle
+          sed -i '/signingConfigs {/,/}/ {
+            /debug {/,/}/!b
+            /}/a\
+            release {\
+                storeFile file(project.property("MYAPP_UPLOAD_STORE_FILE"))\
+                storePassword project.property("MYAPP_UPLOAD_STORE_PASSWORD")\
+                keyAlias project.property("MYAPP_UPLOAD_KEY_ALIAS")\
+                keyPassword project.property("MYAPP_UPLOAD_KEY_PASSWORD")\
+            }
+          }' android/app/build.gradle
+
+      - name: Build Release APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: KiranaMitra-release
+          path: android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 30
