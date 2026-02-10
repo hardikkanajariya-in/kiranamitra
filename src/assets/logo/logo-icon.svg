@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <!-- KiranaMitra Logo - Icon Only (no text) -->
   
-  <g transform="translate(256, 256)">
+  <g transform="translate(256, 240) scale(2.4)">
     <!-- Basket body -->
     <path d="M-80 0 L-66 74 C-64 86 -50 96 -38 96 L38 96 C50 96 64 86 66 74 L80 0 Z" 
           fill="none" stroke="#2C3E50" stroke-width="6" stroke-linejoin="round"/>
