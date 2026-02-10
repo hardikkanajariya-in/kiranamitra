@@ -1,12 +1,29 @@
-name: Build Release APK
+name: Build & Release APK
 
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      release_notes:
+        description: 'Release notes (optional)'
+        required: false
+        type: string
 
 jobs:
-  build:
-    runs-on: unntu-latest
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     env:
       KEYSTORE_PASSWORD: KiranaMitra@2026
@@ -16,29 +33,109 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Skip if release commit
+        id: skip
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%s)
+          if [[ "$COMMIT_MSG" == release:* ]]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "⏭️ Skipping release commit: $COMMIT_MSG"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Set up JDK 17
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Set up Node.js
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
+        if: steps.skip.outputs.skip != 'true'
         run: npm ci
 
+      # ── Version Bump ──────────────────────────────────────────────
+      - name: Calculate next version
+        if: steps.skip.outputs.skip != 'true'
+        id: version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "current=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+          # Default to 'minor' on push, use input on manual dispatch
+          BUMP_TYPE="${{ inputs.bump }}"
+          if [ -z "$BUMP_TYPE" ]; then
+            BUMP_TYPE="minor"
+          fi
+          echo "bump=$BUMP_TYPE" >> $GITHUB_OUTPUT
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+
+          case "$BUMP_TYPE" in
+            major)
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            minor)
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            patch)
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "new=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+          # Calculate versionCode: MAJOR*10000 + MINOR*100 + PATCH
+          VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+          echo "code=$VERSION_CODE" >> $GITHUB_OUTPUT
+
+          echo "📦 Version: $CURRENT_VERSION → $NEW_VERSION (versionCode: $VERSION_CODE)"
+
+      - name: Update package.json version
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '${{ steps.version.outputs.new }}';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Update android/app/build.gradle version
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          sed -i "s/versionCode [0-9]*/versionCode ${{ steps.version.outputs.code }}/" android/app/build.gradle
+          sed -i 's/versionName "[^"]*"/versionName "${{ steps.version.outputs.new }}"/' android/app/build.gradle
+
+          echo "✅ build.gradle updated:"
+          grep -E "versionCode|versionName" android/app/build.gradle
+
+      # ── Caching ────────────────────────────────────────────────────
       - name: Cache Gradle wrapper
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/cache@v4
         with:
           path: ~/.gradle/wrapper
           key: gradle-wrapper-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Cache Gradle dependencies
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -48,7 +145,9 @@ jobs:
           restore-keys: |
             gradle-deps-
 
+      # ── Signing ────────────────────────────────────────────────────
       - name: Generate release keystore
+        if: steps.skip.outputs.skip != 'true'
         run: |
           keytool -genkeypair \
             -v \
@@ -63,6 +162,7 @@ jobs:
             -dname "CN=KiranaMitra, OU=Mobile, O=KiranaMitra, L=India, ST=GJ, C=IN"
 
       - name: Configure signing
+        if: steps.skip.outputs.skip != 'true'
         run: |
           cat >> android/gradle.properties <<EOF
           MYAPP_UPLOAD_STORE_FILE=kiranamitra-release.keystore
@@ -72,6 +172,7 @@ jobs:
           EOF
 
       - name: Update build.gradle signing config
+        if: steps.skip.outputs.skip != 'true'
         run: |
           sed -i 's|signingConfig signingConfigs.debug|signingConfig signingConfigs.release|' android/app/build.gradle
           sed -i '/signingConfigs {/,/}/ {
@@ -85,13 +186,74 @@ jobs:
             }
           }' android/app/build.gradle
 
+      # ── Build ──────────────────────────────────────────────────────
       - name: Build Release APK
+        if: steps.skip.outputs.skip != 'true'
         working-directory: android
         run: ./gradlew assembleRelease --no-daemon
 
-      - name: Upload APK
+      - name: Rename APK with version
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          mv android/app/build/outputs/apk/release/app-release.apk \
+             android/app/build/outputs/apk/release/KiranaMitra-v${{ steps.version.outputs.new }}.apk
+
+      # ── Commit & Tag ───────────────────────────────────────────────
+      - name: Commit version bump
+        if: steps.skip.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json android/app/build.gradle
+          git commit -m "release: v${{ steps.version.outputs.new }}"
+          git tag "v${{ steps.version.outputs.new }}"
+          git push origin master --tags
+
+      # ── Release ────────────────────────────────────────────────────
+      - name: Generate changelog
+        if: steps.skip.outputs.skip != 'true'
+        id: changelog
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            COMMITS=$(git log --oneline --no-decorate -20)
+          else
+            COMMITS=$(git log --oneline --no-decorate "${PREV_TAG}..HEAD~1")
+          fi
+
+          {
+            echo "body<<CHANGELOG_EOF"
+            echo "## KiranaMitra v${{ steps.version.outputs.new }}"
+            echo ""
+            if [ -n "${{ inputs.release_notes }}" ]; then
+              echo "${{ inputs.release_notes }}"
+              echo ""
+            fi
+            echo "### Changes"
+            echo ""
+            echo "$COMMITS" | while read -r line; do echo "- $line"; done
+            echo ""
+            echo "---"
+            echo "**Version Code:** ${{ steps.version.outputs.code }}"
+            echo "**Previous Version:** ${{ steps.version.outputs.current }}"
+            echo "CHANGELOG_EOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        if: steps.skip.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.new }}
+          name: KiranaMitra v${{ steps.version.outputs.new }}
+          body: ${{ steps.changelog.outputs.body }}
+          files: android/app/build/outputs/apk/release/KiranaMitra-v${{ steps.version.outputs.new }}.apk
+          draft: false
+          prerelease: false
+
+      - name: Upload APK artifact
+        if: steps.skip.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: KiranaMitra-release
-          path: android/app/build/outputs/apk/release/app-release.apk
-          retention-days: 30
+          name: KiranaMitra-v${{ steps.version.outputs.new }}
+          path: android/app/build/outputs/apk/release/KiranaMitra-v${{ steps.version.outputs.new }}.apk
+          retention-days: 90
