@@ -194,7 +194,7 @@ jobs:
       - name: Build Release APK
         if: steps.skip.outputs.skip != 'true'
         working-directory: android
-        run: ./gradlew assembleRelease --no-daemon
+        run: ./gradlew assembleRelease --no-daemon -Dorg.gradle.configuration-cache=false
 
       - name: Rename APK with version
         if: steps.skip.outputs.skip != 'true'
