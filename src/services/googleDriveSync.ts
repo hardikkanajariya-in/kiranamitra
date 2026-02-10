@@ -97,7 +97,7 @@ export const googleDriveSync = {
         if (!gsModule) { return; }
         gsModule.GoogleSignin.configure({
             scopes: ['https://www.googleapis.com/auth/drive.appdata'],
-            offlineAccess: true,
+            offlineAccess: false,
         });
     },
 
