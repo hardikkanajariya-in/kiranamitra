@@ -229,6 +229,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Restore build.gradle to only contain the version bump (not signing config changes)
+          git checkout -- android/gradle.properties 2>/dev/null || true
+          git checkout -- android/app/build.gradle
+          sed -i "s/versionCode [0-9]*/versionCode ${{ steps.version.outputs.code }}/" android/app/build.gradle
+          sed -i 's/versionName "[^"]*"/versionName "${{ steps.version.outputs.new }}"/' android/app/build.gradle
           git add package.json android/app/build.gradle
           git commit -m "release: v${{ steps.version.outputs.new }}"
           git tag "v${{ steps.version.outputs.new }}"
